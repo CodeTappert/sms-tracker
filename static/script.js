@@ -542,7 +542,6 @@ function updateAllStatsUI() {
         const gBCsTotal = new Set();
 
         groupEntrances.forEach(e => {
-            console.log(e);
             if (e.is_warp === false) {
                 // Static Plaza Shine
                 gShinesTotal.add(e.id);

@@ -374,6 +374,10 @@
       "shines_available": [],
       "blue_coin_ids": [],
       "exits": [
+        {
+          "id": "delfino0_secret",
+          "name": "Hotel Lobby Secret"
+        }
       ]
     },
     "delfino1": {

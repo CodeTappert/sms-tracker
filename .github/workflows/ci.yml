@@ -54,8 +54,10 @@ jobs:
     name: Create Release
     needs: build
     runs-on: ubuntu-latest
-    # Only run this job on main or master
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    permissions:
+      contents: write
+    # Only run this job on main
+    if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Download Artifacts

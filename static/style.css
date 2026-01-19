@@ -1,6 +1,5 @@
 body { background: #1e1e1e; color: #eee; font-family: 'Segoe UI', sans-serif; padding: 20px; }
 
-/* Header Icon (Shine) */
 .header-icon {
     width: 30px;
     height: auto;
@@ -8,7 +7,6 @@ body { background: #1e1e1e; color: #eee; font-family: 'Segoe UI', sans-serif; pa
     margin-right: 5px;
 }
 
-/* Route Stats (in Table) */
 .route-stats {
     font-size: 0.9em;
     color: #aaa;
@@ -26,7 +24,6 @@ body { background: #1e1e1e; color: #eee; font-family: 'Segoe UI', sans-serif; pa
 }
 .rs-done { color: #2ecc71; font-weight: bold; }
 
-/* --- STICKY HEADER --- */
 #sticky-header {
     position: sticky; top: 0; z-index: 100;
     background: #2d2d2d; border-bottom: 2px solid #444;
@@ -46,7 +43,6 @@ body { background: #1e1e1e; color: #eee; font-family: 'Segoe UI', sans-serif; pa
     gap: 30px;
 }
 
-/* Save/Load Buttons */
 .file-controls {
     display: flex;
     gap: 10px;
@@ -70,7 +66,6 @@ body { background: #1e1e1e; color: #eee; font-family: 'Segoe UI', sans-serif; pa
 
 .stat-item span { color: #f39c12; }
 
-/* --- SHADOW MARIO BAR --- */
 #shadow-mario-bar {
     display: flex; gap: 5px; padding: 0 15px; flex-wrap: wrap; align-items: center;
 }
@@ -86,13 +81,11 @@ body { background: #1e1e1e; color: #eee; font-family: 'Segoe UI', sans-serif; pa
 .shadow-check.done::before { content: "✔"; }
 .shadow-check::before { content: "🔒"; font-size: 0.8em; }
 
-/* Corona Unlock Message */
 .corona-unlocked-msg {
     color: #e74c3c; font-weight: bold; margin-left: auto; display: none; text-transform: uppercase; animation: pulse 1.5s infinite;
 }
 @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; text-shadow: 0 0 10px red; } 100% { opacity: 0.6; } }
 
-/* --- TABLE --- */
 table { width: 100%; border-collapse: collapse; background: #252525; margin-top: 20px; table-layout: fixed;}
 th { text-align: left; background: #333; padding: 10px; border-bottom: 2px solid #555; }
 td { padding: 8px; border-bottom: 1px solid #333; vertical-align: middle; word-wrap: break-word;}
@@ -106,11 +99,9 @@ td { padding: 8px; border-bottom: 1px solid #333; vertical-align: middle; word-w
 .zone-name { font-weight: bold; color: #fff; }
 .exit-name { color: #aaa; font-style: italic; font-size: 0.9em; }
 
-/* Locked Row Style */
 .row-locked { opacity: 0.5; background: #200000; }
 .locked-text { color: #e74c3c; font-style: italic; display: flex; align-items: center; gap: 5px; }
 
-/* Inputs & Checks */
 select { background: #111; color: #fff; border: 1px solid #555; padding: 5px; width: 100%; }
 select.filled { border-color: #2ecc71; background: #1a2a1a; }
 
@@ -122,7 +113,6 @@ select.filled { border-color: #2ecc71; background: #1a2a1a; }
 .shine-check:hover { background: #444; border-color: #f39c12; }
 .shine-check.checked { background: #d35400; border-color: #e67e22; color: #fff; }
 
-/* Blue Coins */
 .bc-list { display: flex; gap: 2px; flex-wrap: wrap; }
 .bc-box {
     width: 18px; height: 18px; border: 1px solid #3a8ccf; background: #111;
@@ -130,7 +120,6 @@ select.filled { border-color: #2ecc71; background: #1a2a1a; }
 }
 .bc-box.collected { background: #3a8ccf; color: #fff; font-weight: bold; }
 
-/* --- UNLOCKS UPDATE --- */
 #unlocks-bar {
     padding: 10px 15px;
     display: flex;
@@ -179,7 +168,6 @@ select.filled { border-color: #2ecc71; background: #1a2a1a; }
     font-weight: bold;
 }
 
-/* Collapsible Styles */
 .group-header-row {
     cursor: pointer;
     user-select: none;
@@ -201,7 +189,6 @@ select.filled { border-color: #2ecc71; background: #1a2a1a; }
     background: #2a2a2a;
 }
 
-/* Entry Row Styling */
 .entry-main-row {
     cursor: pointer;
     background: #2a2a2a;
@@ -220,47 +207,39 @@ select.filled { border-color: #2ecc71; background: #1a2a1a; }
     margin-right: 5px;
 }
 
-/* Hide children when parent is collapsed */
 .child-row {
     background: #222;
 }
 
-/* Ensure icons don't shift text */
 .collapse-icon, .collapse-icon-sub {
     font-family: monospace;
     text-align: center;
 }
 
-/* Replaces style="display: none;" on the file input */
 .hidden-input {
     display: none;
 }
 
-/* Replaces style="font-size:1.5em; line-height:1;" on the Blue Coin icon */
 .icon-bc {
     font-size: 1.5em;
     line-height: 1;
 }
 
-/* Replaces style="width:16px;" on small shine icons */
 .stat-icon-sm {
     width: 16px;
     margin-right: 4px;
     vertical-align: middle;
 }
 
-/* Replaces style="color:#f39c12" for the indentation arrow (↳) */
 .zone-sub {
     color: #f39c12;
 }
 
-/* Replaces style="color:#e74c3c; font-weight:bold;" for the Corona Boss text */
 .corona-unlocked-text {
     color: #e74c3c;
     font-weight: bold;
 }
 
-/* Replaces style="display:inline" on the Corona Unlocked message */
 .corona-unlocked-msg {
     display: inline;
     font-weight: bold;
@@ -268,7 +247,6 @@ select.filled { border-color: #2ecc71; background: #1a2a1a; }
     margin-left: 10px;
 }
 
-/* Group Header Stats */
 .group-header .group-stats-summary {
     font-weight: normal;
     font-size: 0.9em;

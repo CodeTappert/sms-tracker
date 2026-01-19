@@ -2,6 +2,14 @@
 
 A tracker for the Super Mario Sunshine Randomizer that allows users to map randomized zones to Plaza entrances and track Shine and Blue Coin collections.
 
+## License
+
+This code in this project is licensed under the MIT License. Assets in /static/images is not licensed at all and is owned by Nintendo. For more information, see [LICENSE](LICENSE).
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
 ## Features
 
 * **Zone Mapping**: Map randomized zones to Plaza entrances for easy navigation.

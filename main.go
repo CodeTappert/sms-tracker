@@ -3,95 +3,101 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 )
 
-// --- 1. DATENMODELLE ---
+// --- Data Structures ---
 
-// NEU: Definition für einen einzelnen Shine
+// ShineDefinition tracks the state and metadata of a specific shine.
 type ShineDefinition struct {
-	ID   string `json:"id"`
+	ID   string `json:"id"` // Unique ID used for tracking logic
 	Name string `json:"name"`
 }
 
+// Exit represents a loading zone or transition point within the game world.
 type Exit struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
 }
 
+// Zone represents a major level or area the player can warp to.
 type Zone struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-	// WICHTIG: Hier Array statt int!
+	ID              string            `json:"id"`
+	Name            string            `json:"name"`
 	ShinesAvailable []ShineDefinition `json:"shines_available"`
 	BlueCoinIDs     []int             `json:"blue_coin_ids"`
 	Exits           []Exit            `json:"exits"`
 }
 
+// Unlock represents a game capability, item, or nozzle.
 type Unlock struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
 	Icon string `json:"icon"`
 }
 
+// PlazaEntrance defines a specific entry point from the hub world (Plaza) to a level.
 type PlazaEntrance struct {
 	ID        string `json:"id"`
 	Name      string `json:"name"`
-	GroupName string `json:"group_name"`
+	GroupName string `json:"group_name"` // Used for grouping in the UI (e.g., "Bianco Hills")
 	Image     string `json:"image"`
 }
 
+// WorldData serves as the root container for all static game configuration loaded from JSON.
 type WorldData struct {
 	Zones          map[string]Zone `json:"zones"`
 	Unlocks        []Unlock        `json:"unlocks"`
 	PlazaEntrances []PlazaEntrance `json:"plaza_entrances"`
 }
 
+// Global state to hold the data once loaded.
 var currentWorld WorldData
 
-// --- 2. DATEN LADEN ---
-
+// loadGameData parses JSON files and constructs the initial world state.
+// This should only be called once during startup.
 func loadGameData() {
-	// A. Zonen laden
-	zoneFile, err := ioutil.ReadFile("data/zones.json")
+	// A. Load Zones
+	zoneFile, err := os.ReadFile("data/zones.json")
 	if err != nil {
-		log.Fatalf("Fehler beim Lesen von zones.json: %v", err)
+		log.Fatalf("Error reading zones.json: %v", err)
 	}
 
+	// Temporary wrapper to match the JSON structure structure
 	var zoneWrapper struct {
 		Zones map[string]Zone `json:"zones"`
 	}
 
 	if err := json.Unmarshal(zoneFile, &zoneWrapper); err != nil {
-		log.Fatalf("Fehler beim Parsen von zones.json: %v", err)
+		log.Fatalf("Error parsing zones.json: %v", err)
 	}
 
-	// IDs injecten
+	// The JSON uses the ID as the map key. We inject that key into the struct itself
+	// so the frontend receives a fully self-contained object.
 	for id, zone := range zoneWrapper.Zones {
 		zone.ID = id
 		zoneWrapper.Zones[id] = zone
 	}
 
-	// B. Unlocks laden
-	unlockFile, err := ioutil.ReadFile("data/unlocks.json")
+	// B. Load Unlocks
+	unlockFile, err := os.ReadFile("data/unlocks.json")
 	if err != nil {
-		log.Fatalf("Fehler beim Lesen von unlocks.json: %v", err)
+		log.Fatalf("Error reading unlocks.json: %v", err)
 	}
 
 	var unlockWrapper struct {
 		Unlocks []Unlock `json:"unlocks"`
 	}
 	if err := json.Unmarshal(unlockFile, &unlockWrapper); err != nil {
-		log.Fatalf("Fehler beim Parsen von unlocks.json: %v", err)
+		log.Fatalf("Error parsing unlocks.json: %v", err)
 	}
 
-	// C. Plaza Eingänge definieren
+	// C. Define Plaza Entrances programmatically
 	var entrances []PlazaEntrance
 
-	// 1. Einzel-Eingänge (Mit Bildern)
+	// 1. Standalone Entrances (Special stages and secrets)
 	singles := []struct{ ID, Name, Image string }{
 		{"enter_airstrip", "Airstrip", "airstrip.png"},
 		{"enter_corona", "Corona Mountain", "corona.png"},
@@ -112,7 +118,7 @@ func loadGameData() {
 		})
 	}
 
-	// 2. Die Hauptwelten (Episoden 1-8)
+	// 2. Main Worlds (Generate entries for Episodes 1-8)
 	worlds := []struct {
 		ID, Name, Image string
 	}{
@@ -136,31 +142,36 @@ func loadGameData() {
 		}
 	}
 
+	// Assign compiled data to global state
 	currentWorld = WorldData{
 		Zones:          zoneWrapper.Zones,
 		Unlocks:        unlockWrapper.Unlocks,
 		PlazaEntrances: entrances,
 	}
 
-	fmt.Printf("Daten geladen: %d Zonen, %d Eingänge.\n", len(currentWorld.Zones), len(currentWorld.PlazaEntrances))
+	fmt.Printf("Data loaded successfully: %d zones, %d entrances configured.\n", len(currentWorld.Zones), len(currentWorld.PlazaEntrances))
 }
 
-// --- 3. SERVER API ---
+// --- Server API ---
 
 func main() {
 	loadGameData()
 
+	// Ensure the frontend assets exist before starting
 	if _, err := os.Stat("./static"); os.IsNotExist(err) {
-		log.Fatal("Ordner './static' fehlt!")
+		log.Fatal("Directory './static' is missing! Cannot serve frontend.")
 	}
+
+	// Serve static files (HTML/JS/CSS)
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/", fs)
 
+	// API Endpoint to fetch the game configuration
 	http.HandleFunc("/api/data", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(currentWorld)
 	})
 
-	fmt.Println("Server läuft auf http://localhost:8080")
+	fmt.Println("Server running at http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

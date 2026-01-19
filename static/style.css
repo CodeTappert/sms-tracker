@@ -144,7 +144,8 @@ select.filled { border-color: #2ecc71; background: #1a2a1a; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60px;
+    width: auto;
+    min-width: 60px;
 }
 
 .unlock-icon {
@@ -228,4 +229,56 @@ select.filled { border-color: #2ecc71; background: #1a2a1a; }
 .collapse-icon, .collapse-icon-sub {
     font-family: monospace;
     text-align: center;
+}
+
+/* Replaces style="display: none;" on the file input */
+.hidden-input {
+    display: none;
+}
+
+/* Replaces style="font-size:1.5em; line-height:1;" on the Blue Coin icon */
+.icon-bc {
+    font-size: 1.5em;
+    line-height: 1;
+}
+
+/* Replaces style="width:16px;" on small shine icons */
+.stat-icon-sm {
+    width: 16px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+/* Replaces style="color:#f39c12" for the indentation arrow (↳) */
+.zone-sub {
+    color: #f39c12;
+}
+
+/* Replaces style="color:#e74c3c; font-weight:bold;" for the Corona Boss text */
+.corona-unlocked-text {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Replaces style="display:inline" on the Corona Unlocked message */
+.corona-unlocked-msg {
+    display: inline;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-left: 10px;
+}
+
+/* Group Header Stats */
+.group-header .group-stats-summary {
+    font-weight: normal;
+    font-size: 0.9em;
+    color: #eee;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.group-header .g-stat.done {
+    color: #f1c40f; /* Gold for completion */
+    font-weight: bold;
 }

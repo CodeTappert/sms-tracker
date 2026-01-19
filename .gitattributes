@@ -1,0 +1,18 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# --- Languages ---
+*.go text diff=go
+*.html text
+*.css text
+*.js text
+*.json text
+
+# --- Binary Assets ---
+# Important: Treats images as binary to prevent git from corrupting them during line-ending conversion
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary

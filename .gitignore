@@ -1,0 +1,27 @@
+# --- Go ---
+# Binaries
+sms-tracker
+sms-tracker.exe
+main
+main.exe
+
+# Test binaries
+*.test
+
+# Output files
+*.out
+*.log
+
+# --- System ---
+.DS_Store
+Thumbs.db
+
+# --- IDEs & Editors ---
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Project Specific ---
+# Ignore local save files if placed in root
+sms-tracker-save.json

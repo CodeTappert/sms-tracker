@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - "main"
-      - "master"
       - "develop"
 
 jobs:
@@ -24,31 +23,21 @@ jobs:
       # 1. Build for Linux
       - name: Build Linux Binary
         run: |
-          GOOS=linux GOARCH=amd64 go build -o sms-tracker main.go
+          GOOS=linux GOARCH=amd64 go build -o sms-tracker-linux main.go
 
       # 2. Build for Windows
       - name: Build Windows Binary
         run: |
           GOOS=windows GOARCH=amd64 go build -o sms-tracker.exe main.go
 
-      # 3. Create Archives (Include binary + data + static)
-      # We zip the binary along with the required folders so the user can just unzip and run.
-      - name: Package Release Assets
-        run: |
-          # Package Linux
-          zip -r sms-tracker-linux-amd64.zip sms-tracker data/ static/
-          
-          # Package Windows
-          zip -r sms-tracker-windows-amd64.zip sms-tracker.exe data/ static/
-
-      # 4. Upload Artifacts (Accessible in GitHub Actions UI for 'develop' builds)
+      # 3. Upload Raw Binaries since static files are embedded during build
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: sms-tracker-builds
+          name: sms-tracker-binaries
           path: |
-            sms-tracker-linux-amd64.zip
-            sms-tracker-windows-amd64.zip
+            sms-tracker-linux
+            sms-tracker.exe
 
   release:
     name: Create Release
@@ -56,23 +45,21 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    # Only run this job on main
     if: github.ref == 'refs/heads/main'
 
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: sms-tracker-builds
+          name: sms-tracker-binaries
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          # Creates a tag like v0.0.42 automatically based on run number
           tag_name: v0.0.${{ github.run_number }}
           name: Release v0.0.${{ github.run_number }}
-          draft: true  # Allow me to edit text before publishing
+          draft: true
           prerelease: false
           files: |
-            sms-tracker-linux-amd64.zip
-            sms-tracker-windows-amd64.zip
+            sms-tracker-linux
+            sms-tracker.exe

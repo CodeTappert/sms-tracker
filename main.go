@@ -7,7 +7,14 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
+	"os"
 )
+
+// --- Configuration ---
+
+type Config struct {
+	Port int `json:"port"`
+}
 
 // --- Embedding ---
 
@@ -163,7 +170,38 @@ func loadGameData() {
 
 // --- Server API ---
 
+func LoadConfig() Config {
+	defaultConfig := Config{Port: 8080}
+
+	file, err := os.ReadFile("config.json")
+	if err != nil {
+		// If file doesn't exist, write the file then load defaults
+		if os.IsNotExist(err) {
+			configData, _ := json.MarshalIndent(defaultConfig, "", "  ")
+			if writeErr := os.WriteFile("config.json", configData, 0644); writeErr != nil {
+				fmt.Printf("Warning: Failed to create default config.json: %v\n", writeErr)
+			} else {
+				fmt.Println("Created default config.json")
+			}
+		} else {
+			fmt.Printf("Warning: Failed to read config.json, using default port %d\n", defaultConfig.Port)
+		}
+		return defaultConfig
+	}
+
+	var loadedConfig Config
+	if err := json.Unmarshal(file, &loadedConfig); err != nil {
+		fmt.Printf("Warning: Failed to parse config.json, using default port %d\n", defaultConfig.Port)
+		return defaultConfig
+	}
+
+	return loadedConfig
+}
+
 func main() {
+	// Load port from config.json
+	cfg := LoadConfig()
+
 	loadGameData()
 
 	// Prepare the embedded static files for serving over HTTP
@@ -183,6 +221,10 @@ func main() {
 		}
 	})
 
-	fmt.Println("Server running at http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	// Start the HTTP server on the configured port
+	addr := fmt.Sprintf(":%d", cfg.Port)
+	fmt.Printf("Tracker is running at http://localhost:%d\n", cfg.Port)
+	fmt.Println("Press Ctrl+C to stop the server.")
+
+	log.Fatal(http.ListenAndServe(addr, nil))
 }

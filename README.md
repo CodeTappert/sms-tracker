@@ -17,6 +17,15 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 * **User-Friendly Interface**: Simple and intuitive interface for easy tracking.
 * **Data Persistence**: Save and load your tracking data with JSON files.
 
+## Configuration
+By default, the tracker runs on port `8080`. To use a custom port, create a `config.json` file in the same directory as the executable:
+
+```json
+{
+  "port": 9000
+}
+```
+
 ## Download and Execution
 
 ### Precompiled Binaries

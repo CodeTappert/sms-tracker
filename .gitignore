@@ -25,3 +25,6 @@ Thumbs.db
 # --- Project Specific ---
 # Ignore local save files if placed in root
 sms-tracker-save.json
+
+# config
+config.json

@@ -54,19 +54,20 @@ type Unlock struct {
 	Icon string `json:"icon"`
 }
 
-// PlazaEntrance defines a specific entry point from the hub world (Plaza) to a level.
-type PlazaEntrance struct {
+// PlazaShines defines a specific entry point from the hub world (Plaza) to a level.
+type PlazaShines struct {
 	ID        string `json:"id"`
 	Name      string `json:"name"`
 	GroupName string `json:"group_name"` // Used for grouping in the UI (e.g., "Bianco Hills")
 	Image     string `json:"image"`
+	IsWarp    bool   `json:"is_warp"`
 }
 
 // WorldData serves as the root container for all static game configuration loaded from JSON.
 type WorldData struct {
 	Zones          map[string]Zone `json:"zones"`
 	Unlocks        []Unlock        `json:"unlocks"`
-	PlazaEntrances []PlazaEntrance `json:"plaza_entrances"`
+	PlazaEntrances []PlazaShines   `json:"plaza_entrances"`
 }
 
 // Global state to hold the data once loaded.
@@ -111,26 +112,40 @@ func loadGameData() {
 	}
 
 	// C. Define Plaza Entrances programmatically
-	var entrances []PlazaEntrance
+	var entrances []PlazaShines
 
-	// 1. Standalone Entrances (Special stages and secrets)
-	singles := []struct{ ID, Name, Image string }{
-		{"enter_airstrip", "Airstrip", "airstrip.png"},
-		{"enter_corona", "Corona Mountain", "corona.png"},
-		{"enter_lilypad", "Lily Pad", "lilypad.png"},
-		{"enter_pachinko", "Pachinko", "pachinko.png"},
-		{"enter_slide", "Secret Slide", "slide.png"},
-		{"enter_turbo", "Turbo Dash", "turbo.png"},
-		{"enter_grass", "Red Coin Grass", "grass.png"},
-		{"enter_pianta_pipe", "Pianta Village (Pipe)", "pianta_pipe.png"},
+	// 1. Plaza stuff
+	singles := []struct {
+		ID, Name, Image string
+		isWarp          bool
+	}{
+		{"enter_corona", "Corona Mountain", "corona.png", true},
+		{"enter_airstrip", "Airstrip", "airstrip.png", true},
+		{"enter_lilypad", "Lily Pad", "lilypad.png", true},
+		{"enter_pachinko", "Pachinko", "pachinko.png", true},
+		{"enter_slide", "Secret Slide", "slide.png", true},
+		{"enter_turbo", "Turbo Dash", "turbo.png", true},
+		{"enter_grass", "Red Coin Grass", "grass.png", true},
+		{"enter_pianta_pipe", "Pianta Village (Pipe)", "pianta_pipe.png", true},
+		{"beach_treasure", "Beach Treasure", "beach_treasure.png", false},
+		{"crate_1", "Break the Crate (1)", "crate_1.png", false},
+		{"crate_2", "Break the Crate (2)", "crate_2.png", false},
+		{"chuckster_toss", "Chuckster Toss to Shine", "chuckster_toss.png", false},
+		{"western_bell", "Clear Western Bell", "western_bell.png", false},
+		{"eastern_bell", "Clear Eastern Bell", "eastern_bell.png", false},
+		{"gold_bird", "Gold Bird", "gold_bird.png", false},
+		{"turbo_nozzle_break", "Turbo Nozzle Western Tower", "turbo_nozzle_break.png", false},
+		{"lighthouse_shine", "Lighthouse Shine", "lighthouse_shine.png", false},
+		{"shinegate_clear", "Shine Gate Clear", "shinegate_clear.png", false},
 	}
 
 	for _, s := range singles {
-		entrances = append(entrances, PlazaEntrance{
+		entrances = append(entrances, PlazaShines{
 			ID:        s.ID,
 			Name:      s.Name,
 			GroupName: "Plaza: Special & Secrets",
 			Image:     s.Image,
+			IsWarp:    s.isWarp,
 		})
 	}
 
@@ -149,11 +164,12 @@ func loadGameData() {
 
 	for _, w := range worlds {
 		for ep := 1; ep <= 8; ep++ {
-			entrances = append(entrances, PlazaEntrance{
+			entrances = append(entrances, PlazaShines{
 				ID:        fmt.Sprintf("enter_%s_ep%d", w.ID, ep),
 				Name:      fmt.Sprintf("Episode %d", ep),
 				GroupName: w.Name,
 				Image:     w.Image,
+				IsWarp:    true,
 			})
 		}
 	}

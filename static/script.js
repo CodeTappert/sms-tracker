@@ -110,7 +110,6 @@ function renderUnlocks() {
 }
 
 function renderTable() {
-    // Reset stats
     stats.shinesPossible = new Set();
     stats.visibleBC.clear();
 
@@ -120,13 +119,11 @@ function renderTable() {
     let groupIndex = 0;
 
     worldData.plaza_entrances.forEach((entrance, index) => {
-        // --- Render Group Header ---
         if (entrance.group_name !== lastGroup) {
             groupIndex++;
             const groupKey = `group-${groupIndex}`;
             const isCollapsed = appState.collapsedElements.has(groupKey);
 
-            // 1. Calculate Aggregated Stats for this entire group (using Sets)
             const groupEntrances = worldData.plaza_entrances.filter(e => e.group_name === entrance.group_name);
 
             const gShinesFound = new Set();
@@ -135,17 +132,20 @@ function renderTable() {
             const gBCsTotal = new Set();
 
             groupEntrances.forEach(e => {
-                const res = calculateBranchStats(e.id, []);
-                // Merge Sets
-                res.sFound.forEach(id => gShinesFound.add(id));
-                res.sTotal.forEach(id => gShinesTotal.add(id));
-                res.uniqueBCsFound.forEach(bc => gBCsFound.add(bc));
-                res.uniqueBCsTotal.forEach(bc => gBCsTotal.add(bc));
+                // If it's not a warp, count the single shine directly
+                if (e.is_warp === false) {
+                    gShinesTotal.add(e.id);
+                    if (appState.collectedShines.has(e.id)) gShinesFound.add(e.id);
+                } else {
+                    const res = calculateBranchStats(e.id, []);
+                    res.sFound.forEach(id => gShinesFound.add(id));
+                    res.sTotal.forEach(id => gShinesTotal.add(id));
+                    res.uniqueBCsFound.forEach(bc => gBCsFound.add(bc));
+                    res.uniqueBCsTotal.forEach(bc => gBCsTotal.add(bc));
+                }
             });
 
-            // 2. Build the Stats HTML
             let groupStatsHTML = "";
-            // Use .size for Sets
             if (gShinesTotal.size > 0 || gBCsTotal.size > 0) {
                 const sDone = gShinesFound.size === gShinesTotal.size;
                 const bDone = gBCsFound.size === gBCsTotal.size;
@@ -162,11 +162,9 @@ function renderTable() {
                     </span>
                 </div>`;
             } else {
-                // Empty container for updates later
                 groupStatsHTML = `<div class="group-stats-summary" id="group-stats-${groupIndex}"></div>`;
             }
 
-            // 3. Render Header Row
             htmlBuffer += `
             <tr class="group-header-row ${isCollapsed ? 'collapsed' : ''}" 
                 data-action="toggle-collapse" 
@@ -186,7 +184,6 @@ function renderTable() {
             lastGroup = entrance.group_name;
         }
 
-        // --- Render Entry Rows ---
         const entryID = `entry-${index}`;
         const groupClass = `group-${groupIndex}`;
 
@@ -198,50 +195,63 @@ function renderTable() {
     });
 
     tbody.innerHTML = htmlBuffer;
-
     updateAllStatsUI();
 }
 
 function buildMainEntryRow(entrance, entryID, groupClass) {
     const assignmentKey = entrance.id;
-    const targetZoneID = appState.globalAssignments[assignmentKey];
+    const isWarp = entrance.is_warp !== false; // Default to true if missing
 
-    // Dropdown HTML
-    let dropdownHTML = cachedZoneOptionsHTML;
-    if (targetZoneID) {
-        dropdownHTML = dropdownHTML.replace(`value="${targetZoneID}"`, `value="${targetZoneID}" selected`);
-    }
-    const selectClass = targetZoneID ? "filled" : "";
-
-    // Stats Placeholder (Content filled by updateAllStatsUI)
-    const statsPlaceholder = `<div class="route-stats" id="stats-${assignmentKey}"></div>`;
-
-    // Parent row collapse state
+    // Parent row visibility
     const isEntryCollapsed = appState.collapsedElements.has(entryID);
     const isParentGroupCollapsed = appState.collapsedElements.has(groupClass);
     const rowStyle = isParentGroupCollapsed ? 'style="display:none"' : '';
 
+    let targetCellContent = "";
+    let statsCellContent = "";
+
+    if (isWarp) {
+        // Render Dropdown for warps
+        const targetZoneID = appState.globalAssignments[assignmentKey];
+        let dropdownHTML = cachedZoneOptionsHTML;
+        if (targetZoneID) {
+            dropdownHTML = dropdownHTML.replace(`value="${targetZoneID}"`, `value="${targetZoneID}" selected`);
+        }
+        const selectClass = targetZoneID ? "filled" : "";
+        targetCellContent = `<select class="${selectClass}" data-assign-key="${assignmentKey}">${dropdownHTML}</select>`;
+        statsCellContent = `<div class="route-stats" id="stats-${assignmentKey}"></div>`;
+    } else {
+        // Render a simple Shine button for static Plaza Shines
+        stats.shinesPossible.add(entrance.id);
+        const isChecked = appState.collectedShines.has(entrance.id);
+        targetCellContent = `<span style="color: #888; font-style: italic;">Plaza Collectible</span>`;
+        statsCellContent = `
+            <div class="shine-container">
+                <div class="shine-check ${isChecked ? 'checked' : ''}" 
+                     data-action="toggle-shine" 
+                     data-id="${entrance.id}">
+                    <img src="images/shine_sprite.webp" style="width:16px; margin-right:4px;" alt="Shine">Collect
+                </div>
+            </div>`;
+    }
+
     const mainRow = `
     <tr class="${groupClass} entry-main-row ${isEntryCollapsed ? 'collapsed' : ''}"
         ${rowStyle}
-        data-action="toggle-collapse"
+        data-action="${isWarp ? 'toggle-collapse' : ''}"
         data-target-selector="[data-parent=${entryID}]"
         data-storage-key="${entryID}">
         <td>
-            <span class="collapse-icon-sub">${targetZoneID ? (isEntryCollapsed ? '▶' : '▼') : ''}</span>
+            <span class="collapse-icon-sub">${isWarp && appState.globalAssignments[assignmentKey] ? (isEntryCollapsed ? '▶' : '▼') : ''}</span>
             <span class="zone-name">${entrance.name}</span>
         </td>
-        <td>
-            <select class="${selectClass}" data-assign-key="${assignmentKey}">
-                ${dropdownHTML}
-            </select>
-        </td>
-        <td>${statsPlaceholder}</td>
+        <td>${targetCellContent}</td>
+        <td>${statsCellContent}</td>
     </tr>`;
 
     let childrenRows = "";
-    if (targetZoneID) {
-        childrenRows = buildRecursiveZoneRows(targetZoneID, [targetZoneID], 1, groupClass, entryID);
+    if (isWarp && appState.globalAssignments[assignmentKey]) {
+        childrenRows = buildRecursiveZoneRows(appState.globalAssignments[assignmentKey], [appState.globalAssignments[assignmentKey]], 1, groupClass, entryID);
     }
 
     return mainRow + childrenRows;
@@ -519,6 +529,7 @@ function updateAllStatsUI() {
     let currentGroup = "";
     let groupIndex = 0;
 
+// Inside updateAllStatsUI, update the updateGroupDisplay sub-function:
     const updateGroupDisplay = (groupName, index) => {
         const container = document.getElementById(`group-stats-${index}`);
         if (!container) return;
@@ -531,12 +542,19 @@ function updateAllStatsUI() {
         const gBCsTotal = new Set();
 
         groupEntrances.forEach(e => {
-            const res = calculateBranchStats(e.id, []);
-            // Merge Sets
-            res.sFound.forEach(id => gShinesFound.add(id));
-            res.sTotal.forEach(id => gShinesTotal.add(id));
-            res.uniqueBCsFound.forEach(bc => gBCsFound.add(bc));
-            res.uniqueBCsTotal.forEach(bc => gBCsTotal.add(bc));
+            console.log(e);
+            if (e.is_warp === false) {
+                // Static Plaza Shine
+                gShinesTotal.add(e.id);
+                if (appState.collectedShines.has(e.id)) gShinesFound.add(e.id);
+            } else {
+                // Randomized Warp Path
+                const res = calculateBranchStats(e.id, []);
+                res.sFound.forEach(id => gShinesFound.add(id));
+                res.sTotal.forEach(id => gShinesTotal.add(id));
+                res.uniqueBCsFound.forEach(bc => gBCsFound.add(bc));
+                res.uniqueBCsTotal.forEach(bc => gBCsTotal.add(bc));
+            }
         });
 
         if (gShinesTotal.size > 0 || gBCsTotal.size > 0) {
@@ -544,14 +562,14 @@ function updateAllStatsUI() {
             const bDone = gBCsFound.size === gBCsTotal.size;
 
             container.innerHTML = `
-                <span class="g-stat ${sDone ? 'done' : ''}">
-                    <img src="images/shine_sprite.webp" style="width:14px; vertical-align:middle;"> 
-                    ${gShinesFound.size}/${gShinesTotal.size}
-                </span>
-                <span class="g-stat ${bDone ? 'done' : ''}" style="margin-left: 8px;">
-                    <span style="font-size:0.9em">🔵</span> 
-                    ${gBCsFound.size}/${gBCsTotal.size}
-                </span>`;
+            <span class="g-stat ${sDone ? 'done' : ''}">
+                <img src="images/shine_sprite.webp" style="width:14px; vertical-align:middle;"> 
+                ${gShinesFound.size}/${gShinesTotal.size}
+            </span>
+            <span class="g-stat ${bDone ? 'done' : ''}" style="margin-left: 8px;">
+                <span style="font-size:0.9em">🔵</span> 
+                ${gBCsFound.size}/${gBCsTotal.size}
+            </span>`;
             container.style.display = "block";
         } else {
             container.style.display = "none";

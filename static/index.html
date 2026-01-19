@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>SMS Randomizer Tracker (Shadow Mario Tracker)</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div id="sticky-header">
+
+    <div id="unlocks-bar"></div>
+
+    <div id="total-stats">
+        <div class="stats-left">
+            <div class="stat-item">
+                <img src="images/shine_sprite.webp" class="header-icon" alt="Shine">
+                <span id="stat-shines">0</span>
+            </div>
+            <div class="stat-item">
+                <span style="font-size:1.5em; line-height:1;">🔵</span>
+                <span id="stat-bc">0</span>
+            </div>
+        </div>
+
+        <div class="file-controls">
+            <button class="btn" onclick="saveState()">💾 Save</button>
+            <button class="btn" onclick="document.getElementById('file-input').click()">📂 Load</button>
+            <input type="file" id="file-input" style="display: none;" onchange="loadState(this)" accept=".json">
+        </div>
+    </div>
+
+    <div id="shadow-mario-bar">
+        <span class="shadow-label">Corona Access:</span>
+    </div>
+</div>
+
+<table id="tracker-table">
+    <thead>
+    <tr>
+        <th class="col-path">Place / Structure</th>
+        <th class="col-target">Goal / Connection</th>
+        <th class="col-collect">Collectibles</th>
+    </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+</table>
+
+<script>
+    let worldData = {};
+
+    let appState = {
+        unlocks: new Set(),
+        globalAssignments: {},
+        collectedShines: new Set(),
+        collectedBlueCoins: new Set(),
+        collapsedElements: new Set() // Track IDs of collapsed rows/groups
+    };
+
+    const shadowMarioLevels = [
+        { id: "bianco6", name: "Bianco" },
+        { id: "ricco6", name: "Ricco" },
+        { id: "mamma6", name: "Gelato" },
+        { id: "pinnaParco4", name: "Pinna" },
+        { id: "sirena6", name: "Sirena" },
+        { id: "mare6", name: "Noki" },
+        { id: "monte6", name: "Pianta" }
+    ];
+
+    // Global variables for performance
+    let cachedZoneOptionsHTML = "";
+    let stats = { shinesPossible: 0, visibleBC: new Set() };
+
+    fetch('/api/data').then(r => r.json()).then(data => {
+        worldData = data;
+        appState.globalAssignments["enter_corona"] = "coro_ex6";
+
+        // Cache Dropdown Options once
+        const sortedZones = Object.values(worldData.zones)
+            .filter(z => z.id !== 'coro_ex6' && z.id !== 'coronaBoss')
+            .sort((a,b) => a.name.localeCompare(b.name));
+
+        cachedZoneOptionsHTML = '<option value="">-- Select Target --</option>' +
+            sortedZones.map(z => `<option value="${z.id}">${z.name}</option>`).join('');
+
+        renderUnlocks();
+        renderTable();
+    });
+
+    function getZoneGroup(zoneID) { return zoneID.replace(/[0-9]+$/, ''); }
+
+    // --- SAVE / LOAD SYSTEM ---
+
+    // Exports the current state to a JSON file
+    function saveState() {
+        // Convert Sets to Arrays for JSON serialization
+        const exportData = {
+            unlocks: Array.from(appState.unlocks),
+            globalAssignments: appState.globalAssignments,
+            collectedShines: Array.from(appState.collectedShines),
+            collectedBlueCoins: Array.from(appState.collectedBlueCoins),
+            timestamp: new Date().toISOString()
+        };
+
+        const blob = new Blob([JSON.stringify(exportData, null, 2)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'sms-tracker-save.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // Imports state from a JSON file
+    function loadState(inputElement) {
+        const file = inputElement.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const importedData = JSON.parse(e.target.result);
+
+                // Validation checks could go here, for now we assume valid format
+                // Convert Arrays back to Sets
+                appState.unlocks = new Set(importedData.unlocks || []);
+                appState.collectedShines = new Set(importedData.collectedShines || []);
+                appState.collectedBlueCoins = new Set(importedData.collectedBlueCoins || []);
+
+                // Assignments are plain objects
+                appState.globalAssignments = importedData.globalAssignments || {};
+
+                // Ensure corona is set (legacy fix)
+                if(!appState.globalAssignments["enter_corona"]) {
+                    appState.globalAssignments["enter_corona"] = "coro_ex6";
+                }
+
+                // Re-render everything
+                renderUnlocks();
+                renderTable();
+                updateAllStatsUI();
+
+                alert("Save loaded successfully!");
+            } catch (err) {
+                console.error(err);
+                alert("Error loading save file: Invalid JSON.");
+            }
+        };
+        reader.readAsText(file);
+
+        // Reset input so the same file can be selected again if needed
+        inputElement.value = '';
+    }
+
+    // --- 1. UNLOCKS ---
+    function renderUnlocks() {
+        const container = document.getElementById('unlocks-bar');
+        container.innerHTML = '';
+        worldData.unlocks.forEach(u => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'unlock-wrapper';
+
+            const img = document.createElement('img');
+            img.src = u.icon;
+            img.className = `unlock-icon ${appState.unlocks.has(u.id) ? 'active' : ''}`;
+            img.onclick = () => {
+                if(appState.unlocks.has(u.id)) appState.unlocks.delete(u.id);
+                else appState.unlocks.add(u.id);
+                renderUnlocks();
+            };
+            img.title = u.name;
+
+            const label = document.createElement('div');
+            label.className = 'unlock-label';
+            label.innerText = u.name;
+
+            wrapper.appendChild(img);
+            wrapper.appendChild(label);
+            container.appendChild(wrapper);
+        });
+    }
+
+    // 1. Updated renderTable to assign unique IDs to each entry row
+    function renderTable() {
+        stats.shinesPossible = 0;
+        stats.visibleBC.clear();
+        updateShadowMarioBar();
+
+        let htmlBuffer = "";
+        let lastGroup = "";
+        let groupIndex = 0;
+
+        worldData.plaza_entrances.forEach((entrance, index) => {
+            // Group Headers (Bianco Hills, Ricco Harbor, etc.)
+            if (entrance.group_name !== lastGroup) {
+                groupIndex++;
+                const groupKey = `group-${groupIndex}`;
+                const isGroupCollapsed = appState.collapsedElements.has(groupKey);
+
+                htmlBuffer += `
+    <tr class="group-header-row ${isGroupCollapsed ? 'collapsed' : ''}"
+        onclick="toggleVisibility('.group-${groupIndex}', this, event, '${groupKey}')">
+        <td colspan="3" class="group-header">
+            <span class="collapse-icon">${isGroupCollapsed ? '▶' : '▼'}</span> ${entrance.group_name}
+        </td>
+    </tr>`;
+                lastGroup = entrance.group_name;
+            }
+
+            // Unique ID for this specific entry (e.g., entry-5)
+            const entryID = `entry-${index}`;
+            const groupClass = `group-${groupIndex}`;
+
+            if (entrance.id === "enter_corona") {
+                htmlBuffer += buildCoronaRowHTML(entrance.name, entrance.id, checkCoronaUnlock(), groupClass);
+            } else {
+                // Main Entry Row
+                htmlBuffer += buildMainEntryRowHTML(entrance, entryID, groupClass);
+            }
+        });
+
+        document.getElementById('table-body').innerHTML = htmlBuffer;
+        updateHeaderStatsUI();
+    }
+
+    // 2. New function for the top-level row of an entry (e.g., Episode 1)
+    function buildMainEntryRowHTML(entrance, entryID, groupClass) {
+        const assignmentKey = entrance.id;
+        const targetZoneID = appState.globalAssignments[assignmentKey];
+
+        // Build Target Column
+        let dropdownHTML = cachedZoneOptionsHTML;
+        if (targetZoneID) {
+            dropdownHTML = dropdownHTML.replace(`value="${targetZoneID}"`, `value="${targetZoneID}" selected`);
+        }
+        const selectClass = targetZoneID ? "filled" : "";
+        const targetCol = `<select class="${selectClass}" onchange="handleAssignmentChange(this, '${assignmentKey}')">${dropdownHTML}</select>`;
+
+        // Build Stats Column
+        const res = calculateBranchStats(assignmentKey, []);
+        let statsContent = "";
+        if (res.sTotal > 0 || res.uniqueBCsTotal.size > 0) {
+            const sDone = res.sFound === res.sTotal;
+            const bDone = res.uniqueBCsFound.size === res.uniqueBCsTotal.size;
+            statsContent = `
+            <div class="route-stats" id="stats-${assignmentKey}">
+                <div class="route-stat-item ${sDone ? 'rs-done' : ''}">
+                    <img src="images/shine_sprite.webp" style="width:16px;"> ${res.sFound}/${res.sTotal}
+                </div>
+                <div class="route-stat-item ${bDone ? 'rs-done' : ''}">
+                    <span>🔵</span> ${res.uniqueBCsFound.size}/${res.uniqueBCsTotal.size}
+                </div>
+            </div>`;
+        }
+
+        // Children Rows (The Chain)
+        let extraRows = "";
+        if (targetZoneID) {
+            extraRows = buildZoneContentHTML(targetZoneID, [targetZoneID], 1, groupClass, entryID);
+        }
+
+        // Return main row + children
+        // The main row has an onclick to toggle children
+        const isEntryCollapsed = appState.collapsedElements.has(entryID);
+        const isParentGroupCollapsed = appState.collapsedElements.has(groupClass);
+
+// Determine if the main row itself should be hidden (because the GROUP is collapsed)
+        const rowStyle = isParentGroupCollapsed ? 'style="display:none"' : '';
+
+        return `
+    <tr class="${groupClass} entry-main-row ${isEntryCollapsed ? 'collapsed' : ''}"
+        ${rowStyle}
+        onclick="toggleVisibility('[data-parent=${entryID}]', this, event, '${entryID}')">
+        <td>
+            <span class="collapse-icon-sub">${targetZoneID ? (isEntryCollapsed ? '▶' : '▼') : ''}</span>
+            <span class="zone-name">${entrance.name}</span>
+        </td>
+        <td onclick="event.stopPropagation()">${targetCol}</td>
+        <td>${statsContent}</td>
+    </tr>${extraRows}`;
+    }
+
+    // 3. Updated buildZoneContentHTML to include data-parent
+    function buildZoneContentHTML(zoneID, chainHistory, depth, groupClass, parentID) {
+        const zone = worldData.zones[zoneID];
+        const zoneGroup = getZoneGroup(zoneID);
+        let indent = "";
+        for(let i=0; i<depth; i++) indent += "│   ";
+
+        // Determine if this child should be hidden
+        const isEntryCollapsed = appState.collapsedElements.has(parentID);
+        const isParentGroupCollapsed = appState.collapsedElements.has(groupClass);
+        const shouldHide = isEntryCollapsed || isParentGroupCollapsed;
+        const childStyle = shouldHide ? 'style="display:none"' : '';
+
+        let rowHTML = `<tr class="${groupClass} child-row" data-parent="${parentID}" ${childStyle}>
+        <td><span class="tree-line">${indent}</span><span class="zone-name" style="color:#f39c12">↳ ${zone.name}</span></td>
+        <td></td>
+        <td>`;
+
+        // Shines & Blue Coins
+        if (zone.shines_available && zone.shines_available.length > 0) {
+            stats.shinesPossible += zone.shines_available.length;
+            rowHTML += `<div class="shine-container">`;
+            zone.shines_available.forEach((shine) => {
+                const isChecked = appState.collectedShines.has(shine.id);
+                rowHTML += `<div class="shine-check ${isChecked ? 'checked' : ''}" data-shine-id="${shine.id}" onclick="handleShineClick('${shine.id}'); event.stopPropagation();"><img src="images/shine_sprite.webp" style="width:16px; margin-right:4px;" alt="Shine">${shine.name}</div>`;
+            });
+            rowHTML += `</div>`;
+        }
+        if (zone.blue_coin_ids) {
+            rowHTML += `<div class="bc-list">`;
+            zone.blue_coin_ids.forEach(bcID => {
+                const uniqueKey = `${zoneGroup}::${bcID}`;
+                stats.visibleBC.add(uniqueKey);
+                const isCollected = appState.collectedBlueCoins.has(uniqueKey);
+                rowHTML += `<div class="bc-box ${isCollected ? 'collected' : ''}" data-bc-id="${uniqueKey}" onclick="handleBCClick('${uniqueKey}'); event.stopPropagation();">${bcID}</div>`;
+            });
+            rowHTML += `</div>`;
+        }
+        rowHTML += `</td></tr>`;
+
+        let exitsHTML = "";
+        if (zone.exits) {
+            zone.exits.forEach(exit => {
+                const assignmentKey = `${zoneGroup}::${exit.id}`;
+                const targetZoneID = appState.globalAssignments[assignmentKey];
+
+                // Build Exit Row
+                let dropdownHTML = cachedZoneOptionsHTML;
+                if (targetZoneID) dropdownHTML = dropdownHTML.replace(`value="${targetZoneID}"`, `value="${targetZoneID}" selected`);
+                const selectClass = targetZoneID ? "filled" : "";
+
+                exitsHTML += `<tr class="${groupClass} child-row" data-parent="${parentID}" ${childStyle}>
+    <td><span class="tree-line">${indent}└── </span><span class="exit-name">Exit: ${exit.name}</span></td>
+    <td onclick="event.stopPropagation()"><select class="${selectClass}" onchange="handleAssignmentChange(this, '${assignmentKey}')">${dropdownHTML}</select></td>
+    <td></td>
+</tr>`;
+
+                if (targetZoneID && !chainHistory.includes(targetZoneID)) {
+                    exitsHTML += buildZoneContentHTML(targetZoneID, [...chainHistory, targetZoneID], depth + 1, groupClass, parentID);
+                }
+            });
+        }
+        return rowHTML + exitsHTML;
+    }
+
+    // 4. General Toggle Function
+    window.toggleVisibility = function(selector, element, event, storageKey) {
+        if (event) event.stopPropagation();
+        const targets = document.querySelectorAll(selector);
+        if (targets.length === 0) return;
+
+        const isCurrentlyVisible = targets[0].style.display !== 'none';
+
+        if (isCurrentlyVisible) {
+            appState.collapsedElements.add(storageKey);
+        } else {
+            appState.collapsedElements.delete(storageKey);
+        }
+
+        // Immediate visual update
+        const shouldHide = appState.collapsedElements.has(storageKey);
+        targets.forEach(t => t.style.display = shouldHide ? 'none' : 'table-row');
+
+        const icon = element.querySelector('.collapse-icon, .collapse-icon-sub');
+        if (icon) icon.innerText = shouldHide ? '▶' : '▼';
+        element.classList.toggle('collapsed', shouldHide);
+    };
+
+    // Update buildCoronaRowHTML to support groupClass
+    function buildCoronaRowHTML(label, id, isUnlocked, groupClass) {
+        let classAttr = isUnlocked ? `class="${groupClass}"` : `class="${groupClass} row-locked"`;
+        let targetCol = isUnlocked
+            ? `<div style="color:#e74c3c; font-weight:bold;">➜ Corona Mountain (Boss)</div>`
+            : `<div class="locked-text">🔒 Locked (Defeat all 7 Shadow Marios)</div>`;
+
+        let html = `<tr ${classAttr}><td><span class="zone-name">${label}</span></td><td>${targetCol}</td><td></td></tr>`;
+        if (isUnlocked) {
+            html += buildZoneContentHTML("coro_ex6", [id, "coro_ex6"], 1, groupClass);
+        }
+        return html;
+    }
+
+    // --- 3. EVENT HANDLERS ---
+
+    // Called by Select element
+    window.handleAssignmentChange = function(selectElem, key) {
+        appState.globalAssignments[key] = selectElem.value;
+        renderTable();
+    };
+
+    window.handleShineClick = function(key) {
+        if(appState.collectedShines.has(key)) appState.collectedShines.delete(key);
+        else appState.collectedShines.add(key);
+
+        // 1. Visual Feedback
+        document.querySelectorAll(`[data-shine-id="${key}"]`).forEach(el => {
+            el.classList.toggle('checked');
+        });
+
+        // 2. Update numbers
+        updateAllStatsUI();
+    };
+
+    window.handleBCClick = function(key) {
+        if(appState.collectedBlueCoins.has(key)) appState.collectedBlueCoins.delete(key);
+        else appState.collectedBlueCoins.add(key);
+
+        // 1. Visual Feedback
+        document.querySelectorAll(`[data-bc-id="${key}"]`).forEach(el => {
+            el.classList.toggle('collected');
+        });
+
+        // 2. Update numbers
+        updateAllStatsUI();
+    };
+
+    // --- STATS UPDATE FUNCTION ---
+    function updateAllStatsUI() {
+        updateHeaderStatsUI();
+
+        // C. ROUTE STATS
+        worldData.plaza_entrances.forEach(entrance => {
+            if (entrance.id === "enter_corona") return;
+
+            const statsContainer = document.getElementById(`stats-${entrance.id}`);
+            if (!statsContainer) return;
+
+            const res = calculateBranchStats(entrance.id, []);
+
+            if (res.sTotal > 0 || res.uniqueBCsTotal.size > 0) {
+                const sDone = res.sFound === res.sTotal;
+                const bDone = res.uniqueBCsFound.size === res.uniqueBCsTotal.size;
+
+                statsContainer.innerHTML = `
+                    <div class="route-stat-item ${sDone ? 'rs-done' : ''}">
+                        <img src="images/shine_sprite.webp" style="width:16px;" alt="Shine">
+                        ${res.sFound}/${res.sTotal}
+                    </div>
+                    <div class="route-stat-item ${bDone ? 'rs-done' : ''}">
+                        <span>🔵</span>
+                        ${res.uniqueBCsFound.size}/${res.uniqueBCsTotal.size}
+                    </div>
+                `;
+            } else {
+                statsContainer.innerHTML = "";
+            }
+        });
+
+        // D. Corona Unlock Check
+        const lockedRow = document.querySelector(".row-locked");
+        if (lockedRow && checkCoronaUnlock()) {
+            renderTable();
+        }
+    }
+
+    // Separate function for Header Stats to be called during initial render
+    function updateHeaderStatsUI() {
+        // A. Header Stats
+        let shinesFound = appState.collectedShines.size;
+        document.getElementById('stat-shines').innerText = `${shinesFound} / ${stats.shinesPossible}`;
+
+        let bcFound = 0;
+        stats.visibleBC.forEach(key => {
+            if(appState.collectedBlueCoins.has(key)) bcFound++;
+        });
+        document.getElementById('stat-bc').innerText = `${bcFound} / ${stats.visibleBC.size}`;
+
+        updateShadowMarioBar();
+    }
+
+    function updateShadowMarioBar() {
+        const container = document.getElementById('shadow-mario-bar');
+        let html = '<span class="shadow-label">Corona Access:</span>';
+        let doneCount = 0;
+
+        shadowMarioLevels.forEach(lvl => {
+            const zone = worldData.zones[lvl.id];
+            let isDone = false;
+
+            if (zone && zone.shines_available && zone.shines_available.length > 0) {
+                const mainShineID = zone.shines_available[0].id;
+                isDone = appState.collectedShines.has(mainShineID);
+            }
+
+            if(isDone) doneCount++;
+            html += `<div class="shadow-check ${isDone ? 'done' : ''}">${lvl.name}</div>`;
+        });
+
+        let allUnlocked = (doneCount === 7);
+        if (allUnlocked) {
+            html += `<span class="corona-unlocked-msg" style="display:inline">🔥 UNLOCKED 🔥</span>`;
+        }
+        container.innerHTML = html;
+
+        return allUnlocked;
+    }
+
+    // --- 4. HELPERS ---
+
+    // --- UPDATED STATS CALCULATION ---
+    function calculateBranchStats(assignmentKey, chainHistory) {
+        let result = { sFound: 0, sTotal: 0, uniqueBCsTotal: new Set(), uniqueBCsFound: new Set() };
+        const targetZoneID = appState.globalAssignments[assignmentKey];
+
+        if (!targetZoneID || chainHistory.includes(targetZoneID)) return result;
+
+        const zone = worldData.zones[targetZoneID];
+        if (!zone) return result;
+
+        const zoneGroup = getZoneGroup(targetZoneID);
+
+        // A. Shines
+        if (zone.shines_available && zone.shines_available.length > 0) {
+            result.sTotal += zone.shines_available.length;
+
+            zone.shines_available.forEach(shine => {
+                if(appState.collectedShines.has(shine.id)) {
+                    result.sFound++;
+                }
+            });
+        }
+
+        // B. Blue Coins
+        if (zone.blue_coin_ids) {
+            zone.blue_coin_ids.forEach(bcID => {
+                const uniqueKey = `${zoneGroup}::${bcID}`;
+                result.uniqueBCsTotal.add(uniqueKey);
+                if (appState.collectedBlueCoins.has(uniqueKey)) result.uniqueBCsFound.add(uniqueKey);
+            });
+        }
+
+        // C. Recursion
+        if (zone.exits) {
+            const newHistory = [...chainHistory, targetZoneID];
+            zone.exits.forEach(exit => {
+                const nextKey = `${zoneGroup}::${exit.id}`;
+                const sub = calculateBranchStats(nextKey, newHistory);
+                result.sTotal += sub.sTotal;
+                result.sFound += sub.sFound;
+                sub.uniqueBCsTotal.forEach(x => result.uniqueBCsTotal.add(x));
+                sub.uniqueBCsFound.forEach(x => result.uniqueBCsFound.add(x));
+            });
+        }
+        return result;
+    }
+
+    // --- CORONA CHECK ---
+    function checkCoronaUnlock() {
+        for (let lvl of shadowMarioLevels) {
+            const zone = worldData.zones[lvl.id];
+            if (zone && zone.shines_available.length > 0) {
+                const shadowShineID = zone.shines_available[0].id;
+                if (!appState.collectedShines.has(shadowShineID)) return false;
+            }
+        }
+        return true;
+    }
+
+
+</script>
+</body>
+</html>

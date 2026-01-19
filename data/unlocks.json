@@ -1,0 +1,114 @@
+{
+  "unlocks": [
+    {
+      "id": "rocket",
+      "name": "Rocket Nozzle",
+      "icon": "images/rocket.webp"
+    },
+    {
+      "id": "turbo",
+      "name": "Turbo Nozzle",
+      "icon": "images/turbo.webp"
+    },
+    {
+      "id": "hover",
+      "name": "Hover Nozzle",
+      "icon": "images/hover.webp"
+    },
+    {
+      "id": "spray",
+      "name": "Spray Nozzle",
+      "icon": "images/spray.webp"
+    },
+    {
+      "id": "double jump",
+      "name": "Double Jump",
+      "icon": "images/double_jump.png"
+    },
+    {
+      "id": "triple jump",
+      "name": "Triple Jump",
+      "icon": "images/triple_jump.jpg"
+    },
+    {
+      "id": "wall kicks",
+      "name": "Wall Kicks",
+      "icon": "images/wall_kicks.png"
+    },
+    {
+      "id": "ground pound",
+      "name": "Ground Pound",
+      "icon": "images/ground_pound.webp"
+    },
+    {
+      "id": "ground spin",
+      "name": "Ground Spin",
+      "icon": "images/ground_spin.png"
+    },
+    {
+      "id": "sideflip",
+      "name": "Sideflip",
+      "icon": "images/sideflip.png"
+    },
+    {
+      "id": "spin_jump",
+      "name": "Spin Jump",
+      "icon": "images/spin_jump.png"
+    },
+    {
+      "id": "dive",
+      "name": "Dive",
+      "icon": "images/dive.jpg"
+    },
+    {
+      "id": "grab",
+      "name": "Grab",
+      "icon": "images/grab.webp"
+    },
+    {
+      "id": "climbing",
+      "name": "Climbing",
+      "icon": "images/climb.jpeg"
+    },
+    {
+      "id": "yoshi",
+      "name": "Yoshi",
+      "icon": "images/yoshi.webp"
+    },
+    {
+      "id": "helmet",
+      "name": "Helmet",
+      "icon": "images/helmet.png"
+    },
+    {
+      "id": "sun_glasses",
+      "name": "Sun Glasses",
+      "icon": "images/sunglasses.jpg"
+    },
+    {
+      "id": "blooper",
+      "name": "Blooper",
+      "icon": "images/blooper.jpg"
+    },
+    {
+      "id": "y_camera",
+      "name": "Y Camera",
+      "icon": "images/y-cam.jpg"
+    },
+    {
+      "id": "spam_spray",
+      "name": "Spam Spray",
+      "icon": "images/spam_spray.jpg"
+    },
+    {
+      "id": "shine_shirt",
+      "name": "Shine Shirt",
+      "icon": "images/shine_shirt.webp"
+    },
+    {
+      "id": "rollercoaster_cart",
+      "name": "Rollercoaster Cart",
+      "icon": "images/rollercoaster_cart.png"
+    }
+  ]
+}

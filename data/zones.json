@@ -1,0 +1,1848 @@
+{
+  "zones": {
+    "airport0": {
+      "name": "Delfino Airstrip: Scene 1: Discovering FLUDD",
+      "shines_available": [],
+      "blue_coin_ids": [],
+      "exits": [
+        {
+          "id": "event_finish_cutscene",
+          "name": "End Cutscene"
+        }
+      ]
+    },
+    "airport1": {
+      "name": "Delfino Airstrip: Scene 2: Proto Piranha Boss",
+      "shines_available": [
+        {
+          "id": "airport1_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "bia_ex1": {
+      "name": "Delfino Plaza: Turbo Nozzle Speedway",
+      "shines_available": [
+        {
+          "id": "bia_ex1_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "bianco0": {
+      "name": "Bianco Hills: Episode 1: Road to the Big Windmill",
+      "shines_available": [
+        {
+          "id": "bianco0_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        2,
+        10,
+        21,
+        28
+      ],
+      "exits": [
+        {
+          "id": "warp_55",
+          "name": "Petey Piranha Fight"
+        }
+      ]
+    },
+    "bianco1": {
+      "name": "Bianco Hills: Episode 2: Down with Petey Piranha!",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        2,
+        10,
+        21,
+        28
+      ],
+      "exits": [
+        {
+          "id": "warp_55",
+          "name": "Petey Piranha Fight"
+        }
+      ]
+    },
+    "bianco2": {
+      "name": "Bianco Hills: Episode 3: The Hillside Cave Secret",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        2,
+        10,
+        21,
+        22,
+        28,
+        29
+      ],
+      "exits": [
+        {
+          "id": "warp_47",
+          "name": "Hillside Cave"
+        }
+      ]
+    },
+    "bianco3": {
+      "name": "Bianco Hills: Episode 4: Red Coins of Windmill Village",
+      "shines_available": [
+        {
+          "id": "bianco3_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        2,
+        10,
+        13,
+        21,
+        22,
+        28,
+        29
+      ],
+      "exits": [
+        {
+          "id": "warp_47",
+          "name": "Hillside Cave"
+        }
+      ]
+    },
+    "bianco4": {
+      "name": "Bianco Hills: Episode 5: Petey Piranha Strikes Back",
+      "shines_available": [
+        {
+          "id": "bianco4_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        2,
+        10,
+        13,
+        15,
+        21,
+        22,
+        28,
+        29
+      ],
+      "exits": [
+        {
+          "id": "warp_47",
+          "name": "Hillside Cave"
+        }
+      ]
+    },
+    "bianco5": {
+      "name": "Bianco Hills: Episode 8: The Red Coins of the Lake",
+      "shines_available": [
+        {
+          "id": "bianco5_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        2,
+        10,
+        13,
+        15,
+        21,
+        22,
+        23,
+        28,
+        29,
+        11
+      ],
+      "exits": [
+        {
+          "id": "warp_47",
+          "name": "Hillside Cave"
+        },
+        {
+          "id": "warp_46",
+          "name": "Dirty Lake Secret"
+        }
+      ]
+    },
+    "bianco6": {
+      "name": "Bianco Hills: Episode 7: Shadow Mario on the Loose",
+      "shines_available": [
+        {
+          "id": "bianco6_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        2,
+        13,
+        15,
+        10,
+        21,
+        22,
+        23,
+        28,
+        29,
+        11
+      ],
+      "exits": [
+        {
+          "id": "warp_47",
+          "name": "Hillside Cave"
+        },
+        {
+          "id": "warp_46",
+          "name": "Dirty Lake Secret"
+        }
+      ]
+    },
+    "bianco7": {
+      "name": "Bianco Hills: Episode 6: The Secret of the Dirty Lake",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        2,
+        10,
+        11,
+        13,
+        15,
+        21,
+        22,
+        23,
+        28,
+        29
+      ],
+      "exits": [
+        {
+          "id": "warp_47",
+          "name": "Hillside Cave"
+        },
+        {
+          "id": "warp_46",
+          "name": "Dirty Lake Secret"
+        }
+      ]
+    },
+    "biancoBoss": {
+      "name": "Bianco Hills: Petey Piranha Fight",
+      "shines_available": [
+        {
+          "id": "biancoBoss_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "casino0": {
+      "name": "Sirena Beach: Casino Delfino Episode 4: The Secret of Casino Delfino",
+      "shines_available": [],
+      "blue_coin_ids": [],
+      "exits": [
+        {
+          "id": "warp_40",
+          "name": "Enter Hotel"
+        }
+      ]
+    },
+    "casino1": {
+      "name": "Sirena Beach: Casino Delfino Episode 5: King Boo Down Below",
+      "shines_available": [],
+      "blue_coin_ids": [],
+      "exits": [
+        {
+          "id": "warp_56",
+          "name": "Enter Hotel"
+        }
+      ]
+    },
+    "coro_ex0": {
+      "name": "Bianco Hills: Secret of the Dirty Lake",
+      "shines_available": [
+        {
+          "id": "coro_ex0_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "coro_ex0_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "coro_ex1": {
+      "name": "Bianco Hills: Secret of the Hillside Cave",
+      "shines_available": [
+        {
+          "id": "coro_ex1_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "coro_ex1_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "coro_ex2": {
+      "name": "Ricco Harbor: Secret of the Lighthouse",
+      "shines_available": [
+        {
+          "id": "coro_ex2_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "coro_ex2_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "coro_ex4": {
+      "name": "Pinna Island: Secret of the Beach Cannon",
+      "shines_available": [
+        {
+          "id": "coro_ex4_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "coro_ex4_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "coro_ex5": {
+      "name": "Sirena Beach: Secret of the Hotel Lobby",
+      "shines_available": [
+        {
+          "id": "coro_ex5_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "coro_ex5_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "coro_ex6": {
+      "name": "Corona Mountain",
+      "shines_available": [],
+      "blue_coin_ids": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "exits": [
+        {
+          "id": "warp_to_bowser_fight",
+          "name": "Bowser Fight"
+        }
+      ]
+    },
+    "coronaBoss": {
+      "name": "Corona Mountain: Bowser Fight",
+      "shines_available": [
+        {
+          "id": "coronaBoss_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "delfino0": {
+      "name": "Sirena Beach: Hotel Delfino Episode 2: The Hotel Lobby's Secret",
+      "shines_available": [],
+      "blue_coin_ids": [],
+      "exits": [
+      ]
+    },
+    "delfino1": {
+      "name": "Sirena Beach: Hotel Delfino Episode 3: Mysterious Hotel Delfino",
+      "shines_available": [
+        {
+          "id": "delfino1_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        8,
+        11,
+        13
+      ],
+      "exits": []
+    },
+    "delfino2_4": {
+      "name": "Sirena Beach: Hotel Delfino Episode 4: The Secret of Casino Delfino",
+      "shines_available": [],
+      "blue_coin_ids": [
+        9,
+        8,
+        11,
+        13
+      ],
+      "exits": [
+        {
+          "id": "warp_casino_door_4",
+          "name": "Casino Door"
+        }
+      ]
+    },
+    "delfino2_5": {
+      "name": "Sirena Beach: Hotel Delfino Episode 5: King Boo Down Below",
+      "shines_available": [],
+      "blue_coin_ids": [
+        9,
+        8,
+        11,
+        13
+      ],
+      "exits": [
+        {
+          "id": "warp_casino_door_5",
+          "name": "Casino Door"
+        }
+      ]
+    },
+    "delfino3": {
+      "name": "Sirena Beach: Hotel Delfino Episode 7: Shadow Mario Checks In",
+      "shines_available": [
+        {
+          "id": "delfino3_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        8,
+        11,
+        13
+      ],
+      "exits": []
+    },
+    "delfino4": {
+      "name": "Sirena Beach: Hotel Delfino Episode 8: Red Coins in the Hotel",
+      "shines_available": [
+        {
+          "id": "delfino4_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        8,
+        11,
+        13
+      ],
+      "exits": []
+    },
+    "delfinoBoss": {
+      "name": "Sirena Beach: King Boo Arena",
+      "shines_available": [
+        {
+          "id": "delfinoBoss_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "dolpic_ex0": {
+      "name": "Delfino Airstrip: Revisit",
+      "shines_available": [
+        {
+          "id": "dolpic_ex0_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        0
+      ],
+      "exits": []
+    },
+    "dolpic_ex1": {
+      "name": "Delfino Plaza: Secret Slide",
+      "shines_available": [
+        {
+          "id": "dolpic_ex1_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "dolpic_ex2": {
+      "name": "Delfino Plaza: Pachinko",
+      "shines_available": [
+        {
+          "id": "dolpic_ex2_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "dolpic_ex3": {
+      "name": "Delfino Plaza: Red Coin Field",
+      "shines_available": [
+        {
+          "id": "dolpic_ex3_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "dolpic_ex4": {
+      "name": "Delfino Plaza: Lily Pad River",
+      "shines_available": [
+        {
+          "id": "dolpic_ex4_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": [
+        {
+          "id": "warp_1",
+          "name": "Pipe at the end of the river"
+        }
+      ]
+    },
+    "mam_ex0": {
+      "name": "Gelato Beach: Secret of the Sandcastle",
+      "shines_available": [
+        {
+          "id": "mam_ex0_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "mam_ex0_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "mam_ex1": {
+      "name": "Gelato Beach: Sand Bird Tower",
+      "shines_available": [
+        {
+          "id": "mam_ex1_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        29,
+        28,
+        27,
+        26
+      ],
+      "exits": []
+    },
+    "mamma0": {
+      "name": "Gelato Beach: Episode 1: The Dune Bud Sandcastle Secret",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        19,
+        13,
+        12,
+        18,
+        21,
+        20,
+        14,
+        15,
+        23,
+        24
+      ],
+      "exits": [
+        {
+          "id": "warp_32",
+          "name": "Sandcastle Secret"
+        }
+      ]
+    },
+    "mamma1": {
+      "name": "Gelato Beach: Episode 2: Mirror Madness! Tilt, Slam, Bam",
+      "shines_available": [
+        {
+          "id": "mamma1_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        18,
+        20,
+        21,
+        14,
+        15,
+        19,
+        23,
+        24
+      ],
+      "exits": []
+    },
+    "mamma2": {
+      "name": "Gelato Beach: Episode 3: Wiggler Ahoy! Full Steam Ahead",
+      "shines_available": [
+        {
+          "id": "mamma2_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        18,
+        20,
+        21,
+        19,
+        23,
+        24
+      ],
+      "exits": []
+    },
+    "mamma3": {
+      "name": "Gelato Beach: Episode 4: The Sand Bird is Born",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        18,
+        20,
+        21,
+        14,
+        15,
+        19,
+        23,
+        24
+      ],
+      "exits": [
+        {
+          "id": "warp_33",
+          "name": "Sandbird Tower"
+        }
+      ]
+    },
+    "mamma4": {
+      "name": "Gelato Beach: Episode 5: Piantissimo's Sand Sprint",
+      "shines_available": [
+        {
+          "id": "mamma4_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        18,
+        20,
+        21,
+        19,
+        23,
+        24
+      ],
+      "exits": []
+    },
+    "mamma5": {
+      "name": "Gelato Beach: Episode 6: Red Coins of the Coral Reef",
+      "shines_available": [
+        {
+          "id": "mamma5_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        12,
+        13,
+        18,
+        20,
+        21,
+        14,
+        15,
+        19,
+        23,
+        24
+      ],
+      "exits": []
+    },
+    "mamma6": {
+      "name": "Gelato Beach: Episode 7: It's Shadow Mario! After Him",
+      "shines_available": [
+        {
+          "id": "mamma6_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        12,
+        13,
+        18,
+        20,
+        21,
+        14,
+        15,
+        19,
+        23,
+        24
+      ],
+      "exits": []
+    },
+    "mamma7": {
+      "name": "Gelato Beach: Episode 8: The Watermelon Festival",
+      "shines_available": [
+        {
+          "id": "mamma7_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        12,
+        13,
+        18,
+        20,
+        21,
+        14,
+        15,
+        19,
+        23,
+        24
+      ],
+      "exits": []
+    },
+    "mare0": {
+      "name": "Noki Bay: Episode 1: Uncork the Waterfall",
+      "shines_available": [
+        {
+          "id": "mare0_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        22,
+        21,
+        20,
+        17,
+        16,
+        15,
+        14,
+        13,
+        12,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "exits": []
+    },
+    "mare1": {
+      "name": "Noki Bay: Episode 2: Boss of the Tricky Ruins",
+      "shines_available": [
+        {
+          "id": "mare1_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        20,
+        21,
+        22
+      ],
+      "exits": []
+    },
+    "mare2": {
+      "name": "Noki Bay: Episode 3: Red Coins in a Bottle",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "mare3": {
+      "name": "Noki Bay: Episode 4: Eely Mouth's Dentist",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        20,
+        21,
+        22
+      ],
+      "exits": [
+        {
+          "id": "warp_57",
+          "name": "Waterfall"
+        }
+      ]
+    },
+    "mare4": {
+      "name": "Noki Bay: Episode 5: Piantissimo's Surf Swim",
+      "shines_available": [
+        {
+          "id": "mare4_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        20,
+        21,
+        22
+      ],
+      "exits": []
+    },
+    "mare5": {
+      "name": "Noki Bay: Episode 6: The Shell's Secret",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        20,
+        21,
+        22
+      ],
+      "exits": [
+        {
+          "id": "warp_31",
+          "name": "Secret Entrance"
+        }
+      ]
+    },
+    "mare6": {
+      "name": "Noki Bay: Episode 7: Shadow Mario on the Loose",
+      "shines_available": [
+        {
+          "id": "mare6_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        20,
+        21,
+        22
+      ],
+      "exits": []
+    },
+    "mare7": {
+      "name": "Noki Bay: Episode 8: The Red Coin Fish",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        20,
+        21,
+        22
+      ],
+      "exits": [
+        {
+          "id": "warp_16",
+          "name": "Waterfall"
+        }
+      ]
+    },
+    "mareBoss": {
+      "name": "Noki Bay: Eely-Mouth Fight",
+      "shines_available": [
+        {
+          "id": "mareBoss_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        29,
+        27,
+        26,
+        25
+      ],
+      "exits": []
+    },
+    "mareUndersea": {
+      "name": "Noki Bay: Noki Depths",
+      "shines_available": [],
+      "blue_coin_ids": [
+        25,
+        26,
+        27,
+        29
+      ],
+      "exits": []
+    },
+    "mare_ex0": {
+      "name": "Noki Bay: Red Coin Bottle",
+      "shines_available": [
+        {
+          "id": "mare_ex0_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "monte0": {
+      "name": "Pianta Village: Episode 1: Chain Chomplets Unchained",
+      "shines_available": [
+        {
+          "id": "monte0_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        14,
+        12,
+        13,
+        15,
+        18
+      ],
+      "exits": []
+    },
+    "monte1": {
+      "name": "Pianta Village: Episode 4: Chain Chomp's Bath",
+      "shines_available": [
+        {
+          "id": "monte1_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        14,
+        15,
+        18
+      ],
+      "exits": []
+    },
+    "monte2": {
+      "name": "Pianta Village: Episode 3: The Goopy Inferno",
+      "shines_available": [
+        {
+          "id": "monte2_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        14,
+        15,
+        18
+      ],
+      "exits": []
+    },
+    "monte3": {
+      "name": "Pianta Village: Episode 6: Piantas in Need",
+      "shines_available": [
+        {
+          "id": "monte3_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        14,
+        15,
+        18
+      ],
+      "exits": []
+    },
+    "monte4": {
+      "name": "Pianta Village: Episode 5: Secret of the Village Underside",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        14,
+        15,
+        18
+      ],
+      "exits": [
+        {
+          "id": "warp_42",
+          "name": "Secret Entrace"
+        }
+      ]
+    },
+    "monte5": {
+      "name": "Pianta Village: Episode 2: Il Piantissimo's Crazy Climb",
+      "shines_available": [
+        {
+          "id": "monte5_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        14,
+        15,
+        18
+      ],
+      "exits": []
+    },
+    "monte6": {
+      "name": "Pianta Village: Episode 7: Shadow Mario Runs Wild",
+      "shines_available": [
+        {
+          "id": "monte6_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        14,
+        15,
+        18
+      ],
+      "exits": []
+    },
+    "monte7": {
+      "name": "Pianta Village: Episode 8: Fluff Festival Coin Hunt",
+      "shines_available": [
+        {
+          "id": "monte7_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        12,
+        13,
+        14,
+        15,
+        18
+      ],
+      "exits": []
+    },
+    "monte_ex0": {
+      "name": "Pianta Village: Secret of the Village Underside",
+      "shines_available": [
+        {
+          "id": "monte_ex0_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "monte_ex0_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "pinnaBeach0": {
+      "name": "Pinna Island: Pinna Beach Episode 1",
+      "shines_available": [],
+      "blue_coin_ids": [
+        25,
+        26,
+        27,
+        22,
+        21,
+        20
+      ],
+      "exits": [
+        {
+          "id": "warp_13",
+          "name": "Enter Pinna Park"
+        }
+      ]
+    },
+    "pinnaBeach1": {
+      "name": "Pinna Island: Pinna Beach Episode 2",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        25,
+        26,
+        27,
+        22,
+        21,
+        20
+      ],
+      "exits": [
+        {
+          "id": "warp_50",
+          "name": "Beach Cannon"
+        }
+      ]
+    },
+    "pinnaBeach2": {
+      "name": "Pinna Island: Pinna Beach Episode 4",
+      "shines_available": [
+        {
+          "id": "pinnaBeach2_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        25,
+        26,
+        27,
+        22,
+        21,
+        20
+      ],
+      "exits": []
+    },
+    "pinnaBeach3": {
+      "name": "Pinna Island: Pinna Beach Episode 3",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        25,
+        26,
+        27,
+        22,
+        21,
+        20
+      ],
+      "exits": [
+        {
+          "id": "warp_13",
+          "name": "Enter Pinna Park"
+        }
+      ]
+    },
+    "pinnaBeach4": {
+      "name": "Pinna Island: Pinna Beach Episode 5",
+      "shines_available": [],
+      "blue_coin_ids": [
+        25,
+        26,
+        27,
+        22,
+        21,
+        20
+      ],
+      "exits": [
+        {
+          "id": "pinna_park_enter_5",
+          "name": "Enter Pinna Park"
+        }
+      ]
+    },
+    "pinnaBeach5": {
+      "name": "Pinna Island: Pinna Beach Episode 6",
+      "shines_available": [],
+      "blue_coin_ids": [
+        25,
+        26,
+        27,
+        22,
+        21,
+        20
+      ],
+      "exits": [
+        {
+          "id": "pinna_park_enter_6",
+          "name": "Enter Pinna Park"
+        }
+      ]
+    },
+    "pinnaBeach6": {
+      "name": "Pinna Island: Pinna Beach Episode 7",
+      "shines_available": [],
+      "blue_coin_ids": [
+        25,
+        26,
+        27,
+        22,
+        21,
+        20
+      ],
+      "exits": [
+        {
+          "id": "pinna_park_enter_7",
+          "name": "Enter Pinna Park"
+        }
+      ]
+    },
+    "pinnaBeach7": {
+      "name": "Pinna Island: Pinna Beach Episode 8",
+      "shines_available": [],
+      "blue_coin_ids": [
+        25,
+        26,
+        27,
+        22,
+        21,
+        20
+      ],
+      "exits": [
+        {
+          "id": "pinna_park_enter_8",
+          "name": "Enter Pinna Park"
+        }
+      ]
+    },
+    "pinnaBoss0": {
+      "name": "Pinna Island: Roller Coaster Minigame",
+      "shines_available": [
+        {
+          "id": "pinnaBoss0_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "pinnaBoss1": {
+      "name": "Pinna Island: Mecha-Bowser Fight",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "pinnaParco0": {
+      "name": "Pinna Island: Pinna Park Episode 1",
+      "shines_available": [],
+      "blue_coin_ids": [
+        7,
+        14,
+        16,
+        17,
+        18,
+        6
+      ],
+      "exits": [
+        {
+          "id": "cutscene_start_mecha_bowser",
+          "name": "Mecha-Bowser Cutscene"
+        }
+      ]
+    },
+    "pinnaParco1": {
+      "name": "Pinna Island: Pinna Park Episode 3",
+      "shines_available": [
+        {
+          "id": "pinnaParco1_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        7,
+        14,
+        16,
+        17,
+        18,
+        6
+      ],
+      "exits": []
+    },
+    "pinnaParco2": {
+      "name": "Pinna Island: Pinna Park Episode 5",
+      "shines_available": [
+        {
+          "id": "pinnaParco2_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        7,
+        14,
+        16,
+        17,
+        18,
+        6
+      ],
+      "exits": []
+    },
+    "pinnaParco3": {
+      "name": "Pinna Island: Pinna Park Episode 6",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        7,
+        14,
+        16,
+        17,
+        18,
+        6
+      ],
+      "exits": []
+    },
+    "pinnaParco4": {
+      "name": "Pinna Island: Pinna Park Episode 7",
+      "shines_available": [
+        {
+          "id": "pinnaParco4_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        7,
+        14,
+        16,
+        17,
+        18,
+        6
+      ],
+      "exits": []
+    },
+    "pinnaParco5": {
+      "name": "Pinna Island: Pinna Park Episode 8",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        7,
+        14,
+        16,
+        17,
+        18,
+        6
+      ],
+      "exits": [
+        {
+          "id": "roller_coaster_minigame_start_8",
+          "name": "Start Roller Coaster Minigame"
+        }
+      ]
+    },
+    "pinnaParco6": {
+      "name": "Pinna Island: Pinna Park Episode 1: After Mecha-Bowser Cutscene",
+      "shines_available": [],
+      "blue_coin_ids": [],
+      "exits": [
+        {
+          "id": "warp_58",
+          "name": "End Talk with Noki"
+        }
+      ]
+    },
+    "pinnaParco7": {
+      "name": "Pinna Island: Pinna Park Episode 1: After Defeating Mecha-Bowser",
+      "shines_available": [
+        {
+          "id": "pinnaParco7_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        7,
+        14,
+        16,
+        17,
+        18,
+        6
+      ],
+      "exits": []
+    },
+    "ricco0": {
+      "name": "Ricco Harbor: Episode 1 Scene 1: Before Gooper Blooper",
+      "shines_available": [],
+      "blue_coin_ids": [
+        14,
+        13,
+        9,
+        10,
+        11,
+        12,
+        15,
+        17,
+        18,
+        29
+      ],
+      "exits": [
+        {
+          "id": "blooper_cutscene_start",
+          "name": "Gooper Blooper Cutscene"
+        }
+      ]
+    },
+    "ricco1": {
+      "name": "Ricco Harbor: Episode 2",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        13,
+        17,
+        18,
+        16
+      ],
+      "exits": [
+        {
+          "id": "warp_30",
+          "name": "Blooper Race"
+        }
+      ]
+    },
+    "ricco2": {
+      "name": "Ricco Harbor: Episode 3",
+      "shines_available": [
+        {
+          "id": "ricco2_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        13
+      ],
+      "exits": []
+    },
+    "ricco3": {
+      "name": "Ricco Harbor: Episode 4",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        13
+      ],
+      "exits": [
+        {
+          "id": "warp_48",
+          "name": "Lighthouse Secret"
+        }
+      ]
+    },
+    "ricco4": {
+      "name": "Ricco Harbor: Episode 5",
+      "shines_available": [
+        {
+          "id": "ricco4_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        13
+      ],
+      "exits": []
+    },
+    "ricco5": {
+      "name": "Ricco Harbor: Episode 6",
+      "shines_available": [
+        {
+          "id": "ricco5_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        13,
+        17,
+        18
+      ],
+      "exits": []
+    },
+    "ricco6": {
+      "name": "Ricco Harbor: Episode 7",
+      "shines_available": [
+        {
+          "id": "ricco6_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        13
+      ],
+      "exits": []
+    },
+    "ricco7": {
+      "name": "Ricco Harbor: Episode 8",
+      "shines_available": [
+        {
+          "id": "ricco7_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        17,
+        18,
+        13
+      ],
+      "exits": []
+    },
+    "ricco8": {
+      "name": "Ricco Harbor: Episode 1 Scene 2: Gooper Blooper Fight",
+      "shines_available": [
+        {
+          "id": "ricco8_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        14,
+        13,
+        9,
+        10,
+        11,
+        12,
+        15,
+        17,
+        18,
+        29
+      ],
+      "exits": []
+    },
+    "rico_ex0": {
+      "name": "Ricco Harbor: Blooper Surfing Safari",
+      "shines_available": [
+        {
+          "id": "rico_ex0_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "rico_ex0_2",
+          "name": "Second Race Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "rico_ex1": {
+      "name": "Noki Bay: Secret of the Shell",
+      "shines_available": [
+        {
+          "id": "rico_ex1_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "rico_ex1_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "sirena0": {
+      "name": "Sirena Beach: Episode 1: The Manta Storm",
+      "shines_available": [
+        {
+          "id": "sirena0_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        17
+      ],
+      "exits": []
+    },
+    "sirena1": {
+      "name": "Sirena Beach: Episode 2: The Hotel Lobby's Secret",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        1,
+        5,
+        17
+      ],
+      "exits": [
+        {
+          "id": "hotel_entry_2",
+          "name": "Enter Hotel"
+        }
+      ]
+    },
+    "sirena2": {
+      "name": "Sirena Beach: Episode 3: Mysterious Hotel Delfino",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        1,
+        5,
+        17
+      ],
+      "exits": [
+        {
+          "id": "hotel_entry_3",
+          "name": "Enter Hotel"
+        }
+      ]
+    },
+    "sirena3": {
+      "name": "Sirena Beach: Episode 4: The Secret of Casino Delfino",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        1,
+        5,
+        17
+      ],
+      "exits": [
+        {
+          "id": "hotel_entry_4",
+          "name": "Enter Hotel"
+        }
+      ]
+    },
+    "sirena4": {
+      "name": "Sirena Beach: Episode 5: King Boo Down Below",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        1,
+        5,
+        17
+      ],
+      "exits": [
+        {
+          "id": "hotel_entry_5",
+          "name": "Enter Hotel"
+        }
+      ]
+    },
+    "sirena5": {
+      "name": "Sirena Beach: Episode 6: Scrubbing Sirena Beach",
+      "shines_available": [
+        {
+          "id": "sirena5_1",
+          "name": "Episode Shine"
+        }
+      ],
+      "blue_coin_ids": [
+        1,
+        5,
+        17
+      ],
+      "exits": []
+    },
+    "sirena6": {
+      "name": "Sirena Beach: Episode 7: Shadow Mario Checks In",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        1,
+        5,
+        17
+      ],
+      "exits": [
+        {
+          "id": "hotel_entry_7",
+          "name": "Enter Hotel"
+        }
+      ]
+    },
+    "sirena7": {
+      "name": "Sirena Beach: Episode 8: Red Coins in the Hotel",
+      "shines_available": [
+      ],
+      "blue_coin_ids": [
+        1,
+        5,
+        17
+      ],
+      "exits": [
+        {
+          "id": "hotel_entry_8",
+          "name": "Enter Hotel"
+        }
+      ]
+    },
+    "sirena_ex0": {
+      "name": "Sirena Beach: Secret of Casino Delfino",
+      "shines_available": [
+        {
+          "id": "sirena_ex0_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "sirena_ex0_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    },
+    "sirena_ex1": {
+      "name": "Pinna Island: Secret of the Yoshi-Go-Round",
+      "shines_available": [
+        {
+          "id": "sirena_ex1_1",
+          "name": "Episode Shine"
+        },
+        {
+          "id": "sirena_ex1_2",
+          "name": "Red Coin Shine"
+        }
+      ],
+      "blue_coin_ids": [],
+      "exits": []
+    }
+  }
+}

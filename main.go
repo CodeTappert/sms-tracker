@@ -224,6 +224,8 @@ func main() {
 	// Start the HTTP server on the configured port
 	addr := fmt.Sprintf(":%d", cfg.Port)
 	fmt.Printf("Tracker is running at http://localhost:%d\n", cfg.Port)
+	fmt.Printf("Open your web browser and navigate to the above URL to access the tracker interface.\n")
+	fmt.Printf("You can alternativly open the link by holding Ctrl and clicking it in supported terminals.\n")
 	fmt.Println("Press Ctrl+C to stop the server.")
 
 	log.Fatal(http.ListenAndServe(addr, nil))

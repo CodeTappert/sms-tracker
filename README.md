@@ -44,6 +44,9 @@ By default, the tracker runs on port `8080`. To use a custom port, create a `con
     sms-tracker.exe
     ```
 
+* Then open your web browser and navigate to `http://localhost:8080` (or your specified port) to access the tracker.
+* You can also Ctrl+Click the link in the console to open it directly.
+
 ## Compilation
 
 ### Prerequisites

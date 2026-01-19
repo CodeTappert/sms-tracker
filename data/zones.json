@@ -563,6 +563,10 @@
     "mamma0": {
       "name": "Gelato Beach: Episode 1: The Dune Bud Sandcastle Secret",
       "shines_available": [
+        {
+          "id": "mamma_secret",
+          "name": "Dune Bud Secret"
+        }
       ],
       "blue_coin_ids": [
         19,
@@ -589,6 +593,10 @@
         {
           "id": "mamma1_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mamma_secret",
+          "name": "Dune Bud Secret"
         }
       ],
       "blue_coin_ids": [
@@ -611,6 +619,10 @@
         {
           "id": "mamma2_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mamma_secret",
+          "name": "Dune Bud Secret"
         }
       ],
       "blue_coin_ids": [
@@ -628,6 +640,10 @@
     "mamma3": {
       "name": "Gelato Beach: Episode 4: The Sand Bird is Born",
       "shines_available": [
+        {
+          "id": "mamma_secret",
+          "name": "Dune Bud Secret"
+        }
       ],
       "blue_coin_ids": [
         12,
@@ -654,6 +670,10 @@
         {
           "id": "mamma4_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mamma_secret",
+          "name": "Dune Bud Secret"
         }
       ],
       "blue_coin_ids": [
@@ -674,6 +694,10 @@
         {
           "id": "mamma5_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mamma_secret",
+          "name": "Dune Bud Secret"
         }
       ],
       "blue_coin_ids": [
@@ -697,6 +721,10 @@
         {
           "id": "mamma6_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mamma_secret",
+          "name": "Dune Bud Secret"
         }
       ],
       "blue_coin_ids": [
@@ -720,6 +748,10 @@
         {
           "id": "mamma7_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mamma_secret",
+          "name": "Dune Bud Secret"
         }
       ],
       "blue_coin_ids": [
@@ -743,6 +775,10 @@
         {
           "id": "mare0_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mare_secret",
+          "name": "Golden Bird Secret"
         }
       ],
       "blue_coin_ids": [
@@ -776,6 +812,10 @@
         {
           "id": "mare1_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mare_secret",
+          "name": "Golden Bird Secret"
         }
       ],
       "blue_coin_ids": [
@@ -808,11 +848,20 @@
       "shines_available": [
       ],
       "blue_coin_ids": [],
-      "exits": []
+      "exits": [
+        {
+          "id": "bottle_warp_0",
+          "name": "End Conversation"
+        }
+      ]
     },
     "mare3": {
       "name": "Noki Bay: Episode 4: Eely Mouth's Dentist",
       "shines_available": [
+        {
+          "id": "mare_secret",
+          "name": "Golden Bird Secret"
+        }
       ],
       "blue_coin_ids": [
         0,
@@ -850,6 +899,10 @@
         {
           "id": "mare4_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mare_secret",
+          "name": "Golden Bird Secret"
         }
       ],
       "blue_coin_ids": [
@@ -880,6 +933,10 @@
     "mare5": {
       "name": "Noki Bay: Episode 6: The Shell's Secret",
       "shines_available": [
+        {
+          "id": "mare_secret",
+          "name": "Golden Bird Secret"
+        }
       ],
       "blue_coin_ids": [
         0,
@@ -917,6 +974,10 @@
         {
           "id": "mare6_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "mare_secret",
+          "name": "Golden Bird Secret"
         }
       ],
       "blue_coin_ids": [
@@ -947,6 +1008,10 @@
     "mare7": {
       "name": "Noki Bay: Episode 8: The Red Coin Fish",
       "shines_available": [
+        {
+          "id": "mare_secret",
+          "name": "Golden Bird Secret"
+        }
       ],
       "blue_coin_ids": [
         0,
@@ -1142,6 +1207,10 @@
         {
           "id": "monte7_1",
           "name": "Episode Shine"
+        },
+        {
+          "id": "monte_secret",
+          "name": "Spray the Sun Secret"
         }
       ],
       "blue_coin_ids": [

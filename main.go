@@ -1,12 +1,21 @@
 package main
 
 import (
+	"embed"
 	"encoding/json"
 	"fmt"
+	"io/fs"
 	"log"
 	"net/http"
-	"os"
 )
+
+// --- Embedding ---
+
+//go:embed static/*
+var staticEmbed embed.FS
+
+//go:embed data/*
+var dataEmbed embed.FS
 
 // --- Data Structures ---
 
@@ -60,9 +69,9 @@ var currentWorld WorldData
 // This should only be called once during startup.
 func loadGameData() {
 	// A. Load Zones
-	zoneFile, err := os.ReadFile("data/zones.json")
+	zoneFile, err := dataEmbed.ReadFile("data/zones.json")
 	if err != nil {
-		log.Fatalf("Error reading zones.json: %v", err)
+		log.Fatalf("Error reading embedded zones.json: %v", err)
 	}
 
 	// Temporary wrapper to match the JSON structure structure
@@ -82,9 +91,9 @@ func loadGameData() {
 	}
 
 	// B. Load Unlocks
-	unlockFile, err := os.ReadFile("data/unlocks.json")
+	unlockFile, err := dataEmbed.ReadFile("data/unlocks.json")
 	if err != nil {
-		log.Fatalf("Error reading unlocks.json: %v", err)
+		log.Fatalf("Error reading embedded unlocks.json: %v", err)
 	}
 
 	var unlockWrapper struct {
@@ -157,19 +166,21 @@ func loadGameData() {
 func main() {
 	loadGameData()
 
-	// Ensure the frontend assets exist before starting
-	if _, err := os.Stat("./static"); os.IsNotExist(err) {
-		log.Fatal("Directory './static' is missing! Cannot serve frontend.")
+	// Prepare the embedded static files for serving over HTTP
+	publicFiles, err := fs.Sub(staticEmbed, "static")
+	if err != nil {
+		log.Fatal(err)
 	}
 
-	// Serve static files (HTML/JS/CSS)
-	fs := http.FileServer(http.Dir("./static"))
-	http.Handle("/", fs)
+	// Serve the web interface directly from the binary
+	http.Handle("/", http.FileServer(http.FS(publicFiles)))
 
-	// API Endpoint to fetch the game configuration
+	// API Endpoint to retrieve the current world data as JSON
 	http.HandleFunc("/api/data", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(currentWorld)
+		if err := json.NewEncoder(w).Encode(currentWorld); err != nil {
+			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		}
 	})
 
 	fmt.Println("Server running at http://localhost:8080")

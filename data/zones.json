@@ -1481,7 +1481,12 @@
         18,
         6
       ],
-      "exits": []
+      "exits": [
+        {
+          "id": "yoshi_go_round_secret",
+            "name": "Yoshi Go-Round Secret"
+        }
+      ]
     },
     "pinnaParco4": {
       "name": "Pinna Island: Pinna Park Episode 7",

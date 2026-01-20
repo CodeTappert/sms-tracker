@@ -23,7 +23,7 @@ jobs:
       # 1. Build for Linux
       - name: Build Linux Binary
         run: |
-          GOOS=linux GOARCH=amd64 go build -o sms-tracker-linux main.go
+          GOOS=linux GOARCH=amd64 go build -o sms-tracker main.go
 
       # 2. Build for Windows
       - name: Build Windows Binary
@@ -36,7 +36,7 @@ jobs:
         with:
           name: sms-tracker-binaries
           path: |
-            sms-tracker-linux
+            sms-tracker
             sms-tracker.exe
 
   release:

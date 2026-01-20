@@ -340,6 +340,21 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
 
             if (target && !chainHistory.includes(target)) {
                 exitsHTML += buildRecursiveZoneRows(target, [...chainHistory, target], depth + 1, groupClass, parentID);
+            } else {
+                // Target is already in the chain: Render the "Already in chain" text below the dropdown
+                const targetZone = worldData.zones[target];
+                const targetName = targetZone ? targetZone.name : "Unknown";
+
+                exitsHTML += `
+                    <tr class="${groupClass} child-row loop-row" data-parent="${parentID}" ${displayStyle}>
+                        <td></td>
+                        <td style="padding-top: 0;">
+                            <div style="color: #e74c3c; font-size: 0.75rem; margin-top: -4px; display: flex; align-items: center; gap: 4px;">
+                                <span>⤴</span> <span>Already in chain: ${targetName}</span>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>`;
             }
         });
     }

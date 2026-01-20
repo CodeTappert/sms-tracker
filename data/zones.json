@@ -1065,7 +1065,12 @@
     },
     "mareUndersea": {
       "name": "Noki Bay: Noki Depths",
-      "shines_available": [],
+      "shines_available": [
+        {
+          "id": "mareUndersea_1",
+          "name": "Episode Shine"
+        }
+      ],
       "blue_coin_ids": [
         25,
         26,

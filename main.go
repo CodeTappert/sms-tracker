@@ -126,7 +126,6 @@ func loadGameData() {
 		{"enter_slide", "Secret Slide", "slide.png", true},
 		{"enter_turbo", "Turbo Dash", "turbo.png", true},
 		{"enter_grass", "Red Coin Grass", "grass.png", true},
-		{"enter_pianta_pipe", "Pianta Village (Pipe)", "pianta_pipe.png", true},
 		{"beach_treasure", "Beach Treasure", "beach_treasure.png", false},
 		{"crate_1", "Break the Crate (1)", "crate_1.png", false},
 		{"crate_2", "Break the Crate (2)", "crate_2.png", false},

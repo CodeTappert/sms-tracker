@@ -1408,7 +1408,12 @@
       "shines_available": [
       ],
       "blue_coin_ids": [],
-      "exits": []
+      "exits": [
+        {
+          "id": "end_mecha_bowser_fight",
+          "name": "End Mecha-Bowser Fight"
+        }
+      ]
     },
     "pinnaParco0": {
       "name": "Pinna Island: Pinna Park Episode 1",

@@ -10,7 +10,7 @@ const SHADOW_MARIO_LEVELS = [
     { id: "ricco6", name: "Ricco" },
     { id: "mamma6", name: "Gelato" },
     { id: "pinnaParco4", name: "Pinna" },
-    { id: "sirena6", name: "Sirena" },
+    { id: "delfino3", name: "Sirena" },
     { id: "mare6", name: "Noki" },
     { id: "monte6", name: "Pianta" }
 ];

@@ -56,9 +56,9 @@
       "icon": "images/spin_jump.png"
     },
     {
-      "id": "dive",
-      "name": "Dive",
-      "icon": "images/dive.jpg"
+      "id": "rollout",
+      "name": "Rollout",
+      "icon": "images/rollout.png"
     },
     {
       "id": "grab",

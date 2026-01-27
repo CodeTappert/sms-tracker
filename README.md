@@ -80,3 +80,16 @@ To compile the application for Windows, use the following command:
 ```bash
 go build -o sms-tracker.exe main.go
 ```
+
+
+
+## ASSET DISCLAIMER:
+
+This project contains assets (images, icons, names) from "Super Mario Sunshine"
+which are the intellectual property of Nintendo. These assets are used for
+fan/tracking purposes only.
+
+The MIT License applies ONLY to the source code (Go, HTML, CSS, JS)
+created for this project. It does NOT grant any rights to the game assets
+contained within the "static/images" folder or any other game-related media.
+All rights to those assets remain with Nintendo.

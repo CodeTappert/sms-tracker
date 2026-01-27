@@ -2,6 +2,12 @@
 
 A tracker for the Super Mario Sunshine Randomizer that allows users to map randomized zones to Plaza entrances and track Shine and Blue Coin collections.
 
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/CodeTappert/sms-tracker?style=flat-square)
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/CodeTappert/sms-tracker?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/CodeTappert/sms-tracker?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/CodeTappert/sms-tracker?style=flat-square)
+
 ## License
 
 This code in this project is licensed under the MIT License. Assets in /static/images is not licensed at all and is owned by Nintendo. For more information, see [LICENSE](LICENSE).

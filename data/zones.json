@@ -1247,7 +1247,7 @@
       "exits": []
     },
     "pinnaBeach0": {
-      "name": "Pinna Island: Pinna Beach Episode 1",
+      "name": "Pinna Island: Pinna Beach Episode 1: Mecha-Bowser Appears!",
       "shines_available": [],
       "blue_coin_ids": [
         25,
@@ -1265,7 +1265,7 @@
       ]
     },
     "pinnaBeach1": {
-      "name": "Pinna Island: Pinna Beach Episode 2",
+      "name": "Pinna Island: Pinna Beach Episode 2: The Beach Cannon's Secret",
       "shines_available": [
       ],
       "blue_coin_ids": [
@@ -1284,7 +1284,7 @@
       ]
     },
     "pinnaBeach2": {
-      "name": "Pinna Island: Pinna Beach Episode 4",
+      "name": "Pinna Island: Pinna Beach Episode 4: The Wilted Sunflowers",
       "shines_available": [
         {
           "id": "pinnaBeach2_1",
@@ -1302,7 +1302,7 @@
       "exits": []
     },
     "pinnaBeach3": {
-      "name": "Pinna Island: Pinna Beach Episode 3",
+      "name": "Pinna Island: Pinna Beach Episode 3: Red Coins of the Pirate Ships",
       "shines_available": [
       ],
       "blue_coin_ids": [
@@ -1321,7 +1321,7 @@
       ]
     },
     "pinnaBeach4": {
-      "name": "Pinna Island: Pinna Beach Episode 5",
+      "name": "Pinna Island: Pinna Beach Episode 5: The Runaway Ferris Wheel",
       "shines_available": [],
       "blue_coin_ids": [
         25,
@@ -1339,7 +1339,7 @@
       ]
     },
     "pinnaBeach5": {
-      "name": "Pinna Island: Pinna Beach Episode 6",
+      "name": "Pinna Island: Pinna Beach Episode 6: The Yoshi-Go-Round's Secret",
       "shines_available": [],
       "blue_coin_ids": [
         25,
@@ -1357,7 +1357,7 @@
       ]
     },
     "pinnaBeach6": {
-      "name": "Pinna Island: Pinna Beach Episode 7",
+      "name": "Pinna Island: Pinna Beach Episode 7: Shadow Mario in the Park",
       "shines_available": [],
       "blue_coin_ids": [
         25,
@@ -1375,7 +1375,7 @@
       ]
     },
     "pinnaBeach7": {
-      "name": "Pinna Island: Pinna Beach Episode 8",
+      "name": "Pinna Island: Pinna Beach Episode 8: Roller Coaster Balloons",
       "shines_available": [],
       "blue_coin_ids": [
         25,
@@ -1387,7 +1387,7 @@
       ],
       "exits": [
         {
-          "id": "pinna_park_enter_8",
+          "id": "pinna_park_enter_8: Rollar Coaster Balloons",
           "name": "Enter Pinna Park"
         }
       ]
@@ -1416,7 +1416,7 @@
       ]
     },
     "pinnaParco0": {
-      "name": "Pinna Island: Pinna Park Episode 1",
+      "name": "Pinna Island: Pinna Park Episode 1: Mecha-Bowser Appears!",
       "shines_available": [],
       "blue_coin_ids": [
         7,
@@ -1434,7 +1434,7 @@
       ]
     },
     "pinnaParco1": {
-      "name": "Pinna Island: Pinna Park Episode 3",
+      "name": "Pinna Island: Pinna Park Episode 3: Red Coins of the Pirate Ships",
       "shines_available": [
         {
           "id": "pinnaParco1_1",
@@ -1452,7 +1452,7 @@
       "exits": []
     },
     "pinnaParco2": {
-      "name": "Pinna Island: Pinna Park Episode 5",
+      "name": "Pinna Island: Pinna Park Episode 5: The Runaway Ferris Wheel",
       "shines_available": [
         {
           "id": "pinnaParco2_1",
@@ -1470,7 +1470,7 @@
       "exits": []
     },
     "pinnaParco3": {
-      "name": "Pinna Island: Pinna Park Episode 6",
+      "name": "Pinna Island: Pinna Park Episode 6: The Yoshi-Go-Round's Secret",
       "shines_available": [
       ],
       "blue_coin_ids": [
@@ -1489,7 +1489,7 @@
       ]
     },
     "pinnaParco4": {
-      "name": "Pinna Island: Pinna Park Episode 7",
+      "name": "Pinna Island: Pinna Park Episode 7: Shadow Mario in the Park",
       "shines_available": [
         {
           "id": "pinnaParco4_1",
@@ -1507,7 +1507,7 @@
       "exits": []
     },
     "pinnaParco5": {
-      "name": "Pinna Island: Pinna Park Episode 8",
+      "name": "Pinna Island: Pinna Park Episode 8: Roller Coaster Ballons",
       "shines_available": [
       ],
       "blue_coin_ids": [
@@ -1526,7 +1526,7 @@
       ]
     },
     "pinnaParco6": {
-      "name": "Pinna Island: Pinna Park Episode 1: After Mecha-Bowser Cutscene",
+      "name": "Pinna Island: Pinna Park Episode 1: Mecha-Bowser Appears!: After Mecha-Bowser Cutscene",
       "shines_available": [],
       "blue_coin_ids": [],
       "exits": [
@@ -1537,7 +1537,7 @@
       ]
     },
     "pinnaParco7": {
-      "name": "Pinna Island: Pinna Park Episode 1: After Defeating Mecha-Bowser",
+      "name": "Pinna Island: Pinna Park Episode 1: Mecha-Bowser Appears!: After Defeating Mecha-Bowser",
       "shines_available": [
         {
           "id": "pinnaParco7_1",
@@ -1555,7 +1555,7 @@
       "exits": []
     },
     "ricco0": {
-      "name": "Ricco Harbor: Episode 1 Scene 1: Before Gooper Blooper",
+      "name": "Ricco Harbor: Episode 1: Gooper Blooper Breaks Out: Scene 1: Before Gooper Blooper",
       "shines_available": [],
       "blue_coin_ids": [
         14,
@@ -1577,7 +1577,7 @@
       ]
     },
     "ricco1": {
-      "name": "Ricco Harbor: Episode 2",
+      "name": "Ricco Harbor: Episode 2: Blooper Surfing Safari",
       "shines_available": [
       ],
       "blue_coin_ids": [
@@ -1600,7 +1600,7 @@
       ]
     },
     "ricco2": {
-      "name": "Ricco Harbor: Episode 3",
+      "name": "Ricco Harbor: Episode 3: The Caged Shine Sprite",
       "shines_available": [
         {
           "id": "ricco2_1",
@@ -1621,7 +1621,7 @@
       "exits": []
     },
     "ricco3": {
-      "name": "Ricco Harbor: Episode 4",
+      "name": "Ricco Harbor: Episode 4: The Secret of Ricco Tower",
       "shines_available": [
       ],
       "blue_coin_ids": [
@@ -1643,7 +1643,7 @@
       ]
     },
     "ricco4": {
-      "name": "Ricco Harbor: Episode 5",
+      "name": "Ricco Harbor: Episode 5: Gooper Blooper Returns",
       "shines_available": [
         {
           "id": "ricco4_1",
@@ -1664,7 +1664,7 @@
       "exits": []
     },
     "ricco5": {
-      "name": "Ricco Harbor: Episode 6",
+      "name": "Ricco Harbor: Episode 6: Red Coins in Water",
       "shines_available": [
         {
           "id": "ricco5_1",
@@ -1685,7 +1685,7 @@
       "exits": []
     },
     "ricco6": {
-      "name": "Ricco Harbor: Episode 7",
+      "name": "Ricco Harbor: Episode 7: Shadow Mario Revisited",
       "shines_available": [
         {
           "id": "ricco6_1",
@@ -1706,7 +1706,7 @@
       "exits": []
     },
     "ricco7": {
-      "name": "Ricco Harbor: Episode 8",
+      "name": "Ricco Harbor: Episode 8: Yoshi's Fruit Adventure",
       "shines_available": [
         {
           "id": "ricco7_1",
@@ -1727,7 +1727,7 @@
       "exits": []
     },
     "ricco8": {
-      "name": "Ricco Harbor: Episode 1 Scene 2: Gooper Blooper Fight",
+      "name": "Ricco Harbor: Episode 1: Gooper Blooper Breaks Out: Scene 2: Gooper Blooper Fight",
       "shines_available": [
         {
           "id": "ricco8_1",

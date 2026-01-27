@@ -10,7 +10,7 @@ A tracker for the Super Mario Sunshine Randomizer that allows users to map rando
 
 ## License
 
-This code in this project is licensed under the MIT License. Assets in /static/images is not licensed at all and is owned by Nintendo. For more information, see [LICENSE](LICENSE).
+This code in this project is licensed under the MIT License. Assets in /static/images is not licensed at all and is owned by Nintendo. For more information, see [LICENSE](LICENSE) and [Asset Disclamer](https://github.com/CodeTappert/sms-tracker?tab=readme-ov-file#asset-disclaimer)
 
 ## Contributing
 

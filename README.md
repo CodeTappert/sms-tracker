@@ -1,4 +1,4 @@
-# SMS Randomizer Tracker
+![SMS Randomizer Tracker Logo](images/logo.png)
 
 A tracker for the Super Mario Sunshine Randomizer that allows users to map randomized zones to Plaza entrances and track Shine and Blue Coin collections.
 
@@ -10,7 +10,7 @@ A tracker for the Super Mario Sunshine Randomizer that allows users to map rando
 
 ## License
 
-This code in this project is licensed under the MIT License. Assets in /static/images is not licensed at all and is owned by Nintendo. For more information, see [LICENSE](LICENSE) and [Asset Disclamer](https://github.com/CodeTappert/sms-tracker?tab=readme-ov-file#asset-disclaimer)
+This code in this project is licensed under the MIT License. Assets in /static/images as well as other images and text from the game is not licensed at all and is owned by Nintendo. For more information, see [LICENSE](LICENSE) and [Asset Disclamer](https://github.com/CodeTappert/sms-tracker?tab=readme-ov-file#asset-disclaimer)
 
 ## Contributing
 
@@ -22,6 +22,9 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 * **Shine Tracking**: Keep track of collected Shines and blue coins in each zone, plaza entrance, and overall.
 * **User-Friendly Interface**: Simple and intuitive interface for easy tracking.
 * **Data Persistence**: Save and load your tracking data with JSON files.
+
+## Screenshots
+![Screenshot 1](images/screenshot.png)
 
 ## Configuration
 By default, the tracker runs on port `8080`. To use a custom port, create a `config.json` file in the same directory as the executable:

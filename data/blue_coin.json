@@ -1,0 +1,2983 @@
+[
+  {
+    "id": "120b0",
+    "title": "Delfino Airstrip -  Ice cube",
+    "episode": [],
+    "episodeString": "Final plaza state (post corona mountain entry)",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "121b1",
+    "title": "Delfino Plaza - Turbo pillar",
+    "episode": [],
+    "episodeString": "Start (advanced logic only)/post delfino turbo unlock",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "122b2",
+    "title": "Delfino Plaza - Statue X",
+    "episode": [],
+    "episodeString": "Post bianco unlock",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "123b3",
+    "title": "Delfino Plaza - Bell tower X",
+    "episode": [],
+    "episodeString": "Post bianco unlock",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "124b4",
+    "title": "Delfino Plaza - Burning Pianta",
+    "episode": [],
+    "episodeString": "Start (requires goop strats)/Post gelato unlock",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "125b5",
+    "title": "Delfino Plaza - Shine Gate M",
+    "episode": [],
+    "episodeString": "Start",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "126b6",
+    "title": "Delfino Plaza - Tower M",
+    "episode": [],
+    "episodeString": "Start",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "127b7",
+    "title": "Delfino Plaza - Chuckster room M",
+    "episode": [],
+    "episodeString": "Start",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "128b0",
+    "title": "Delfino Plaza - Pineapple fruit lady",
+    "episode": [],
+    "episodeString": "Post bianco unlock/plaza reload",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "129b1",
+    "title": "Delfino Plaza - Durian fruit lady",
+    "episode": [],
+    "episodeString": "Post bianco unlock/plaza reload",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "130b2",
+    "title": "Delfino Plaza - Banana fruit lady",
+    "episode": [],
+    "episodeString": "Post bianco unlock/plaza reload",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "131b3",
+    "title": "Delfino Plaza - Coconut fruit lady",
+    "episode": [],
+    "episodeString": "Post bianco unlock/plaza reload",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "132b4",
+    "title": "Delfino Plaza - Sea sewer",
+    "episode": [],
+    "episodeString": "Start",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "133b5",
+    "title": "Delfino Plaza - Tower yellow goo",
+    "episode": [],
+    "episodeString": "Start (advanced logic only)/post yoshi unlock",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "134b6",
+    "title": "Delfino Plaza - Jail cell",
+    "episode": [],
+    "episodeString": "Start",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "135b7",
+    "title": "Delfino Plaza - Police yellow goo",
+    "episode": [],
+    "episodeString": "Start (advanced logic only)/post yoshi unlock",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "136b0",
+    "title": "Delfino Plaza - Shine Gate sewer",
+    "episode": [],
+    "episodeString": "Start",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "137b1",
+    "title": "Delfino Plaza - Canal sewer",
+    "episode": [],
+    "episodeString": "Start",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "138b2",
+    "title": "Delfino Plaza - Sirena blue bird",
+    "episode": [],
+    "episodeString": "Start",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "139b3",
+    "title": "Delfino Plaza - Box game blue bird",
+    "episode": [],
+    "episodeString": "Start",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "170b2",
+    "title": "Bianco Hills - Windmill M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "171b3",
+    "title": "Bianco Hills - Windmill pillar",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "172b4",
+    "title": "Bianco Hills - Towers House M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "173b5",
+    "title": "Bianco Hills - Balcony",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "174b6",
+    "title": "Bianco Hills - Treetop",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "175b7",
+    "title": "Bianco Hills - Tourist",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "176b0",
+    "title": "Bianco Hills - Beehive",
+    "episode": [
+      8
+    ],
+    "episodeString": "8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "177b1",
+    "title": "Bianco Hills - Wall tower pianta",
+    "episode": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "178b2",
+    "title": "Bianco Hills - Hillside pokey",
+    "episode": [
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "179b3",
+    "title": "Bianco Hills - Petey pillar",
+    "episode": [
+      6,
+      7,
+      8
+    ],
+    "episodeString": "6-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "180b4",
+    "title": "Bianco Hills - Right underwater",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "181b5",
+    "title": "Bianco Hills - Left underwater",
+    "episode": [
+      6,
+      7,
+      8
+    ],
+    "episodeString": "6-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "182b6",
+    "title": "Bianco Hills - Blue bird",
+    "episode": [
+      6,
+      7,
+      8
+    ],
+    "episodeString": "6-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "183b7",
+    "title": "Bianco Hills - Bridge underside",
+    "episode": [
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "184b0",
+    "title": "Bianco Hills - Windmill Pokey",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "185b1",
+    "title": "Bianco Hills - Platforms cross",
+    "episode": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "186b2",
+    "title": "Bianco Hills - Wall side M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "187b3",
+    "title": "Bianco Hills - Wall top M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "188b4",
+    "title": "Bianco Hills - Towers house",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "189b5",
+    "title": "Bianco Hills - Pinwheel",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "190b6",
+    "title": "Bianco Hills - X behind wall",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "191b7",
+    "title": "Bianco Hills - River end",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "192b0",
+    "title": "Bianco Hills - Cliff",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "193b1",
+    "title": "Bianco Hills - Chuckster Momma",
+    "episode": [
+      6,
+      7,
+      8
+    ],
+    "episodeString": "6-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "194b2",
+    "title": "Bianco Hills - Towers house O",
+    "episode": [
+      7,
+      8
+    ],
+    "episodeString": "7-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "195b3",
+    "title": "Bianco Hills - Balcony house O",
+    "episode": [
+      7,
+      8
+    ],
+    "episodeString": "7-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "196b4",
+    "title": "Bianco Hills - Butterfly",
+    "episode": [
+      8
+    ],
+    "episodeString": "8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "197b5",
+    "title": "Bianco Hills -  X between walls",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "198b6",
+    "title": "Bianco Hills - Sail platform",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "199b7",
+    "title": "Bianco Hills -  Highest platform",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "220b4",
+    "title": "Ricco Harbor - Butterflies",
+    "episode": [
+      8
+    ],
+    "episodeString": "8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "221b5",
+    "title": "Ricco Harbor - Tower wall",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "222b6",
+    "title": "Ricco Harbor - Outer ship M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "223b7",
+    "title": "Ricco Harbor - Spawn building top M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "224b0",
+    "title": "Ricco Harbor - Fruit machine X",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "225b1",
+    "title": "Ricco Harbor - Wall Klamber",
+    "episode": [
+      8
+    ],
+    "episodeString": "8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "226b2",
+    "title": "Ricco Harbor - Rooftop M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "227b3",
+    "title": "Ricco Harbor - Tower ground M",
+    "episode": [
+      1
+    ],
+    "episodeString": "1",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "228b4",
+    "title": "Ricco Harbor - Far ledge",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "229b5",
+    "title": "Ricco Harbor - Short beam",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "230b6",
+    "title": "Ricco Harbor - Tower platform",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "231b7",
+    "title": "Ricco Harbor - Long beam",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "232b0",
+    "title": "Ricco Harbor - Off catwalk",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "233b1",
+    "title": "Ricco Harbor - Tower rocket",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "234b2",
+    "title": "Ricco Harbor - Crane",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "235b3",
+    "title": "Ricco Harbor - Open water",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "236b4",
+    "title": "Ricco Harbor - Underground entrance",
+    "episode": [
+      2
+    ],
+    "episodeString": "2",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "237b5",
+    "title": "Ricco Harbor - Fountain",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "238b6",
+    "title": "Ricco Harbor - Underwater",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "239b7",
+    "title": "Ricco Harbor - Tower X",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "240b0",
+    "title": "Ricco Harbor - Fountain M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "241b1",
+    "title": "Ricco Harbor - Spawn building side M",
+    "episode": [
+      1
+    ],
+    "episodeString": "1",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "242b2",
+    "title": "Ricco Harbor - High platform M",
+    "episode": [
+      8
+    ],
+    "episodeString": "8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "243b3",
+    "title": "Ricco Harbor - Mesh wall Klamber",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "244b4",
+    "title": "Ricco Harbor - Mesh ceiling Klamber",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "245b5",
+    "title": "Ricco Harbor - Fish basket",
+    "episode": [
+      8
+    ],
+    "episodeString": "8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "246b6",
+    "title": "Ricco Harbor - Inner ship M",
+    "episode": [
+      1
+    ],
+    "episodeString": "1",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "247b7",
+    "title": "Ricco Harbor - Caged Blooper",
+    "episode": [
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "248b0",
+    "title": "Ricco Harbor - Tower crate",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "249b1",
+    "title": "Ricco Harbor - Yellow submarine",
+    "episode": [
+      1
+    ],
+    "episodeString": "1",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "270b6",
+    "title": "Gelato Beach - Red cataquack",
+    "episode": [
+      1,
+      2,
+      4
+    ],
+    "episodeString": "1-2, 4",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "271b7",
+    "title": "Gelato Beach - Sand Shine - Sand Cabana",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "272b0",
+    "title": "Gelato Beach - Sand Shine - Surf Cabana",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "273b1",
+    "title": "Gelato Beach - Blue Cataquack",
+    "episode": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "274b2",
+    "title": "Gelato Beach - Middle Sand Shine",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "275b3",
+    "title": "Gelato Beach - Juicer",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "276b4",
+    "title": "Gelato Beach - Rocket M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "277b5",
+    "title": "Gelato Beach - Spawn triangle",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "278b6",
+    "title": "Gelato Beach - Trees triangle",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "279b7",
+    "title": "Gelato Beach - Yellow goo dune bud",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "280b0",
+    "title": "Gelato Beach - Left bird",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "281b1",
+    "title": "Gelato Beach - Right bird",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "282b2",
+    "title": "Gelato Beach - Highest rope",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "283b3",
+    "title": "Gelato Beach - Pole",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "284b4",
+    "title": "Gelato Beach - Close underwater",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "285b5",
+    "title": "Gelato Beach - Far underwater",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "286b6",
+    "title": "Gelato Beach - Blue fish",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "287b7",
+    "title": "Gelato Beach - Red fish",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "288b0",
+    "title": "Gelato Beach - Deck",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "289b1",
+    "title": "Gelato Beach - Swing",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "290b2",
+    "title": "Gelato Beach - Big tree",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "291b3",
+    "title": "Gelato Beach - Crevice",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "292b4",
+    "title": "Gelato Beach - Big Sand Shine",
+    "episode": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "293b5",
+    "title": "Gelato Beach - Sand Cabana roof",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "294b6",
+    "title": "Gelato Beach - Shack",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "295b7",
+    "title": "Gelato Beach - Beehive",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "296b0",
+    "title": "Gelato Beach - Fourth sand bird",
+    "episode": [
+      4
+    ],
+    "episodeString": "4",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "297b1",
+    "title": "Gelato Beach - Third sand bird",
+    "episode": [
+      4
+    ],
+    "episodeString": "4",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "298b2",
+    "title": "Gelato Beach - Second sand bird",
+    "episode": [
+      4
+    ],
+    "episodeString": "4",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "299b3",
+    "title": "Gelato Beach - First sand bird",
+    "episode": [
+      4
+    ],
+    "episodeString": "4",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "320b0",
+    "title": "Pinna Park - Orange wall M",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "321b1",
+    "title": "Pinna Park - Sand M",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "322b2",
+    "title": "Pinna Park - Green clam",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "323b3",
+    "title": "Pinna Park - Left O",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "324b4",
+    "title": "Pinna Park - Entrance bird",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "325b5",
+    "title": "Pinna Park - Pineapple bird",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "326b6",
+    "title": "Pinna Park - Ship peak",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "327b7",
+    "title": "Pinna Park - Cage platform",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "328b0",
+    "title": "Pinna Park - Right O",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "329b1",
+    "title": "Pinna Park - White wall X",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "330b2",
+    "title": "Pinna Park - Tree X",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "331b3",
+    "title": "Pinna Park - Ferris M",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "332b4",
+    "title": "Pinna Park - Banana triangle",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "333b5",
+    "title": "Pinna Park - Ferris triangle",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "334b6",
+    "title": "Pinna Park - Stairs",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "335b7",
+    "title": "Pinna Park - Park butterfly",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "336b0",
+    "title": "Pinna Park - Girder",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "337b1",
+    "title": "Pinna Park - Coaster ledge",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "338b2",
+    "title": "Pinna Park - Cage",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "339b3",
+    "title": "Pinna Park - Stackin Stus",
+    "episode": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1, 3, 5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "340b4",
+    "title": "Pinna Park - Spawn basket",
+    "episode": [
+      2
+    ],
+    "episodeString": "2",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "341b5",
+    "title": "Pinna Park - Flower basket",
+    "episode": [
+      2
+    ],
+    "episodeString": "2",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "342b6",
+    "title": "Pinna Park - Gate basket",
+    "episode": [
+      2
+    ],
+    "episodeString": "2",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "343b7",
+    "title": "Pinna Park - Beach butterfly",
+    "episode": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "344b0",
+    "title": "Pinna Park - Beach butterfly 2",
+    "episode": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "5-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "345b1",
+    "title": "Pinna Park - Rock basket",
+    "episode": [
+      2
+    ],
+    "episodeString": "2",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "346b2",
+    "title": "Pinna Park - Middle basket",
+    "episode": [
+      2
+    ],
+    "episodeString": "2",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "347b3",
+    "title": "Pinna Park - Sunflower basket",
+    "episode": [
+      2
+    ],
+    "episodeString": "2",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "348b4",
+    "title": "Pinna Park - Tree sand shine",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "349b5",
+    "title": "Pinna Park - Cannon sand shine",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "370b2",
+    "title": "Sirena Beach - Sign",
+    "episode": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "371b3",
+    "title": "Sirena Beach - Cabana roof",
+    "episode": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "372b4",
+    "title": "Sirena Beach - Outside torch",
+    "episode": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "373b5",
+    "title": "Sirena Beach - Right male noki",
+    "episode": [
+      1,
+      6
+    ],
+    "episodeString": "1, 6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "374b6",
+    "title": "Sirena Beach - Right female noki",
+    "episode": [
+      1,
+      6
+    ],
+    "episodeString": "1, 6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "375b7",
+    "title": "Sirena Beach - Hotel ledge",
+    "episode": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "376b0",
+    "title": "Sirena Beach - Big light",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "377b1",
+    "title": "Sirena Beach - Crate",
+    "episode": [
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "378b2",
+    "title": "Sirena Beach - Box hole",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "379b3",
+    "title": "Sirena Beach - Glass hole",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "380b4",
+    "title": "Sirena Beach - White painting",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "381b5",
+    "title": "Sirena Beach - Dolphic poster",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "382b6",
+    "title": "Sirena Beach - Bookshelf",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "383b7",
+    "title": "Sirena Beach - Attic",
+    "episode": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "3-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "384b0",
+    "title": "Sirena Beach - Left male noki",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "385b1",
+    "title": "Sirena Beach - Attic Boo",
+    "episode": [
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "386b2",
+    "title": "Sirena Beach - Flowers",
+    "episode": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "387b3",
+    "title": "Sirena Beach - Ocean",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "388b4",
+    "title": "Sirena Beach - Outside M",
+    "episode": [
+      7,
+      8
+    ],
+    "episodeString": "7-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "389b5",
+    "title": "Sirena Beach - 2nd floor M",
+    "episode": [
+      7,
+      8
+    ],
+    "episodeString": "7-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "390b6",
+    "title": "Sirena Beach - Left female Noki",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "391b7",
+    "title": "Sirena Beach - Casino M",
+    "episode": [
+      5
+    ],
+    "episodeString": "5",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "392b0",
+    "title": "Sirena Beach - 3rd floor lamp",
+    "episode": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "393b1",
+    "title": "Sirena Beach - Ground floor triangle",
+    "episode": [
+      7,
+      8
+    ],
+    "episodeString": "7-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "394b2",
+    "title": "Sirena Beach - 1st floor triangle",
+    "episode": [
+      7,
+      8
+    ],
+    "episodeString": "7-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "395b3",
+    "title": "Sirena Beach - Attic M",
+    "episode": [
+      7,
+      8
+    ],
+    "episodeString": "7-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "396b4",
+    "title": "Sirena Beach - 2nd floor X",
+    "episode": [
+      7,
+      8
+    ],
+    "episodeString": "7-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "397b5",
+    "title": "Sirena Beach - 1st floor X",
+    "episode": [
+      7,
+      8
+    ],
+    "episodeString": "7-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "398b6",
+    "title": "Sirena Beach - Casino torch",
+    "episode": [
+      4,
+      5
+    ],
+    "episodeString": "4-5",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "399b7",
+    "title": "Sirena Beach - Slot machine",
+    "episode": [
+      4,
+      5
+    ],
+    "episodeString": "4-5",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "420b4",
+    "title": "Pianta Village - Moon",
+    "episode": [
+      1,
+      3,
+      5,
+      7
+    ],
+    "episodeString": "1, 3, 5, 7",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "421b5",
+    "title": "Pianta Village - 10th pianta in need",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "422b6",
+    "title": "Pianta Village - 3rd pianta in need",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "423b7",
+    "title": "Pianta Village - 5th pianta in need",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "424b0",
+    "title": "Pianta Village - 4th pianta in need",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "425b1",
+    "title": "Pianta Village - 6th pianta in need",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "426b2",
+    "title": "Pianta Village - 7th pianta in need",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "427b3",
+    "title": "Pianta Village - 9th pianta in need",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "428b4",
+    "title": "Pianta Village - 8th pianta in need",
+    "episode": [
+      6
+    ],
+    "episodeString": "6",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "429b5",
+    "title": "Pianta Village - Statue nose",
+    "episode": [
+      1,
+      3,
+      5,
+      7
+    ],
+    "episodeString": "1, 3, 5, 7",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "430b6",
+    "title": "Pianta Village - Giant M",
+    "episode": [
+      3
+    ],
+    "episodeString": "3",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "431b7",
+    "title": "Pianta Village - Sign",
+    "episode": [
+      2,
+      4,
+      6,
+      8
+    ],
+    "episodeString": "2, 4, 6, 8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "432b0",
+    "title": "Pianta Village - River end",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "433b1",
+    "title": "Pianta Village - Grass",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "434b2",
+    "title": "Pianta Village - Back tree",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "435b3",
+    "title": "Pianta Village - River bridge",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "436b4",
+    "title": "Pianta Village - Back beehive",
+    "episode": [
+      5
+    ],
+    "episodeString": "5",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "437b5",
+    "title": "Pianta Village - Front beehive",
+    "episode": [
+      5
+    ],
+    "episodeString": "5",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "438b6",
+    "title": "Pianta Village - Left tree",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "439b7",
+    "title": "Pianta Village - Waterfall",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "440b0",
+    "title": "Pianta Village - Butterflies",
+    "episode": [
+      5
+    ],
+    "episodeString": "5",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "441b1",
+    "title": "Pianta Village - Bird",
+    "episode": [
+      8
+    ],
+    "episodeString": "8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "442b2",
+    "title": "Pianta Village - Burning Pianta",
+    "episode": [
+      3
+    ],
+    "episodeString": "3",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "443b3",
+    "title": "Pianta Village - Wall triangle",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "444b4",
+    "title": "Pianta Village - Hot tub triangle",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "445b5",
+    "title": "Pianta Village - Left M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "446b6",
+    "title": "Pianta Village - Right M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "447b7",
+    "title": "Pianta Village - Spawn M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "448b0",
+    "title": "Pianta Village - Underside M",
+    "episode": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "449b1",
+    "title": "Pianta Village - FLUDD M",
+    "episode": [
+      3
+    ],
+    "episodeString": "3",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "470b6",
+    "title": "Noki Bay - Rocket alcove",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "471b7",
+    "title": "Noki Bay - Bottom secret path",
+    "episode": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "472b0",
+    "title": "Noki Bay - Top secret path M",
+    "episode": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "473b1",
+    "title": "Noki Bay - Rocket",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "474b2",
+    "title": "Noki Bay - Bottom pulley",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "475b3",
+    "title": "Noki Bay - Top pulley",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "476b4",
+    "title": "Noki Bay - Tall alcove",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "477b5",
+    "title": "Noki Bay - Turbo alcove",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "478b6",
+    "title": "Noki Bay - Shell alcove",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "479b7",
+    "title": "Noki Bay - Top right panel",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "480b0",
+    "title": "Noki Bay - Bottom left panel",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "481b1",
+    "title": "Noki Bay - Top right tunnel",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "482b2",
+    "title": "Noki Bay - Bottom right tunnel",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "483b3",
+    "title": "Noki Bay - Bottom right alcove",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "484b4",
+    "title": "Noki Bay - Left tunnel",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "485b5",
+    "title": "Noki Bay - Bottom left alcove",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "486b6",
+    "title": "Noki Bay - Bird cliff panel",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "487b7",
+    "title": "Noki Bay - Bird cliff alcove",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "488b0",
+    "title": "Noki Bay - Right urn",
+    "episode": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "489b1",
+    "title": "Noki Bay - Left urn",
+    "episode": [
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "490b2",
+    "title": "Noki Bay - Spawn",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "491b3",
+    "title": "Noki Bay - Coast",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "492b4",
+    "title": "Noki Bay - Underwater",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "493b5",
+    "title": "Noki Bay - Top secret path",
+    "episode": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "episodeString": "1-2, 4-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "494b6",
+    "title": "Noki Bay - Spawn O",
+    "episode": [
+      6,
+      7,
+      8
+    ],
+    "episodeString": "6-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "495b7",
+    "title": "Noki Bay - Deep sea front pillar",
+    "episode": [
+      4,
+      8
+    ],
+    "episodeString": "4, 8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "496b0",
+    "title": "Noki Bay - Deep sea right pillar",
+    "episode": [
+      4,
+      8
+    ],
+    "episodeString": "4, 8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "497b1",
+    "title": "Noki Bay - Deep sea close left pillar",
+    "episode": [
+      4,
+      8
+    ],
+    "episodeString": "4, 8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "498b2",
+    "title": "Noki Bay - Boathouse O",
+    "episode": [
+      6,
+      7,
+      8
+    ],
+    "episodeString": "6-8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "499b3",
+    "title": "Noki Bay - Deep sea far left pillar",
+    "episode": [
+      4,
+      8
+    ],
+    "episodeString": "4, 8",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "540b4",
+    "title": "Corona Mountain 1 - Platform",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "541b5",
+    "title": "Corona Mountain 2 - Back right lava",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "542b6",
+    "title": "Corona Mountain 3 - Left lava",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "543b7",
+    "title": "Corona Mountain 4 - Front lava",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "544b0",
+    "title": "Corona Mountain 5 - Front left lava",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "545b1",
+    "title": "Corona Mountain 6 - Front right lava",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "546b2",
+    "title": "Corona Mountain 7 - Back left lava",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "547b3",
+    "title": "Corona Mountain 8 - Far back left lava",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "548b4",
+    "title": "Corona Mountain 9 - Far back right lava",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  },
+  {
+    "id": "549b5",
+    "title": "Corona Mountain 10 - Right lava",
+    "episode": [],
+    "episodeString": "Whenever you get to corona mountain",
+    "mariopartylegacylink": ""
+  }
+]

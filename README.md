@@ -18,6 +18,7 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 ## Features
 
+* **Real-time Auto-Tracking**: Automatically syncs with Dolphin Emulator to detect your current level, episode, and movement/nozzle unlocks.
 * **Zone Mapping**: Map randomized zones to Plaza entrances for easy navigation.
 * **Shine Tracking**: Keep track of collected Shines and blue coins in each zone, plaza entrance, and overall.
 * **User-Friendly Interface**: Simple and intuitive interface for easy tracking.
@@ -28,10 +29,15 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 ## Configuration
 By default, the tracker runs on port `8080`. To use a custom port, create a `config.json` file in the same directory as the executable:
+`trackerIntervalSeconds` controls how often (in seconds) the tracker checks Dolphin for updates.
+`autoTrackDefault` enables or disables auto-tracking by default on startup.
+
 
 ```json
 {
-  "port": 9000
+  "port": 8080,
+  "trackerIntervalSeconds": 5,
+  "autoTrackDefault": true
 }
 ```
 
@@ -43,16 +49,27 @@ By default, the tracker runs on port `8080`. To use a custom port, create a `con
 
 ### Running the Application
 
-* After downloading the binary, simply execute it: 
-  * On Linux:
-    ```bash
-    ./sms-tracker
-    ```
-  * On Windows:
-    ```bash
-    sms-tracker.exe
-    ```
+#### Linux
+  * Due to security restrictions on reading process memory, you must give the binary permission to "peek" into Dolphin:
+  1. Open a terminal in the directory where you downloaded the binary or want to run it from.
+  2. Run the following command to give the binary the necessary permissions (once):
+  ```bash
+  sudo setcap cap_sys_ptrace+ep ./sms-tracker
+  ``` 
+  3. Now you can run the binary:
+  ```bash
+     ./sms-tracker
+  ```
+  Alternatively, you can run the binary with `sudo` (not recommended for security reasons):
+  ```bash
+     sudo ./sms-tracker
+  ```
+#### Windows
+   ```bash
+   sms-tracker.exe
+   ```
 
+### Accessing the Tracker
 * Then open your web browser and navigate to `http://localhost:8080` (or your specified port) to access the tracker.
 * You can also Ctrl+Click the link in the console to open it directly.
 * The project runs fully offline. No internet connection is required!
@@ -64,26 +81,18 @@ By default, the tracker runs on port `8080`. To use a custom port, create a `con
 
 * **Go**: You need the Go programming language installed to compile or run the backend.
 
-### running from Source
-
-You can run the application directly without compiling a binary:
-
-```bash
-go run main.go
-```
-
 ### Compiling Linux
 To compile the application into a binary, use the following command:
 
 ```bash
-go build -o sms-tracker main.go
+GOOS=linux GOARCH=amd64 go build -o sms-tracker .
 ```
 
 ### Compiling Windows
 To compile the application for Windows, use the following command:
 
 ```bash
-go build -o sms-tracker.exe main.go
+GOOS=windows GOARCH=amd64 go build -o sms-tracker.exe .
 ```
 
 

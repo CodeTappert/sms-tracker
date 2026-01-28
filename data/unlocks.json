@@ -106,9 +106,14 @@
       "icon": "images/shine_shirt.webp"
     },
     {
-      "id": "rollercoaster_cart",
+      "id": "torocco",
       "name": "Rollercoaster Cart",
       "icon": "images/rollercoaster_cart.png"
+    },
+    {
+      "id": "talking",
+      "name": "Talking",
+      "icon": "images/talking.png"
     }
   ]
 }

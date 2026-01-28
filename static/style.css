@@ -1,4 +1,4 @@
-body { background: #1e1e1e; color: #eee; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+body { background: #1e1e1e; color: #eee; font-family: 'Segoe UI', sans-serif; }
 
 .header-icon {
     width: 30px;
@@ -259,4 +259,99 @@ select.filled { border-color: #2ecc71; background: #1a2a1a; }
 .group-header .g-stat.done {
     color: #f1c40f; /* Gold for completion */
     font-weight: bold;
+}
+
+
+#auto-tracker-status {
+    border-top: 1px solid #333;
+}
+
+#chk-auto-track {
+    width: 16px;
+    height: 16px;
+    accent-color: #2ecc71;
+}
+
+#location-display span {
+    background: #222;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid #444;
+}
+
+.unlock-icon.auto-active {
+    box-shadow: 0 0 10px #2ecc71;
+    border-color: #2ecc71 !important;
+}
+#auto-tracker-status {
+    background: #111;
+    padding: 8px 15px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.auto-track-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #2ecc71;
+    font-weight: bold;
+    font-size: 0.9em;
+    user-select: none;
+}
+
+#dolphin-status-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85em;
+    border-left: 1px solid #444;
+    padding-left: 15px;
+}
+
+#dolphin-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #555; /* Default Gray */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Optional pulse for when connected */
+.connected-pulse {
+    animation: indicator-pulse 2s infinite;
+}
+
+@keyframes indicator-pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+#dolphin-text {
+    color: #888;
+}
+
+#api-countdown {
+    color: #555;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#location-display {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    color: #aaa;
+    margin-left: auto; /* Pushes to the far right */
+}
+
+#current-location {
+    color: #fff;
+    font-weight: bold;
+}
+
+#current-episode {
+    color: #f39c12;
 }

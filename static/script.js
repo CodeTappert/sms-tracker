@@ -22,7 +22,8 @@ let appState = {
     globalAssignments: {}, // Map<SourceID, TargetZoneID>
     collectedShines: new Set(),
     collectedBlueCoins: new Set(),
-    collapsedElements: new Set() // IDs of collapsed rows
+    collapsedElements: new Set(), // IDs of collapsed rows
+    autoTrackEnabled: false
 };
 
 // Caches for performance
@@ -37,6 +38,7 @@ let stats = {
 document.addEventListener('DOMContentLoaded', () => {
     initEventListeners();
     fetchData();
+    initAutoTracker(); // Do it once on load and then we will see in the response if it will be enabled
 });
 
 function initEventListeners() {
@@ -751,3 +753,178 @@ function loadState(inputElement) {
     reader.readAsText(file);
     inputElement.value = ''; // Reset
 }
+
+// --- Auto-Tracker Logic ---
+
+let autoTrackInterval = null;
+let countdownInterval = null;
+let currentTrackingInterval = 5; // Will be updated by API
+let nextUpdateIn = 5.0;
+let isFirstLoad = true;
+
+// Handle UI interaction
+document.getElementById('chk-auto-track').addEventListener('change', (e) => {
+    appState.autoTrackEnabled = e.target.checked;
+    if (appState.autoTrackEnabled) {
+        startAutoTracking();
+    } else {
+        stopAutoTracking();
+    }
+});
+
+/**
+ * Called on page load or when settings change
+ */
+function initAutoTracker() {
+    fetchMemoryData().then(() => {
+        isFirstLoad = false;
+    });
+}
+
+function startAutoTracking(isSilentUpdate = false) {
+    if (!isSilentUpdate) {
+        console.log(`Auto-Tracking started at ${currentTrackingInterval}s interval...`);
+    }
+
+    // Clear existing to prevent duplicates
+    if (autoTrackInterval) clearInterval(autoTrackInterval);
+    if (countdownInterval) clearInterval(countdownInterval);
+
+    // Initial fetch if not already in a loop
+    if (!isSilentUpdate) fetchMemoryData();
+
+    autoTrackInterval = setInterval(fetchMemoryData, currentTrackingInterval * 1000);
+
+    nextUpdateIn = currentTrackingInterval;
+    countdownInterval = setInterval(() => {
+        nextUpdateIn -= 0.1;
+        if (nextUpdateIn <= 0) nextUpdateIn = currentTrackingInterval;
+
+        const countdownEl = document.getElementById('api-countdown');
+        if (countdownEl) {
+            countdownEl.innerText = `(Next: ${Math.max(0, nextUpdateIn).toFixed(1)}s)`;
+        }
+    }, 100);
+}
+
+function stopAutoTracking() {
+    clearInterval(autoTrackInterval);
+    clearInterval(countdownInterval);
+    autoTrackInterval = null;
+    countdownInterval = null;
+
+    // UI Reset
+    document.getElementById('dolphin-indicator').style.background = "#555";
+    document.getElementById('dolphin-indicator').style.boxShadow = "none";
+    document.getElementById('dolphin-text').innerText = "Disconnected";
+    document.getElementById('dolphin-text').style.color = "#888";
+    document.getElementById('api-countdown').innerText = "(Next: 0.0s)";
+    document.querySelectorAll('.unlock-icon').forEach(img => img.classList.remove('auto-active'));
+}
+
+async function fetchMemoryData() {
+    // Only fetch if enabled OR if we are doing the initial boot check
+    if (!appState.autoTrackEnabled && !isFirstLoad) return;
+
+    try {
+        const r = await fetch('/api/memory');
+        const data = await r.json();
+
+        // 1. Initial Setup from Config
+        if (isFirstLoad) {
+            currentTrackingInterval = data.interval || 5;
+            appState.autoTrackEnabled = data.auto_track;
+            document.getElementById('chk-auto-track').checked = data.auto_track;
+
+            if (appState.autoTrackEnabled) {
+                startAutoTracking(true);
+            }
+        }
+
+        // 2. Handle Dynamic Interval updates from Backend
+        if (!isFirstLoad && data.interval && data.interval !== currentTrackingInterval) {
+            console.log(`Interval changed from ${currentTrackingInterval} to ${data.interval}`);
+            currentTrackingInterval = data.interval;
+            startAutoTracking(true);
+            return;
+        }
+
+        updateDolphinStatusUI(data.is_hooked);
+
+        if (!data.is_hooked) {
+            document.getElementById('current-location').innerText = "SEARCHING...";
+            document.getElementById('current-episode').innerText = "---";
+            return;
+        }
+
+        // 3. Update UI Data
+        document.getElementById('current-location').innerText = data.current_level || "---";
+        document.getElementById('current-episode').innerText = data.current_episode || "---";
+
+        let changed = false;
+        if (data.unlocks) {
+            for (let [skill, isUnlocked] of Object.entries(data.unlocks)) {
+                const skillId = skill.toLowerCase();
+                if (isUnlocked && !appState.unlocks.has(skillId)) {
+                    appState.unlocks.add(skillId);
+                    changed = true;
+                } else if (!isUnlocked && appState.unlocks.has(skillId)) {
+                    appState.unlocks.delete(skillId);
+                    changed = true;
+                }
+            }
+        }
+
+        if (changed) {
+            renderUnlocks();
+            renderTable();
+        }
+        syncUnlockIconsVisuals(data.unlocks);
+
+    } catch (err) {
+        console.error("Memory API Error:", err);
+        updateDolphinStatusUI(false);
+    }
+}
+
+function updateDolphinStatusUI(isHooked) {
+    const indicator = document.getElementById('dolphin-indicator');
+    const text = document.getElementById('dolphin-text');
+    if (!indicator || !text) return;
+
+    if (isHooked) {
+        indicator.style.background = "#2ecc71";
+        indicator.style.boxShadow = "0 0 8px #2ecc71";
+        text.innerText = "Connected";
+        text.style.color = "#2ecc71";
+    } else {
+        indicator.style.background = "#e74c3c";
+        indicator.style.boxShadow = "none";
+        text.innerText = "Dolphin Not Found";
+        text.style.color = "#e74c3c";
+    }
+}
+
+function syncUnlockIconsVisuals(memoryUnlocks) {
+    const icons = document.querySelectorAll('.unlock-icon');
+    icons.forEach(img => {
+        const id = img.dataset.unlockId;
+        const isCurrentlyActive = Object.entries(memoryUnlocks || {}).some(
+            ([key, val]) => key.toLowerCase() === id && val === true
+        );
+        if (isCurrentlyActive) img.classList.add('auto-active');
+        else img.classList.remove('auto-active');
+    });
+}
+
+// Logic to prevent manual override while auto-tracking
+const originalToggleUnlock = toggleUnlock;
+toggleUnlock = function(id) {
+    if (appState.autoTrackEnabled) {
+        console.log("Manual toggle disabled while Auto-Track is active.");
+        return;
+    }
+    if (appState.unlocks.has(id)) appState.unlocks.delete(id);
+    else appState.unlocks.add(id);
+    renderUnlocks();
+};

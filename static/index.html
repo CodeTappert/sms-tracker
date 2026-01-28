@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>SMS Randomizer Tracker (Shadow Mario Tracker)</title>
+    <title>SMS Randomizer Tracker</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -11,6 +11,23 @@
 <div id="sticky-header">
 
     <div id="unlocks-bar"></div>
+
+    <div id="auto-tracker-status">
+        <label class="auto-track-toggle">
+            <input type="checkbox" id="chk-auto-track"> 🤖 Auto-Track Abilities
+        </label>
+
+        <div id="dolphin-status-box">
+            <span id="dolphin-indicator"></span>
+            <span id="dolphin-text">Disconnected</span>
+            <span id="api-countdown">(Next: 0.0s)</span>
+        </div>
+
+        <div id="location-display">
+            Currently in: <span id="current-location">---</span>
+            | Episode: <span id="current-episode">---</span>
+        </div>
+    </div>
 
     <div id="total-stats">
         <div class="stats-left">

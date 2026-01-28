@@ -25,7 +25,10 @@ func (d *DolphinHookManager) Read(gcAddress uint32, size int) ([]byte, error) {
 	realAddr := d.BaseAddr + uintptr(gcAddress&0x7FFFFFFF)
 	buffer := make([]byte, size)
 	var read int
-	procReadProcessMemory.Call(uintptr(d.Handle), realAddr, uintptr(unsafe.Pointer(&buffer[0])), uintptr(size), uintptr(unsafe.Pointer(&read)))
+	ret, _, err := procReadProcessMemory.Call(uintptr(d.Handle), realAddr, uintptr(unsafe.Pointer(&buffer[0])), uintptr(size), uintptr(unsafe.Pointer(&read)))
+	if err != nil && ret == 0 {
+		return nil, err
+	}
 	return buffer, nil
 }
 
@@ -88,6 +91,13 @@ func (d *DolphinHookManager) Hook() bool {
 		syscall.CloseHandle(hProcess)
 		return false
 	}
-	d.PID, d.Handle, d.BaseAddr, d.IsHooked = pid, hProcess, base, true
+	d.PID, d.Handle, d.BaseAddr, d.IsHooked = pid, uintptr(hProcess), base, true
 	return true
+}
+
+func (d *DolphinHookManager) Close() {
+	if d.Handle != 0 {
+		syscall.CloseHandle(syscall.Handle(d.Handle))
+		d.Handle = 0
+	}
 }

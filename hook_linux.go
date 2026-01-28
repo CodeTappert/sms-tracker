@@ -91,3 +91,9 @@ func (d *DolphinHookManager) Hook() bool {
 	}
 	return false
 }
+
+func (d *DolphinHookManager) Close() {
+	// Linux implementation currently doesn't keep a persistent handle open
+	// so we just reset the field.
+	d.Handle = 0
+}

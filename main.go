@@ -10,7 +10,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"syscall"
 	"time"
 )
 
@@ -118,7 +117,7 @@ var skillNames = []string{
 // DolphinHookManager manages the connection and memory reading from the Dolphin emulator.
 type DolphinHookManager struct {
 	PID            uint32
-	Handle         syscall.Handle
+	Handle         uintptr
 	BaseAddr       uintptr
 	IsHooked       bool
 	CurrentLevel   string
@@ -136,6 +135,7 @@ func (d *DolphinHookManager) SyncLocation() {
 		offset := uint32(i) * uint32(blockSize)
 		data, err := d.Read(0x80000000+offset, blockSize)
 		if err != nil || data == nil {
+			fmt.Println("Failed to read memory block:", err)
 			continue
 		}
 		for _, name := range levels {
@@ -346,11 +346,9 @@ func runMemoryScanner() {
 
 		if err != nil || s == nil {
 			fmt.Println("Connection lost to Dolphin, cleaning up...")
-			// CRITICAL: Close the handle so the OS can fully retire the old process
-			if dm.Handle != 0 {
-				syscall.CloseHandle(dm.Handle)
-				dm.Handle = 0
-			}
+
+			dm.Close()
+
 			dm.IsHooked = false
 			time.Sleep(1 * time.Second)
 			continue
@@ -377,7 +375,10 @@ func main() {
 
 	http.HandleFunc("/api/data", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(currentWorld)
+		err = json.NewEncoder(w).Encode(currentWorld)
+		if err != nil {
+			http.Error(w, "Failed to encode data", http.StatusInternalServerError)
+		}
 	})
 
 	http.HandleFunc("/api/memory", func(w http.ResponseWriter, r *http.Request) {
@@ -402,7 +403,10 @@ func main() {
 			Interval:       globalCfg.TrackerIntervalSeconds,
 			AutoTrack:      globalCfg.AutoTrackDefault,
 		}
-		json.NewEncoder(w).Encode(state)
+		err = json.NewEncoder(w).Encode(state)
+		if err != nil {
+			http.Error(w, "Failed to encode memory state", http.StatusInternalServerError)
+		}
 	})
 
 	addr := fmt.Sprintf(":%d", globalCfg.Port)

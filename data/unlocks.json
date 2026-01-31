@@ -3,45 +3,45 @@
     {
       "id": "rocket",
       "name": "Rocket Nozzle",
-      "icon": "images/rocket.webp"
+      "icon": "images/rocket_nozzle.png"
     },
     {
       "id": "turbo",
       "name": "Turbo Nozzle",
-      "icon": "images/turbo.webp"
+      "icon": "images/turbo_nozzle.png"
     },
     {
       "id": "hover",
       "name": "Hover Nozzle",
-      "icon": "images/hover.webp"
+      "icon": "images/hover_nozzle.png"
     },
     {
       "id": "spray",
       "name": "Spray Nozzle",
-      "icon": "images/spray.webp"
+      "icon": "images/spray_nozzle.png"
     },
     {
-      "id": "double jump",
+      "id": "double_jump",
       "name": "Double Jump",
       "icon": "images/double_jump.png"
     },
     {
-      "id": "triple jump",
+      "id": "triple_jump",
       "name": "Triple Jump",
       "icon": "images/triple_jump.png"
     },
     {
-      "id": "wall kicks",
+      "id": "wall_kicks",
       "name": "Wall Kicks",
       "icon": "images/wall_kicks.png"
     },
     {
-      "id": "ground pound",
+      "id": "ground_pound",
       "name": "Ground Pound",
       "icon": "images/ground_pound.webp"
     },
     {
-      "id": "ground spin",
+      "id": "ground_spin",
       "name": "Ground Spin",
       "icon": "images/ground_spin.png"
     },
@@ -56,7 +56,7 @@
       "icon": "images/spin_jump.png"
     },
     {
-      "id": "rollout",
+      "id": "dive",
       "name": "Rollout",
       "icon": "images/rollout.png"
     },
@@ -68,7 +68,7 @@
     {
       "id": "climbing",
       "name": "Climbing",
-      "icon": "images/climb.jpeg"
+      "icon": "images/climb.png"
     },
     {
       "id": "yoshi",
@@ -81,19 +81,19 @@
       "icon": "images/helmet.png"
     },
     {
-      "id": "sun_glasses",
-      "name": "Sun Glasses",
+      "id": "sunglasses",
+      "name": "Sunglasses",
       "icon": "images/sunglasses.jpg"
     },
     {
       "id": "blooper",
       "name": "Blooper",
-      "icon": "images/blooper.jpg"
+      "icon": "images/blooper.png"
     },
     {
       "id": "y_camera",
       "name": "Y Camera",
-      "icon": "images/y-cam.jpg"
+      "icon": "images/y_cam.png"
     },
     {
       "id": "spam_spray",

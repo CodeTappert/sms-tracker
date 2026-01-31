@@ -246,7 +246,7 @@
       "exits": [
         {
           "id": "warp_40",
-          "name": "Enter Hotel"
+          "name": "Enter Secret"
         }
       ]
     },
@@ -257,7 +257,7 @@
       "exits": [
         {
           "id": "warp_56",
-          "name": "Enter Hotel"
+          "name": "Enter Boss Fight"
         }
       ]
     },

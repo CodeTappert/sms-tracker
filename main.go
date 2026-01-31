@@ -108,10 +108,10 @@ var levels = []string{
 // Skill names the hook can give to the tracker
 var skillNames = []string{
 	"DOUBLE_JUMP", "TRIPLE_JUMP", "SIDEFLIP", "GRAB", "GROUND_SPIN",
-	"SPIN_JUMP", "DIVE", "WALL_KICKS", "GROUND_POUND", "YCAM",
+	"SPIN_JUMP", "DIVE", "WALL_KICKS", "GROUND_POUND", "Y_CAMERA",
 	"TALKING", "SHINE_SHIRT", "SUNGLASSES", "HELMET", "YOSHI",
 	"BLOOPER", "TOROCCO", "SPRAY", "SPAM_SPRAY", "HOVER",
-	"ROCKET", "TURBO", "CLIMB",
+	"ROCKET", "TURBO", "CLIMBING",
 }
 
 // DolphinHookManager manages the connection and memory reading from the Dolphin emulator.

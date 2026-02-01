@@ -17,6 +17,7 @@ const SHADOW_MARIO_LEVELS = [
 
 let worldData = {};
 
+
 let appState = {
     unlocks: new Set(),
     globalAssignments: {}, // Map<SourceID, TargetZoneID>
@@ -55,6 +56,7 @@ function initEventListeners() {
     // This replaces individual onclick attributes
     document.getElementById('tracker-table').addEventListener('click', handleTableClick);
     document.getElementById('tracker-table').addEventListener('change', handleTableChange);
+
 }
 
 function fetchData() {
@@ -62,6 +64,14 @@ function fetchData() {
         .then(r => r.json())
         .then(data => {
             worldData = data;
+
+            // Prepare Blue Coin Metadata Map
+            window.blueCoinMetadata = new Map();
+            if (data.blue_coins) {
+                data.blue_coins.forEach(bc => {
+                    window.blueCoinMetadata.set(bc.id, bc);
+                });
+            }
 
             // Set default corona entrance if missing
             if (!appState.globalAssignments["enter_corona"]) {
@@ -126,47 +136,6 @@ function renderTable() {
             const groupKey = `group-${groupIndex}`;
             const isCollapsed = appState.collapsedElements.has(groupKey);
 
-            const groupEntrances = worldData.plaza_entrances.filter(e => e.group_name === entrance.group_name);
-
-            const gShinesFound = new Set();
-            const gShinesTotal = new Set();
-            const gBCsFound = new Set();
-            const gBCsTotal = new Set();
-
-            groupEntrances.forEach(e => {
-                // If it's not a warp, count the single shine directly
-                if (e.is_warp === false) {
-                    gShinesTotal.add(e.id);
-                    if (appState.collectedShines.has(e.id)) gShinesFound.add(e.id);
-                } else {
-                    const res = calculateBranchStats(e.id, []);
-                    res.sFound.forEach(id => gShinesFound.add(id));
-                    res.sTotal.forEach(id => gShinesTotal.add(id));
-                    res.uniqueBCsFound.forEach(bc => gBCsFound.add(bc));
-                    res.uniqueBCsTotal.forEach(bc => gBCsTotal.add(bc));
-                }
-            });
-
-            let groupStatsHTML = "";
-            if (gShinesTotal.size > 0 || gBCsTotal.size > 0) {
-                const sDone = gShinesFound.size === gShinesTotal.size;
-                const bDone = gBCsFound.size === gBCsTotal.size;
-
-                groupStatsHTML = `
-                <div class="group-stats-summary" id="group-stats-${groupIndex}">
-                    <span class="g-stat ${sDone ? 'done' : ''}">
-                        <img src="images/shine_sprite.webp" style="width:14px; vertical-align:middle;"> 
-                        ${gShinesFound.size}/${gShinesTotal.size}
-                    </span>
-                    <span class="g-stat ${bDone ? 'done' : ''}" style="margin-left: 8px;">
-                        <span style="font-size:0.9em">🔵</span> 
-                        ${gBCsFound.size}/${gBCsTotal.size}
-                    </span>
-                </div>`;
-            } else {
-                groupStatsHTML = `<div class="group-stats-summary" id="group-stats-${groupIndex}"></div>`;
-            }
-
             htmlBuffer += `
             <tr class="group-header-row ${isCollapsed ? 'collapsed' : ''}" 
                 data-action="toggle-collapse" 
@@ -178,28 +147,35 @@ function renderTable() {
                             <span class="collapse-icon">${isCollapsed ? '▶' : '▼'}</span> 
                             ${entrance.group_name}
                         </span>
-                        ${groupStatsHTML}
+                        <div class="group-stats-summary" id="group-stats-${groupIndex}"></div>
                     </div>
                 </td>
             </tr>`;
 
             lastGroup = entrance.group_name;
+
+            // Injected Hub Row
+            if (entrance.group_name === "Plaza: Special & Secrets") {
+                htmlBuffer += buildFlatPlazaRow(`group-${groupIndex}`);
+            }
         }
 
-        const entryID = `entry-${index}`;
-        const groupClass = `group-${groupIndex}`;
+        // Only render the row if it's a Warp (dropdown) or Corona
+        if (entrance.is_warp !== false || entrance.id === "enter_corona") {
+            const entryID = `entry-${index}`;
+            const groupClass = `group-${groupIndex}`;
 
-        if (entrance.id === "enter_corona") {
-            htmlBuffer += buildCoronaRow(entrance, groupClass);
-        } else {
-            htmlBuffer += buildMainEntryRow(entrance, entryID, groupClass);
+            if (entrance.id === "enter_corona") {
+                htmlBuffer += buildCoronaRow(entrance, groupClass);
+            } else {
+                htmlBuffer += buildMainEntryRow(entrance, entryID, groupClass);
+            }
         }
     });
 
     tbody.innerHTML = htmlBuffer;
     updateAllStatsUI();
 }
-
 function buildMainEntryRow(entrance, entryID, groupClass) {
     const assignmentKey = entrance.id;
     const isWarp = entrance.is_warp !== false; // Default to true if missing
@@ -283,9 +259,7 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
 
     // Collectibles: Shines
     if (zone.shines_available?.length > 0) {
-        // CHANGED: Add to Set instead of incrementing number
         zone.shines_available.forEach(s => stats.shinesPossible.add(s.id));
-
         rowHTML += `<div class="shine-container">`;
         zone.shines_available.forEach(shine => {
             const isChecked = appState.collectedShines.has(shine.id);
@@ -299,23 +273,61 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
         rowHTML += `</div>`;
     }
 
-    // Collectibles: Blue Coins
     if (zone.blue_coin_ids) {
-        rowHTML += `<div class="bc-list">`;
-        zone.blue_coin_ids.forEach(bcID => {
+        rowHTML += `<div class="bc-grid-container" style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+
+        // 1. Map the IDs to their metadata and extract the sortable number
+        const sortedCoins = zone.blue_coin_ids.map(bcID => {
+            const info = blueCoinMetadata.get(bcID) || {
+                mariopartylegacylink: "",
+                title: "Unknown Coin",
+                episodeString: ""
+            };
+
+            let sortOrder = 999;
+            const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
+            if (match) {
+                sortOrder = parseInt(match[1], 10);
+            }
+
+            return { bcID, sortOrder, info };
+        });
+
+        // 2. Sort the coins numerically
+        sortedCoins.sort((a, b) => a.sortOrder - b.sortOrder);
+
+        // 3. Render the sorted list
+        sortedCoins.forEach(({ bcID, info }) => {
             const uniqueKey = `${zoneGroup}::${bcID}`;
             stats.visibleBC.add(uniqueKey);
             const isCollected = appState.collectedBlueCoins.has(uniqueKey);
+
+            let coinNumber = "?";
+            const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
+            if (match) {
+                coinNumber = match[1];
+            }
+
             rowHTML += `
+            <div class="bc-item-wrapper" style="margin-bottom: 5px;">
                 <div class="bc-box ${isCollected ? 'collected' : ''}" 
                      data-action="toggle-bc" 
                      data-id="${uniqueKey}">
-                    ${bcID}
-                </div>`;
+                    ${coinNumber}
+                    <a href="${info.mariopartylegacylink}" 
+                       target="_blank" 
+                       class="bc-info-link" 
+                       title="View Guide"
+                       onclick="event.stopPropagation();">?</a>
+                </div>
+                <div class="bc-tooltip">
+                    <strong>${info.title}</strong><br>
+                    <small>${info.episodeString}</small>
+                </div>
+            </div>`;
         });
         rowHTML += `</div>`;
     }
-
     rowHTML += `</td></tr>`;
 
     // Recursive Exits
@@ -324,7 +336,6 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
         zone.exits.forEach(exit => {
             const assignmentKey = `${zoneGroup}::${exit.id}`;
             const target = appState.globalAssignments[assignmentKey];
-
             let dropdownHTML = cachedZoneOptionsHTML;
             if (target) dropdownHTML = dropdownHTML.replace(`value="${target}"`, `value="${target}" selected`);
             const selectClass = target ? "filled" : "";
@@ -342,11 +353,9 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
 
             if (target && !chainHistory.includes(target)) {
                 exitsHTML += buildRecursiveZoneRows(target, [...chainHistory, target], depth + 1, groupClass, parentID);
-            } else {
-                // Target is already in the chain: Render the "Already in chain" text below the dropdown
+            } else if (target) {
                 const targetZone = worldData.zones[target];
                 const targetName = targetZone ? targetZone.name : "Unknown";
-
                 exitsHTML += `
                     <tr class="${groupClass} child-row loop-row" data-parent="${parentID}" ${displayStyle}>
                         <td></td>
@@ -496,31 +505,46 @@ function handleCollapse(selector, element, storageKey) {
 
 function updateAllStatsUI() {
     // A. Header Stats
-    // CHANGED: Use .size for shinesPossible
     document.getElementById('stat-shines').innerText = `${appState.collectedShines.size} / ${stats.shinesPossible.size}`;
 
     let bcFound = 0;
     stats.visibleBC.forEach(key => {
         if(appState.collectedBlueCoins.has(key)) bcFound++;
     });
-    document.getElementById('stat-bc').innerText = `${bcFound} / ${stats.visibleBC.size}`;
+    document.getElementById('stat-bc').innerText = `${bcFound} / ${stats.visibleBC.size}`;e
 
     // B. Shadow Mario Bar
     updateShadowMarioBar();
 
-    // C. Route Stats (Individual Rows)
+    // C. Update the Static Plaza Hub Row Stats
+    const hubStatsContainer = document.getElementById('stats-plaza-hub-static');
+    if (hubStatsContainer) {
+        const res = calculateBranchStatsForZone("dolpic_base");
+        if (res.sTotal.size > 0 || res.uniqueBCsTotal.size > 0) {
+            const sDone = res.sFound.size === res.sTotal.size;
+            const bDone = res.uniqueBCsFound.size === res.uniqueBCsTotal.size;
+            hubStatsContainer.innerHTML = `
+                <div class="route-stat-item ${sDone ? 'rs-done' : ''}">
+                    <img src="images/shine_sprite.webp" style="width:16px;" alt="Shine">
+                    ${res.sFound.size}/${res.sTotal.size}
+                </div>
+                <div class="route-stat-item ${bDone ? 'rs-done' : ''}">
+                    <span>🔵</span>
+                    ${res.uniqueBCsFound.size}/${res.uniqueBCsTotal.size}
+                </div>`;
+        }
+    }
+
+    // D. Route Stats (Randomized)
     worldData.plaza_entrances.forEach(entrance => {
         if (entrance.id === "enter_corona") return;
-
         const container = document.getElementById(`stats-${entrance.id}`);
         if (!container) return;
 
         const res = calculateBranchStats(entrance.id, []);
-
         if (res.sTotal.size > 0 || res.uniqueBCsTotal.size > 0) {
             const sDone = res.sFound.size === res.sTotal.size;
             const bDone = res.uniqueBCsFound.size === res.uniqueBCsTotal.size;
-
             container.innerHTML = `
                 <div class="route-stat-item ${sDone ? 'rs-done' : ''}">
                     <img src="images/shine_sprite.webp" style="width:16px;" alt="Shine">
@@ -530,68 +554,12 @@ function updateAllStatsUI() {
                     <span>🔵</span>
                     ${res.uniqueBCsFound.size}/${res.uniqueBCsTotal.size}
                 </div>`;
-        } else {
-            container.innerHTML = "";
         }
     });
-
-    // D. Check Corona Unlock Refresh
-    const lockedRow = document.querySelector(".row-locked");
-    if (lockedRow && checkCoronaUnlock()) {
-        renderTable();
-        return;
-    }
 
     // E. Group Headers
     let currentGroup = "";
     let groupIndex = 0;
-
-// Inside updateAllStatsUI, update the updateGroupDisplay sub-function:
-    const updateGroupDisplay = (groupName, index) => {
-        const container = document.getElementById(`group-stats-${index}`);
-        if (!container) return;
-
-        const groupEntrances = worldData.plaza_entrances.filter(e => e.group_name === groupName);
-
-        const gShinesFound = new Set();
-        const gShinesTotal = new Set();
-        const gBCsFound = new Set();
-        const gBCsTotal = new Set();
-
-        groupEntrances.forEach(e => {
-            if (e.is_warp === false) {
-                // Static Plaza Shine
-                gShinesTotal.add(e.id);
-                if (appState.collectedShines.has(e.id)) gShinesFound.add(e.id);
-            } else {
-                // Randomized Warp Path
-                const res = calculateBranchStats(e.id, []);
-                res.sFound.forEach(id => gShinesFound.add(id));
-                res.sTotal.forEach(id => gShinesTotal.add(id));
-                res.uniqueBCsFound.forEach(bc => gBCsFound.add(bc));
-                res.uniqueBCsTotal.forEach(bc => gBCsTotal.add(bc));
-            }
-        });
-
-        if (gShinesTotal.size > 0 || gBCsTotal.size > 0) {
-            const sDone = gShinesFound.size === gShinesTotal.size;
-            const bDone = gBCsFound.size === gBCsTotal.size;
-
-            container.innerHTML = `
-            <span class="g-stat ${sDone ? 'done' : ''}">
-                <img src="images/shine_sprite.webp" style="width:14px; vertical-align:middle;"> 
-                ${gShinesFound.size}/${gShinesTotal.size}
-            </span>
-            <span class="g-stat ${bDone ? 'done' : ''}" style="margin-left: 8px;">
-                <span style="font-size:0.9em">🔵</span> 
-                ${gBCsFound.size}/${gBCsTotal.size}
-            </span>`;
-            container.style.display = "block";
-        } else {
-            container.style.display = "none";
-        }
-    };
-
     worldData.plaza_entrances.forEach(entrance => {
         if (entrance.group_name !== currentGroup) {
             groupIndex++;
@@ -707,6 +675,7 @@ function saveState() {
         globalAssignments: appState.globalAssignments,
         collectedShines: Array.from(appState.collectedShines),
         collectedBlueCoins: Array.from(appState.collectedBlueCoins),
+        collapsedElements: Array.from(appState.collapsedElements),
         timestamp: new Date().toISOString()
     };
 
@@ -714,7 +683,7 @@ function saveState() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'sms-tracker-save.json';
+    a.download = `sms-tracker-save-${new Date().getTime()}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -730,12 +699,13 @@ function loadState(inputElement) {
         try {
             const importedData = JSON.parse(e.target.result);
 
+            // Convert Arrays back to Sets
             appState.unlocks = new Set(importedData.unlocks || []);
             appState.collectedShines = new Set(importedData.collectedShines || []);
             appState.collectedBlueCoins = new Set(importedData.collectedBlueCoins || []);
+            appState.collapsedElements = new Set(importedData.collapsedElements || []);
             appState.globalAssignments = importedData.globalAssignments || {};
 
-            // Legacy fix
             if(!appState.globalAssignments["enter_corona"]) {
                 appState.globalAssignments["enter_corona"] = "coro_ex6";
             }
@@ -751,7 +721,7 @@ function loadState(inputElement) {
         }
     };
     reader.readAsText(file);
-    inputElement.value = ''; // Reset
+    inputElement.value = '';
 }
 
 // --- Auto-Tracker Logic ---
@@ -928,3 +898,108 @@ toggleUnlock = function(id) {
     else appState.unlocks.add(id);
     renderUnlocks();
 };
+
+function calculateBranchStatsForZone(zoneID) {
+    const zone = worldData.zones[zoneID];
+    const zoneGroup = getZoneGroup(zoneID);
+    let res = {
+        sFound: new Set(),
+        sTotal: new Set(),
+        uniqueBCsTotal: new Set(),
+        uniqueBCsFound: new Set()
+    };
+
+    if (!zone) return res;
+
+    if (zone.shines_available) {
+        zone.shines_available.forEach(s => {
+            res.sTotal.add(s.id);
+            if (appState.collectedShines.has(s.id)) res.sFound.add(s.id);
+        });
+    }
+
+    if (zone.blue_coin_ids) {
+        zone.blue_coin_ids.forEach(bcID => {
+            const key = `${zoneGroup}::${bcID}`;
+            res.uniqueBCsTotal.add(key);
+            if (appState.collectedBlueCoins.has(key)) res.uniqueBCsFound.add(key);
+        });
+    }
+
+    return res;
+}
+
+function buildFlatPlazaRow(groupClass) {
+    const zone = worldData.zones["dolpic_base"];
+    if (!zone) return "";
+
+    const isParentGroupCollapsed = appState.collapsedElements.has(groupClass);
+    const rowStyle = isParentGroupCollapsed ? 'style="display:none"' : '';
+    const zoneGroup = getZoneGroup("dolpic_base");
+
+    let html = `
+    <tr class="${groupClass} entry-main-row" ${rowStyle}>
+        <td>
+            <span class="collapse-icon-sub"></span> 
+            <span class="zone-name">Delfino Plaza (Hub)</span>
+        </td>
+        <td><span style="color: #888; font-style: italic;">All Plaza Collectibles</span></td>
+        <td>`;
+
+    // 1. Collect all "Static" Shines from plaza_entrances
+    const plazaShines = worldData.plaza_entrances.filter(e => e.is_warp === false);
+
+    if (plazaShines.length > 0) {
+        html += `<div class="shine-container" style="margin-bottom: 10px;">`;
+        plazaShines.forEach(s => {
+            stats.shinesPossible.add(s.id);
+            const isChecked = appState.collectedShines.has(s.id);
+            html += `
+                <div class="shine-check ${isChecked ? 'checked' : ''}" 
+                     data-action="toggle-shine" 
+                     data-id="${s.id}">
+                    <img src="images/shine_sprite.webp" style="width:16px; margin-right:4px;" alt="Shine">${s.name}
+                </div>`;
+        });
+        html += `</div>`;
+    }
+
+    // 2. Blue Coins
+    if (zone.blue_coin_ids) {
+        html += `<div class="bc-grid-container" style="display: flex; flex-wrap: wrap; gap: 8px;">`;
+
+        const sortedCoins = zone.blue_coin_ids.map(bcID => {
+            const info = blueCoinMetadata.get(bcID) || { mariopartylegacylink: "" };
+            let sortOrder = 999;
+            const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
+            if (match) sortOrder = parseInt(match[1], 10);
+            return { bcID, info, sortOrder };
+        }).sort((a, b) => a.sortOrder - b.sortOrder);
+
+        sortedCoins.forEach(({ bcID, info }) => {
+            const uniqueKey = `${zoneGroup}::${bcID}`;
+            stats.visibleBC.add(uniqueKey);
+            const isCollected = appState.collectedBlueCoins.has(uniqueKey);
+            const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
+            const coinNumber = match ? match[1] : "?";
+
+            html += `
+            <div class="bc-item-wrapper">
+                <div class="bc-box ${isCollected ? 'collected' : ''}" 
+                     data-action="toggle-bc" 
+                     data-id="${uniqueKey}">
+                    ${coinNumber}
+                    <a href="${info.mariopartylegacylink}" target="_blank" class="bc-info-link" onclick="event.stopPropagation();">?</a>
+                </div>
+                <div class="bc-tooltip">
+                    <strong>${info.title || "Plaza Coin"}</strong><br>
+                    <small>${info.episodeString || "Delfino Plaza"}</small>
+                </div>
+            </div>`;
+        });
+        html += `</div>`;
+    }
+
+    html += `</td></tr>`;
+    return html;
+}

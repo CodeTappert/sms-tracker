@@ -48,8 +48,16 @@ type Zone struct {
 	ID              string            `json:"id"`
 	Name            string            `json:"name"`
 	ShinesAvailable []ShineDefinition `json:"shines_available"`
-	BlueCoinIDs     []int             `json:"blue_coin_ids"`
 	Exits           []Exit            `json:"exits"`
+	BlueCoinIDs     []string          `json:"blue_coin_ids"`
+}
+
+type BlueCoinDefinition struct {
+	ID                   string `json:"id"`
+	Title                string `json:"title"`
+	Episode              []int  `json:"episode"`
+	EpisodeString        string `json:"episodeString"`
+	MarioPartyLegacyLink string `json:"mariopartylegacylink"`
 }
 
 // Unlock represents a game capability, item, or nozzle.
@@ -70,9 +78,10 @@ type PlazaShines struct {
 
 // WorldData serves as the root container for all static game configuration loaded from JSON.
 type WorldData struct {
-	Zones          map[string]Zone `json:"zones"`
-	Unlocks        []Unlock        `json:"unlocks"`
-	PlazaEntrances []PlazaShines   `json:"plaza_entrances"`
+	Zones          map[string]Zone      `json:"zones"`
+	Unlocks        []Unlock             `json:"unlocks"`
+	PlazaEntrances []PlazaShines        `json:"plaza_entrances"`
+	BlueCoins      []BlueCoinDefinition `json:"blue_coins"`
 }
 
 // MemoryState for API Output
@@ -294,14 +303,29 @@ func loadGameData() {
 		}
 	}
 
+	// D. Load Blue Coins
+	bcFile, err := dataEmbed.ReadFile("data/blue_coin.json")
+	if err != nil {
+		log.Printf("Warning: Could not find blue_coin.json: %v", err)
+	}
+
+	var blueCoins []BlueCoinDefinition
+	if bcFile != nil {
+		if err := json.Unmarshal(bcFile, &blueCoins); err != nil {
+			log.Printf("Error parsing blue_coins.json: %v", err)
+		}
+	}
+
 	// Assign compiled data to global state
 	currentWorld = WorldData{
 		Zones:          zoneWrapper.Zones,
 		Unlocks:        unlockWrapper.Unlocks,
 		PlazaEntrances: entrances,
+		BlueCoins:      blueCoins,
 	}
 
-	fmt.Printf("Data loaded successfully: %d zones, %d entrances configured.\n", len(currentWorld.Zones), len(currentWorld.PlazaEntrances))
+	fmt.Printf("Data loaded successfully: %d zones, %d entrances configured, %d unlocks, %d blue coins.\n",
+		len(currentWorld.Zones), len(currentWorld.PlazaEntrances), len(currentWorld.Unlocks), len(currentWorld.BlueCoins))
 }
 
 // --- Server API ---

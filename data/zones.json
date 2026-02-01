@@ -580,9 +580,45 @@
     },
     "dolpic_base": {
       "name": "Delfino Plaza",
-      "shines_available": [],
+      "shines_available": [
+        { "id": "beach_treasure", "name": "Beach Treasure" },
+        { "id": "crate_1", "name": "Break the Crate (1)" },
+        { "id": "crate_2", "name": "Break the Crate (2)" },
+        { "id": "chuckster_toss", "name": "Chuckster Toss to Shine" },
+        { "id": "western_bell", "name": "Clear Western Bell" },
+        { "id": "eastern_bell", "name": "Clear Eastern Bell" },
+        { "id": "gold_bird", "name": "Gold Bird" },
+        { "id": "turbo_nozzle_break", "name": "Turbo Nozzle Western Tower" },
+        { "id": "lighthouse_shine", "name": "Lighthouse Shine" },
+        { "id": "shinegate_clear", "name": "Shine Gate Clear" }
+      ],
       "blue_coin_ids": ["120b0","121b1","122b2","123b3","124b4","125b5","126b6","127b7","128b0","129b1","130b2","131b3","132b4","133b5","134b6","135b7","136b0","137b1","138b2","139b3"],
-      "exits": []
+      "exits": [
+        {
+          "id": "dolpic_base_1",
+          "name": "Secret Slide Pipe"
+        },
+        {
+          "id": "dolpic_base_2",
+          "name": "Pachinko Entrance"
+        },
+        {
+          "id": "dolpic_base_3",
+          "name": "Red Coin Grass Pipe"
+        },
+        {
+          "id": "dolpic_base_4",
+          "name": "Lily Pad River Pipe"
+        },
+        {
+          "id": "dolpic_base_5",
+          "name": "To Delfino Airstrip"
+        },
+        {
+          "id": "dolpic_base_6",
+          "name": "Turbo Nozzle Speedway Entrance"
+        }
+      ]
     },
     "dolpic_ex1": {
       "name": "Delfino Plaza: Secret Slide",

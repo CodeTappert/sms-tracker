@@ -250,22 +250,6 @@ func loadGameData() {
 		isWarp          bool
 	}{
 		{"enter_corona", "Corona Mountain", "corona.png", true},
-		{"enter_airstrip", "Airstrip", "airstrip.png", true},
-		{"enter_lilypad", "Lily Pad", "lilypad.png", true},
-		{"enter_pachinko", "Pachinko", "pachinko.png", true},
-		{"enter_slide", "Secret Slide", "slide.png", true},
-		{"enter_turbo", "Turbo Dash", "turbo.png", true},
-		{"enter_grass", "Red Coin Grass", "grass.png", true},
-		{"beach_treasure", "Beach Treasure", "beach_treasure.png", false},
-		{"crate_1", "Break the Crate (1)", "crate_1.png", false},
-		{"crate_2", "Break the Crate (2)", "crate_2.png", false},
-		{"chuckster_toss", "Chuckster Toss to Shine", "chuckster_toss.png", false},
-		{"western_bell", "Clear Western Bell", "western_bell.png", false},
-		{"eastern_bell", "Clear Eastern Bell", "eastern_bell.png", false},
-		{"gold_bird", "Gold Bird", "gold_bird.png", false},
-		{"turbo_nozzle_break", "Turbo Nozzle Western Tower", "turbo_nozzle_break.png", false},
-		{"lighthouse_shine", "Lighthouse Shine", "lighthouse_shine.png", false},
-		{"shinegate_clear", "Shine Gate Clear", "shinegate_clear.png", false},
 	}
 
 	for _, s := range singles {

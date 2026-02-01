@@ -78,9 +78,12 @@ function fetchData() {
                 appState.globalAssignments["enter_corona"] = "coro_ex6";
             }
 
+            // Collapse corona by default
+            appState.collapsedElements.add("corona-main");
+
             // Pre-build dropdown options
             const sortedZones = Object.values(worldData.zones)
-                .filter(z => z.id !== 'coro_ex6' && z.id !== 'coronaBoss')
+                .filter(z => z.id !== 'coro_ex6' && z.id !== 'coronaBoss' && z.id !== 'dolpic_base') // Exclude special zones
                 .sort((a, b) => a.name.localeCompare(b.name));
 
             cachedZoneOptionsHTML = '<option value="">-- Select Target --</option>' +
@@ -121,61 +124,96 @@ function renderUnlocks() {
     });
 }
 
+// Helper to generate stable IDs from group names
+function getSafeGroupID(groupName) {
+    if (!groupName) return "group-stat-unknown";
+    return "group-stat-" + groupName.toLowerCase().replace(/[^a-z0-9]/g, '_');
+}
+
 function renderTable() {
     stats.shinesPossible = new Set();
     stats.visibleBC.clear();
 
     const tbody = document.getElementById('table-body');
     let htmlBuffer = "";
+
+    // --- Group: Delfino Plaza (The Hub) ---
+    // We hardcode the ID to match the safe ID generator: "group-stat-delfino_plaza"
+    const hubName = "Delfino Plaza";
+    const hubID = getSafeGroupID(hubName);
+    const isHubCollapsed = appState.collapsedElements.has(hubID);
+
+    htmlBuffer += `
+    <tr class="group-header-row ${isHubCollapsed ? 'collapsed' : ''}" 
+        data-action="toggle-collapse" 
+        data-target-class=".${hubID}-rows" 
+        data-storage-key="${hubID}">
+        <td colspan="3" class="group-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; pointer-events: none;">
+                <span style="pointer-events: auto;">
+                    <span class="collapse-icon">${isHubCollapsed ? '▶' : '▼'}</span> Main Hub
+                </span>
+                <div class="group-stats-summary" id="${hubID}" style="pointer-events: auto;"></div>
+            </div>
+        </td>
+    </tr>`;
+
+    // 1. Render Hub Locals (Dolpic Base)
+    htmlBuffer += buildRecursiveZoneRows("dolpic_base", ["plaza_root"], 0, `${hubID}-rows`, "plaza-hub-entry");
+
+    // 2. Render Corona (Inside Hub)
+    const coronaEntrance = worldData.plaza_entrances.find(e => e.id === "enter_corona");
+    if (coronaEntrance) {
+        htmlBuffer += buildCoronaRow(coronaEntrance, `${hubID}-rows`);
+    }
+
+    // --- All other Groups ---
     let lastGroup = "";
-    let groupIndex = 0;
 
     worldData.plaza_entrances.forEach((entrance, index) => {
+        // Skip Corona (handled above) and static non-warps (handled implicitly or ignored for main rows)
+        if (entrance.id === "enter_corona") return;
+        if (entrance.is_warp === false && entrance.group_name !== "Delfino Plaza") return; // Keep plaza statics if they exist, skip others
+
+        // Determine if we need a new Group Header
         if (entrance.group_name !== lastGroup) {
-            groupIndex++;
-            const groupKey = `group-${groupIndex}`;
-            const isCollapsed = appState.collapsedElements.has(groupKey);
+            // Only render header if it's NOT Delfino Plaza (already rendered)
+            if (entrance.group_name !== "Delfino Plaza") {
+                const groupID = getSafeGroupID(entrance.group_name);
+                const isCollapsed = appState.collapsedElements.has(groupID);
 
-            htmlBuffer += `
-            <tr class="group-header-row ${isCollapsed ? 'collapsed' : ''}" 
-                data-action="toggle-collapse" 
-                data-target-class=".group-${groupIndex}" 
-                data-storage-key="${groupKey}">
-                <td colspan="3" class="group-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span>
-                            <span class="collapse-icon">${isCollapsed ? '▶' : '▼'}</span> 
-                            ${entrance.group_name}
-                        </span>
-                        <div class="group-stats-summary" id="group-stats-${groupIndex}"></div>
-                    </div>
-                </td>
-            </tr>`;
-
+                htmlBuffer += `
+                <tr class="group-header-row ${isCollapsed ? 'collapsed' : ''}" 
+                    data-action="toggle-collapse" 
+                    data-target-class=".${groupID}-rows" 
+                    data-storage-key="${groupID}">
+                    <td colspan="3" class="group-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center; pointer-events: none;">
+                            <span style="pointer-events: auto;">
+                                <span class="collapse-icon">${isCollapsed ? '▶' : '▼'}</span> 
+                                ${entrance.group_name}
+                            </span>
+                            <div class="group-stats-summary" id="${groupID}" style="pointer-events: auto;"></div>
+                        </div>
+                    </td>
+                </tr>`;
+            }
             lastGroup = entrance.group_name;
-
-            // Injected Hub Row
-            if (entrance.group_name === "Plaza: Special & Secrets") {
-                htmlBuffer += buildFlatPlazaRow(`group-${groupIndex}`);
-            }
         }
 
-        // Only render the row if it's a Warp (dropdown) or Corona
-        if (entrance.is_warp !== false || entrance.id === "enter_corona") {
-            const entryID = `entry-${index}`;
-            const groupClass = `group-${groupIndex}`;
+        // Calculate classes
+        const currentGroupID = getSafeGroupID(entrance.group_name);
+        const groupRowClass = `${currentGroupID}-rows`;
+        const entryID = `entry-${index}`;
 
-            if (entrance.id === "enter_corona") {
-                htmlBuffer += buildCoronaRow(entrance, groupClass);
-            } else {
-                htmlBuffer += buildMainEntryRow(entrance, entryID, groupClass);
-            }
-        }
+        // Pass the safe class to the row builder
+        htmlBuffer += buildMainEntryRow(entrance, entryID, groupRowClass);
     });
 
     tbody.innerHTML = htmlBuffer;
     updateAllStatsUI();
 }
+
 function buildMainEntryRow(entrance, entryID, groupClass) {
     const assignmentKey = entrance.id;
     const isWarp = entrance.is_warp !== false; // Default to true if missing
@@ -235,38 +273,66 @@ function buildMainEntryRow(entrance, entryID, groupClass) {
     return mainRow + childrenRows;
 }
 
-function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentID) {
+function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentID, countStats = true, isLocked = false) {
     const zone = worldData.zones[zoneID];
     if (!zone) return "";
 
     const zoneGroup = getZoneGroup(zoneID);
-    const indent = "│   ".repeat(depth);
+    const indent = depth === 0 ? "" : "│   ".repeat(depth);
+    const prefix = depth === 0 ? "" : "└── ";
 
-    // Visibility logic
     const isEntryCollapsed = appState.collapsedElements.has(parentID);
     const isParentGroupCollapsed = appState.collapsedElements.has(groupClass);
-    const shouldHide = isEntryCollapsed || isParentGroupCollapsed;
+    const shouldHide = (depth > 0 && isEntryCollapsed) || isParentGroupCollapsed;
     const displayStyle = shouldHide ? 'style="display:none"' : '';
 
+    // VISUAL: Propagate the locked look to children
+    const lockedRowClass = isLocked ? "row-locked" : "";
+
+    // INTERACTION: Disable inner actions if locked
+    const shineAction = isLocked ? '' : 'data-action="toggle-shine"';
+    const bcAction = isLocked ? '' : 'data-action="toggle-bc"';
+    const lockedStyle = isLocked ? 'style="pointer-events: none; opacity: 0.6;"' : '';
+
+    // COLLAPSE LOGIC: Apply to the TR only if there are exits to collapse
+    const hasExits = zone.exits && zone.exits.length > 0;
+    const trAction = hasExits ? 'data-action="toggle-collapse"' : '';
+    const trTarget = hasExits ? `data-target-selector="[data-parent='${parentID}-sub']"` : '';
+    const trKey    = hasExits ? `data-storage-key="${parentID}"` : '';
+    // Optional: Add a pointer cursor to the whole row if it is collapsible
+    const trStyle  = hasExits ? 'style="cursor:pointer"' : '';
+
+    // Combine display:none with cursor:pointer if needed
+    const finalStyle = shouldHide ? 'style="display:none"' : (hasExits ? 'style="cursor:pointer"' : '');
+
     let rowHTML = `
-    <tr class="${groupClass} child-row" data-parent="${parentID}" ${displayStyle}>
+    <tr class="${groupClass} ${lockedRowClass} ${depth === 0 ? 'entry-main-row' : 'child-row'}" 
+        data-parent="${parentID}" 
+        ${trAction} 
+        ${trTarget} 
+        ${trKey}
+        ${finalStyle}>
         <td>
-            <span class="tree-line">${indent}</span>
-            <span class="zone-name" style="color:#f39c12">↳ ${zone.name}</span>
+            <span class="tree-line">${indent}${prefix}</span>
+            <span class="zone-wrapper">
+                <span class="collapse-icon-sub">${hasExits ? (isEntryCollapsed ? '▶' : '▼') : ''}</span>
+                <span class="zone-name" style="${depth === 0 ? 'color:#fff' : 'color:#f39c12'}">${depth === 0 ? '' : '↳ '}${zone.name}</span>
+            </span>
         </td>
-        <td></td>
+        <td>${depth === 0 ? '<span style="color: #666; font-style: italic;">Local Area</span>' : ''}</td>
         <td>`;
 
-    // Collectibles: Shines
     if (zone.shines_available?.length > 0) {
-        zone.shines_available.forEach(s => stats.shinesPossible.add(s.id));
         rowHTML += `<div class="shine-container">`;
         zone.shines_available.forEach(shine => {
+            if (countStats) stats.shinesPossible.add(shine.id);
+
             const isChecked = appState.collectedShines.has(shine.id);
             rowHTML += `
                 <div class="shine-check ${isChecked ? 'checked' : ''}" 
-                     data-action="toggle-shine" 
-                     data-id="${shine.id}">
+                     ${shineAction} 
+                     data-id="${shine.id}"
+                     ${lockedStyle}>
                     <img src="images/shine_sprite.webp" style="width:16px; margin-right:4px;" alt="Shine">${shine.name}
                 </div>`;
         });
@@ -274,55 +340,37 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
     }
 
     if (zone.blue_coin_ids) {
-        rowHTML += `<div class="bc-grid-container" style="display: flex; flex-wrap: wrap; gap: 10px;">`;
-
-        // 1. Map the IDs to their metadata and extract the sortable number
+        rowHTML += `<div class="bc-grid-container" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 5px;">`;
         const sortedCoins = zone.blue_coin_ids.map(bcID => {
-            const info = blueCoinMetadata.get(bcID) || {
-                mariopartylegacylink: "",
-                title: "Unknown Coin",
-                episodeString: ""
-            };
-
+            const info = blueCoinMetadata.get(bcID) || { mariopartylegacylink: "" };
             let sortOrder = 999;
             const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
-            if (match) {
-                sortOrder = parseInt(match[1], 10);
-            }
-
+            if (match) sortOrder = parseInt(match[1], 10);
             return { bcID, sortOrder, info };
-        });
+        }).sort((a, b) => a.sortOrder - b.sortOrder);
 
-        // 2. Sort the coins numerically
-        sortedCoins.sort((a, b) => a.sortOrder - b.sortOrder);
-
-        // 3. Render the sorted list
         sortedCoins.forEach(({ bcID, info }) => {
             const uniqueKey = `${zoneGroup}::${bcID}`;
-            stats.visibleBC.add(uniqueKey);
-            const isCollected = appState.collectedBlueCoins.has(uniqueKey);
 
-            let coinNumber = "?";
+            if (countStats) stats.visibleBC.add(uniqueKey);
+
+            const isCollected = appState.collectedBlueCoins.has(uniqueKey);
+            let coinNumber = "🔵";
             const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
-            if (match) {
-                coinNumber = match[1];
-            }
+            if (match) coinNumber = match[1];
 
             rowHTML += `
-            <div class="bc-item-wrapper" style="margin-bottom: 5px;">
+            <div class="bc-item-wrapper">
                 <div class="bc-box ${isCollected ? 'collected' : ''}" 
-                     data-action="toggle-bc" 
-                     data-id="${uniqueKey}">
+                     ${bcAction} 
+                     data-id="${uniqueKey}"
+                     ${lockedStyle}>
                     ${coinNumber}
-                    <a href="${info.mariopartylegacylink}" 
-                       target="_blank" 
-                       class="bc-info-link" 
-                       title="View Guide"
-                       onclick="event.stopPropagation();">?</a>
+                    <a href="${info.mariopartylegacylink}" target="_blank" class="bc-info-link" style="pointer-events: auto;" onclick="event.stopPropagation();">?</a>
                 </div>
                 <div class="bc-tooltip">
-                    <strong>${info.title}</strong><br>
-                    <small>${info.episodeString}</small>
+                    <strong>${info.title || "Blue Coin"}</strong><br>
+                    <small>${info.episodeString || ""}</small>
                 </div>
             </div>`;
         });
@@ -330,9 +378,8 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
     }
     rowHTML += `</td></tr>`;
 
-    // Recursive Exits
-    let exitsHTML = "";
     if (zone.exits) {
+        const subParentID = parentID + '-sub';
         zone.exits.forEach(exit => {
             const assignmentKey = `${zoneGroup}::${exit.id}`;
             const target = appState.globalAssignments[assignmentKey];
@@ -340,11 +387,13 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
             if (target) dropdownHTML = dropdownHTML.replace(`value="${target}"`, `value="${target}" selected`);
             const selectClass = target ? "filled" : "";
 
-            exitsHTML += `
-            <tr class="${groupClass} child-row" data-parent="${parentID}" ${displayStyle}>
-                <td><span class="tree-line">${indent}└── </span><span class="exit-name">Exit: ${exit.name}</span></td>
+            const disabledAttr = isLocked ? 'disabled style="opacity:0.6; pointer-events:none;"' : '';
+
+            rowHTML += `
+            <tr class="${groupClass} ${lockedRowClass} child-row" data-parent="${subParentID}" ${displayStyle}>
+                <td><span class="tree-line">${indent}│   └── </span><span class="exit-name">Exit: ${exit.name}</span></td>
                 <td>
-                    <select class="${selectClass}" data-assign-key="${assignmentKey}">
+                    <select class="${selectClass}" data-assign-key="${assignmentKey}" ${disabledAttr}>
                         ${dropdownHTML}
                     </select>
                 </td>
@@ -352,49 +401,125 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
             </tr>`;
 
             if (target && !chainHistory.includes(target)) {
-                exitsHTML += buildRecursiveZoneRows(target, [...chainHistory, target], depth + 1, groupClass, parentID);
-            } else if (target) {
-                const targetZone = worldData.zones[target];
-                const targetName = targetZone ? targetZone.name : "Unknown";
-                exitsHTML += `
-                    <tr class="${groupClass} child-row loop-row" data-parent="${parentID}" ${displayStyle}>
-                        <td></td>
-                        <td style="padding-top: 0;">
-                            <div style="color: #e74c3c; font-size: 0.75rem; margin-top: -4px; display: flex; align-items: center; gap: 4px;">
-                                <span>⤴</span> <span>Already in chain: ${targetName}</span>
-                            </div>
-                        </td>
-                        <td></td>
-                    </tr>`;
+                rowHTML += buildRecursiveZoneRows(target, [...chainHistory, target], depth + 1, groupClass, subParentID, countStats, isLocked);
             }
         });
     }
 
-    return rowHTML + exitsHTML;
+    return rowHTML;
 }
-
 function buildCoronaRow(entrance, groupClass) {
     const isUnlocked = checkCoronaUnlock();
     const lockedClass = isUnlocked ? "" : "row-locked";
 
-    let targetCol = isUnlocked
-        ? `<div style="color:#e74c3c; font-weight:bold;">➜ Corona Mountain (Boss)</div>`
-        : `<div class="locked-text">🔒 Locked (Defeat all 7 Shadow Marios)</div>`;
+    const zoneID = "coro_ex6";
+    const zone = worldData.zones[zoneID];
 
+    if (!zone) return "";
+
+    // --- 1. Collapse Configuration ---
+    const entryID = "corona-main";
+    const isCollapsed = appState.collapsedElements.has(entryID);
+
+    // If collapsed, children should be hidden
+    const childStyle = isCollapsed ? 'style="display:none"' : '';
+
+    const col2Content = isUnlocked
+        ? `<span style="color: #666; font-style: italic;">Local Area</span>`
+        : `<div style="font-size:0.8em; color:#e74c3c;">🔒 Locked (Defeat all 7 Shadow Marios)</div>`;
+
+    // Add collapse attributes to the main row
     let html = `
-    <tr class="${groupClass} ${lockedClass}">
-        <td><span class="zone-name">${entrance.name}</span></td>
-        <td>${targetCol}</td>
-        <td></td>
-    </tr>`;
+    <tr class="${groupClass} ${lockedClass}"
+        data-action="toggle-collapse" 
+        data-target-selector="[data-parent='${entryID}']" 
+        data-storage-key="${entryID}">
+        <td>
+            <span class="collapse-icon-sub">${isCollapsed ? '▶' : '▼'}</span>
+            <span class="zone-name">${entrance.name}</span>
+        </td>
+        <td>${col2Content}</td>
+        <td>`;
 
-    if (isUnlocked) {
-        // Hardcoded mapping for corona
-        html += buildRecursiveZoneRows("coro_ex6", [entrance.id, "coro_ex6"], 1, groupClass, "corona-root");
+    // Render Blue Coins
+    if (zone.blue_coin_ids) {
+        html += `<div class="bc-grid-container" style="display: flex; flex-wrap: wrap; gap: 8px;">`;
+
+        const zoneGroup = getZoneGroup(zoneID);
+        const sortedCoins = zone.blue_coin_ids.map(bcID => {
+            const info = blueCoinMetadata.get(bcID) || { mariopartylegacylink: "" };
+            let sortOrder = 999;
+            const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
+            if (match) sortOrder = parseInt(match[1], 10);
+            return { bcID, sortOrder, info };
+        }).sort((a, b) => a.sortOrder - b.sortOrder);
+
+        const bcAction = isUnlocked ? 'data-action="toggle-bc"' : '';
+        const lockedStyle = isUnlocked ? '' : 'style="pointer-events: none; opacity: 0.6;"';
+
+        sortedCoins.forEach(({ bcID, info }) => {
+            const uniqueKey = `${zoneGroup}::${bcID}`;
+            if (isUnlocked) stats.visibleBC.add(uniqueKey);
+
+            const isCollected = appState.collectedBlueCoins.has(uniqueKey);
+            let coinNumber = "🔵";
+            const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
+            if (match) coinNumber = match[1];
+
+            html += `
+            <div class="bc-item-wrapper">
+                <div class="bc-box ${isCollected ? 'collected' : ''}" 
+                     ${bcAction} 
+                     data-id="${uniqueKey}" 
+                     ${lockedStyle}>
+                    ${coinNumber}
+                    <a href="${info.mariopartylegacylink}" target="_blank" class="bc-info-link" style="pointer-events: auto;" onclick="event.stopPropagation();">?</a>
+                </div>
+                <div class="bc-tooltip">
+                    <strong>${info.title || "Blue Coin"}</strong><br>
+                    <small>${info.episodeString || ""}</small>
+                </div>
+            </div>`;
+        });
+        html += `</div>`;
     }
+    html += `</td></tr>`;
+
+    // --- 3. Exit Row  ---
+    if (zone.exits) {
+        zone.exits.forEach(exit => {
+            const targetID = "coronaBoss";
+            const displayTargetName = "Corona Mountain (Boss)";
+
+            // A. Draw the Exit Row
+            html += `
+            <tr class="${groupClass} ${lockedClass} child-row" 
+                data-parent="${entryID}" 
+                ${childStyle}>
+                <td><span class="tree-line">└── </span><span class="exit-name">Exit: ${exit.name}</span></td>
+                <td>
+                    <select class="filled" disabled style="opacity: ${isUnlocked ? '1' : '0.6'}; cursor: not-allowed; color: #fff; font-weight: bold;">
+                        <option selected>${displayTargetName}</option>
+                    </select>
+                </td>
+                <td></td>
+            </tr>`;
+
+            // B. Recursively render the boss zone
+            html += buildRecursiveZoneRows(
+                targetID,
+                [entrance.id, zoneID, targetID],
+                2,
+                groupClass,
+                entryID,
+                isUnlocked,
+                !isUnlocked
+            );
+        });
+    }
+
     return html;
 }
-
 // --- Interaction Handlers (Event Delegation) ---
 
 function handleTableChange(event) {
@@ -411,19 +536,30 @@ function handleTableChange(event) {
 function handleTableClick(event) {
     // 1. Check for collapse toggles (Row click)
     const toggleRow = event.target.closest('[data-action="toggle-collapse"]');
-    if (toggleRow) {
-        if (event.target.tagName === 'SELECT') return;
 
-        const selector = toggleRow.dataset.targetClass || toggleRow.dataset.targetSelector;
-        const storageKey = toggleRow.dataset.storageKey;
-        handleCollapse(selector, toggleRow, storageKey);
-        return;
+    if (toggleRow) {
+        // Prevent toggling if clicking on interactive elements like shines, blue coins, links, or selects
+        const isInteractive =
+            event.target.closest('.shine-check') ||
+            event.target.closest('.bc-box') ||
+            event.target.closest('a') ||
+            event.target.tagName === 'SELECT';
+
+        if (!isInteractive) {
+            const selector = toggleRow.dataset.targetClass || toggleRow.dataset.targetSelector;
+            const storageKey = toggleRow.dataset.storageKey;
+            handleCollapse(selector, toggleRow, storageKey);
+            return; // Stop here only if we actually collapsed
+        }
     }
 
     // 2. Check for Shine clicks
     const shineDiv = event.target.closest('[data-action="toggle-shine"]');
     if (shineDiv) {
         const id = shineDiv.dataset.id;
+
+        // RELOCK LOGIC: Capture state before toggle
+        const wasCoronaUnlocked = checkCoronaUnlock();
 
         // Toggle State
         if (appState.collectedShines.has(id)) {
@@ -432,10 +568,21 @@ function handleTableClick(event) {
             appState.collectedShines.add(id);
         }
 
-        // SYNC UI: Find ALL instances of this shine ID and update them
+        // RELOCK LOGIC: Check state after toggle
+        const isCoronaUnlocked = checkCoronaUnlock();
+
+        if (wasCoronaUnlocked !== isCoronaUnlocked) {
+            // Auto-Uncollapse if we just Unlocked it
+            if (isCoronaUnlocked) {
+                appState.collapsedElements.delete("corona-main");
+            }
+            renderTable();
+            return;
+        }
+
+        // Standard UI Sync
         const allInstances = document.querySelectorAll(`[data-action="toggle-shine"][data-id="${id}"]`);
         allInstances.forEach(el => {
-            // Force class based on the new state (safer than toggle)
             if (appState.collectedShines.has(id)) {
                 el.classList.add('checked');
             } else {
@@ -452,14 +599,12 @@ function handleTableClick(event) {
     if (bcDiv) {
         const id = bcDiv.dataset.id;
 
-        // Toggle State
         if (appState.collectedBlueCoins.has(id)) {
             appState.collectedBlueCoins.delete(id);
         } else {
             appState.collectedBlueCoins.add(id);
         }
 
-        // SYNC UI: Find ALL instances of this Blue Coin ID and update them
         const allInstances = document.querySelectorAll(`[data-action="toggle-bc"][data-id="${id}"]`);
         allInstances.forEach(el => {
             if (appState.collectedBlueCoins.has(id)) {
@@ -472,7 +617,6 @@ function handleTableClick(event) {
         updateAllStatsUI();
     }
 }
-
 function toggleUnlock(id) {
     if (appState.unlocks.has(id)) appState.unlocks.delete(id);
     else appState.unlocks.add(id);
@@ -504,38 +648,104 @@ function handleCollapse(selector, element, storageKey) {
 // --- Stats & Helpers ---
 
 function updateAllStatsUI() {
-    // A. Header Stats
+    // 1. Global Totals
     document.getElementById('stat-shines').innerText = `${appState.collectedShines.size} / ${stats.shinesPossible.size}`;
 
     let bcFound = 0;
     stats.visibleBC.forEach(key => {
-        if(appState.collectedBlueCoins.has(key)) bcFound++;
+        if (appState.collectedBlueCoins.has(key)) bcFound++;
     });
-    document.getElementById('stat-bc').innerText = `${bcFound} / ${stats.visibleBC.size}`;e
+    document.getElementById('stat-bc').innerText = `${bcFound} / ${stats.visibleBC.size}`;
 
-    // B. Shadow Mario Bar
     updateShadowMarioBar();
 
-    // C. Update the Static Plaza Hub Row Stats
-    const hubStatsContainer = document.getElementById('stats-plaza-hub-static');
-    if (hubStatsContainer) {
-        const res = calculateBranchStatsForZone("dolpic_base");
-        if (res.sTotal.size > 0 || res.uniqueBCsTotal.size > 0) {
-            const sDone = res.sFound.size === res.sTotal.size;
-            const bDone = res.uniqueBCsFound.size === res.uniqueBCsTotal.size;
-            hubStatsContainer.innerHTML = `
-                <div class="route-stat-item ${sDone ? 'rs-done' : ''}">
-                    <img src="images/shine_sprite.webp" style="width:16px;" alt="Shine">
-                    ${res.sFound.size}/${res.sTotal.size}
-                </div>
-                <div class="route-stat-item ${bDone ? 'rs-done' : ''}">
-                    <span>🔵</span>
-                    ${res.uniqueBCsFound.size}/${res.uniqueBCsTotal.size}
-                </div>`;
-        }
-    }
+    // 2. Helper to merge stats results
+    const mergeStats = (target, source) => {
+        source.sFound.forEach(x => target.sFound.add(x));
+        source.sTotal.forEach(x => target.sTotal.add(x));
+        source.uniqueBCsFound.forEach(x => target.uniqueBCsFound.add(x));
+        source.uniqueBCsTotal.forEach(x => target.uniqueBCsTotal.add(x));
+    };
 
-    // D. Route Stats (Randomized)
+    // 3. Identify all Unique Groups
+    const uniqueGroups = new Set();
+    uniqueGroups.add("Delfino Plaza");
+    worldData.plaza_entrances.forEach(e => uniqueGroups.add(e.group_name));
+
+    // 4. Calculate and Render per Group
+    uniqueGroups.forEach(groupName => {
+        const safeID = getSafeGroupID(groupName);
+        const container = document.getElementById(safeID);
+        if (!container) return;
+
+        const groupStats = {
+            sFound: new Set(),
+            sTotal: new Set(),
+            uniqueBCsFound: new Set(),
+            uniqueBCsTotal: new Set()
+        };
+
+        // A: Special Logic for Main Hub (Delfino Plaza)
+        if (groupName === "Delfino Plaza") {
+            // 1. Hub Locals
+            const hubLocalRes = calculateBranchStatsForZone("dolpic_base");
+            mergeStats(groupStats, hubLocalRes);
+
+            // 2. Hub Exits (Physical warps inside dolpic_base)
+            const hubZone = worldData.zones["dolpic_base"];
+            if (hubZone && hubZone.exits) {
+                const hubGroup = getZoneGroup("dolpic_base");
+                hubZone.exits.forEach(exit => {
+                    const key = `${hubGroup}::${exit.id}`;
+                    const exitRes = calculateBranchStats(key, ["dolpic_base"]);
+                    mergeStats(groupStats, exitRes);
+                });
+            }
+
+            // 3. Corona - ONLY if Unlocked
+            if (checkCoronaUnlock()) {
+                // coro_ex6 zone has the blue coins for corona
+                const coronaRes = calculateBranchStatsForZone("coro_ex6");
+                mergeStats(groupStats, coronaRes);
+            }
+        }
+
+        // B: Process Entrances belonging to this group
+        const groupEntrances = worldData.plaza_entrances.filter(e => e.group_name === groupName);
+
+        groupEntrances.forEach(e => {
+            if (e.id === "enter_corona") return; // Handled explicitly above
+
+            if (e.is_warp === false) {
+                groupStats.sTotal.add(e.id);
+                if (appState.collectedShines.has(e.id)) groupStats.sFound.add(e.id);
+            } else {
+                const routeRes = calculateBranchStats(e.id, []);
+                mergeStats(groupStats, routeRes);
+            }
+        });
+
+        // Render Group Stats
+        if (groupStats.sTotal.size > 0 || groupStats.uniqueBCsTotal.size > 0) {
+            const sDone = groupStats.sFound.size === groupStats.sTotal.size;
+            const bDone = groupStats.uniqueBCsFound.size === groupStats.uniqueBCsTotal.size;
+
+            container.innerHTML = `
+                <span class="g-stat ${sDone ? 'done' : ''}">
+                    <img src="images/shine_sprite.webp" style="width:14px; vertical-align:middle;"> 
+                    ${groupStats.sFound.size}/${groupStats.sTotal.size}
+                </span>
+                <span class="g-stat ${bDone ? 'done' : ''}" style="margin-left: 8px;">
+                    <span style="font-size:0.9em">🔵</span> 
+                    ${groupStats.uniqueBCsFound.size}/${groupStats.uniqueBCsTotal.size}
+                </span>`;
+            container.style.display = "block";
+        } else {
+            container.style.display = "none";
+        }
+    });
+
+    // 5. Update Individual Route Stats
     worldData.plaza_entrances.forEach(entrance => {
         if (entrance.id === "enter_corona") return;
         const container = document.getElementById(`stats-${entrance.id}`);
@@ -554,21 +764,11 @@ function updateAllStatsUI() {
                     <span>🔵</span>
                     ${res.uniqueBCsFound.size}/${res.uniqueBCsTotal.size}
                 </div>`;
-        }
-    });
-
-    // E. Group Headers
-    let currentGroup = "";
-    let groupIndex = 0;
-    worldData.plaza_entrances.forEach(entrance => {
-        if (entrance.group_name !== currentGroup) {
-            groupIndex++;
-            currentGroup = entrance.group_name;
-            updateGroupDisplay(currentGroup, groupIndex);
+        } else {
+            container.innerHTML = '';
         }
     });
 }
-
 function updateShadowMarioBar() {
     const container = document.getElementById('shadow-mario-bar');
     let html = '<span class="shadow-label">Corona Access:</span>';
@@ -596,7 +796,6 @@ function updateShadowMarioBar() {
 }
 
 function calculateBranchStats(assignmentKey, chainHistory) {
-    // CHANGED: sFound and sTotal are now Sets to prevent double counting
     let result = {
         sFound: new Set(),
         sTotal: new Set(),
@@ -892,6 +1091,8 @@ const originalToggleUnlock = toggleUnlock;
 toggleUnlock = function(id) {
     if (appState.autoTrackEnabled) {
         console.log("Manual toggle disabled while Auto-Track is active.");
+        // Also show a brief message to the user
+        alert("Cannot manually toggle unlocks while Auto-Track is active.");
         return;
     }
     if (appState.unlocks.has(id)) appState.unlocks.delete(id);
@@ -929,77 +1130,3 @@ function calculateBranchStatsForZone(zoneID) {
     return res;
 }
 
-function buildFlatPlazaRow(groupClass) {
-    const zone = worldData.zones["dolpic_base"];
-    if (!zone) return "";
-
-    const isParentGroupCollapsed = appState.collapsedElements.has(groupClass);
-    const rowStyle = isParentGroupCollapsed ? 'style="display:none"' : '';
-    const zoneGroup = getZoneGroup("dolpic_base");
-
-    let html = `
-    <tr class="${groupClass} entry-main-row" ${rowStyle}>
-        <td>
-            <span class="collapse-icon-sub"></span> 
-            <span class="zone-name">Delfino Plaza (Hub)</span>
-        </td>
-        <td><span style="color: #888; font-style: italic;">All Plaza Collectibles</span></td>
-        <td>`;
-
-    // 1. Collect all "Static" Shines from plaza_entrances
-    const plazaShines = worldData.plaza_entrances.filter(e => e.is_warp === false);
-
-    if (plazaShines.length > 0) {
-        html += `<div class="shine-container" style="margin-bottom: 10px;">`;
-        plazaShines.forEach(s => {
-            stats.shinesPossible.add(s.id);
-            const isChecked = appState.collectedShines.has(s.id);
-            html += `
-                <div class="shine-check ${isChecked ? 'checked' : ''}" 
-                     data-action="toggle-shine" 
-                     data-id="${s.id}">
-                    <img src="images/shine_sprite.webp" style="width:16px; margin-right:4px;" alt="Shine">${s.name}
-                </div>`;
-        });
-        html += `</div>`;
-    }
-
-    // 2. Blue Coins
-    if (zone.blue_coin_ids) {
-        html += `<div class="bc-grid-container" style="display: flex; flex-wrap: wrap; gap: 8px;">`;
-
-        const sortedCoins = zone.blue_coin_ids.map(bcID => {
-            const info = blueCoinMetadata.get(bcID) || { mariopartylegacylink: "" };
-            let sortOrder = 999;
-            const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
-            if (match) sortOrder = parseInt(match[1], 10);
-            return { bcID, info, sortOrder };
-        }).sort((a, b) => a.sortOrder - b.sortOrder);
-
-        sortedCoins.forEach(({ bcID, info }) => {
-            const uniqueKey = `${zoneGroup}::${bcID}`;
-            stats.visibleBC.add(uniqueKey);
-            const isCollected = appState.collectedBlueCoins.has(uniqueKey);
-            const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
-            const coinNumber = match ? match[1] : "?";
-
-            html += `
-            <div class="bc-item-wrapper">
-                <div class="bc-box ${isCollected ? 'collected' : ''}" 
-                     data-action="toggle-bc" 
-                     data-id="${uniqueKey}">
-                    ${coinNumber}
-                    <a href="${info.mariopartylegacylink}" target="_blank" class="bc-info-link" onclick="event.stopPropagation();">?</a>
-                </div>
-                <div class="bc-tooltip">
-                    <strong>${info.title || "Plaza Coin"}</strong><br>
-                    <small>${info.episodeString || "Delfino Plaza"}</small>
-                </div>
-            </div>`;
-        });
-        html += `</div>`;
-    }
-
-    html += `</td></tr>`;
-    return html;
-}

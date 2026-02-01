@@ -10,7 +10,8 @@ A tracker for the Super Mario Sunshine Randomizer that allows users to map rando
 
 ## License
 
-This code in this project is licensed under the MIT License. Assets in /static/images as well as other images and text from the game is not licensed at all and is owned by Nintendo. For more information, see [LICENSE](LICENSE) and [Asset Disclamer](https://github.com/CodeTappert/sms-tracker?tab=readme-ov-file#asset-disclaimer)
+* This code in this project is licensed under the MIT License. Assets in /static/images as well as other images and text from the game is not licensed at all and is owned by Nintendo. For more information, see [LICENSE](LICENSE) and [Asset Disclamer](https://github.com/CodeTappert/sms-tracker?tab=readme-ov-file#asset-disclaimer)
+* If you are using the code or images from this project, please give appropriate credit to the original author (CodeTappert) and provide a link to the repository. This is not mandatory ofc but would be nice.
 
 ## Contributing
 
@@ -21,6 +22,7 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 * **Real-time Auto-Tracking**: Automatically syncs with Dolphin Emulator to detect your current level, episode, and movement/nozzle unlocks.
 * **Zone Mapping**: Map randomized zones to Plaza entrances for easy navigation.
 * **Shine Tracking**: Keep track of collected Shines and blue coins in each zone, plaza entrance, and overall.
+* **Blue Coin Tracking**: Monitor blue coin collections per zone and overall with link to a detailed guide.
 * **User-Friendly Interface**: Simple and intuitive interface for easy tracking.
 * **Data Persistence**: Save and load your tracking data with JSON files.
 
@@ -107,3 +109,5 @@ The MIT License applies ONLY to the source code (Go, HTML, CSS, JS)
 created for this project. It does NOT grant any rights to the game assets
 contained within the "static/images" folder or any other game-related media.
 All rights to those assets remain with Nintendo.
+
+I am not responsible for any content that are shown on sites that this project or the software links to.

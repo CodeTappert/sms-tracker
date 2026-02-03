@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io/fs"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"time"
@@ -19,6 +20,7 @@ type Config struct {
 	Port                   int  `json:"port"`
 	TrackerIntervalSeconds int  `json:"trackerIntervalSeconds"`
 	AutoTrackDefault       bool `json:"autoTrackDefault"`
+	HostInNetwork          bool `json:"hostInNetwork"`
 }
 
 // --- Embedding ---
@@ -315,7 +317,7 @@ func loadGameData() {
 // --- Server API ---
 
 func LoadConfig() Config {
-	defaultConfig := Config{Port: 8080, TrackerIntervalSeconds: 5, AutoTrackDefault: true}
+	defaultConfig := Config{Port: 8080, TrackerIntervalSeconds: 5, AutoTrackDefault: true, HostInNetwork: false}
 	file, err := os.ReadFile("config.json")
 	if err != nil {
 		// If file doesn't exist, write the file then load defaults
@@ -417,10 +419,46 @@ func main() {
 		}
 	})
 
-	addr := fmt.Sprintf(":%d", globalCfg.Port)
-	fmt.Printf("Tracker is running at http://localhost:%d\n", globalCfg.Port)
+	addr := fmt.Sprintf("localhost:%d", globalCfg.Port)
+	addrStr := []string{"localhost"}
+	if globalCfg.HostInNetwork {
+
+		addr = fmt.Sprintf("0.0.0.0:%d", globalCfg.Port)
+		localIPs := getLocalIPs()
+		addrStr = append(addrStr, localIPs...)
+
+	}
+	fmt.Println("Starting server... Web interface available at:")
+
+	for i, a := range addrStr {
+		if i == 1 {
+			if globalCfg.HostInNetwork {
+				fmt.Println(" - Listening on all interfaces. - UI is also available in local network at:")
+			}
+		}
+		fmt.Printf(" - http://%s:%d\n", a, globalCfg.Port)
+
+	}
 	fmt.Printf("Open your web browser and navigate to the above URL to access the tracker interface.\n")
 	fmt.Printf("You can alternativly open the link by holding Ctrl and clicking it in supported terminals.\n")
 	fmt.Println("Press Ctrl+C to stop the server.")
 	log.Fatal(http.ListenAndServe(addr, nil))
+}
+
+func getLocalIPs() []string {
+	var ips []string
+	addresses, err := net.InterfaceAddrs()
+	if err != nil {
+		return ips
+	}
+
+	for _, addr := range addresses {
+		// Check the address type and ensure it's not a loopback (127.0.0.1)
+		if ipnet, ok := addr.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+			if ipnet.IP.To4() != nil {
+				ips = append(ips, ipnet.IP.String())
+			}
+		}
+	}
+	return ips
 }

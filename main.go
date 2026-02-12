@@ -11,9 +11,7 @@ import (
 	"net"
 	"net/http"
 	"os"
-	"syscall"
 	"time"
-	"unsafe"
 )
 
 // --- Configuration ---
@@ -628,6 +626,8 @@ func getLocalIPs() []string {
 	}
 	return ips
 }
+
+/*
 func ShowPopup(title, text string) {
 	var mod = syscall.NewLazyDLL("user32.dll")
 	var proc = mod.NewProc("MessageBoxW")
@@ -639,6 +639,7 @@ func ShowPopup(title, text string) {
 	// 0x00000030 = Icon Warning | 0x00000000 = OK button
 	proc.Call(0, uintptr(unsafe.Pointer(m)), uintptr(unsafe.Pointer(t)), 0x30)
 }
+*/
 
 func (d *DolphinHookManager) ReadSeed() (string, error) {
 	if !d.IsHooked {

@@ -11,7 +11,9 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"syscall"
 	"time"
+	"unsafe"
 )
 
 // --- Configuration ---
@@ -35,8 +37,9 @@ var dataEmbed embed.FS
 
 // ShineDefinition tracks the state and metadata of a specific shine.
 type ShineDefinition struct {
-	ID   string `json:"id"` // Unique ID used for tracking logic
-	Name string `json:"name"`
+	ID    string `json:"id"` // Unique ID used for tracking logic
+	Name  string `json:"name"`
+	NumID int    `json:"num_id"` // Numeric ID used for hook tracking (if applicable)
 }
 
 // Exit represents a loading zone or transition point within the game world.
@@ -60,6 +63,16 @@ type BlueCoinDefinition struct {
 	Episode              []int  `json:"episode"`
 	EpisodeString        string `json:"episodeString"`
 	MarioPartyLegacyLink string `json:"mariopartylegacylink"`
+}
+
+type SkillMapping struct {
+	SkillName     string `json:"skill_name"`
+	HasSkill      bool   `json:"has_skill"`
+	ShineID       uint32 `json:"shine_id"`
+	ShineName     string `json:"shine_name,omitempty"`
+	ZoneName      string `json:"zone_name,omitempty"`
+	IsMapped      bool   `json:"is_mapped"`
+	OriginalIndex int    `json:"-"` // Hidden from JSON, used for sorting
 }
 
 // Unlock represents a game capability, item, or nozzle.
@@ -96,8 +109,9 @@ type MemoryState struct {
 	EpisodeNumber  int             `json:"episode_number"`
 	Unlocks        map[string]bool `json:"unlocks"`
 	// Configvalues for Memory State
-	Interval  int  `json:"interval"`
-	AutoTrack bool `json:"auto_track"`
+	Interval  int    `json:"interval"`
+	AutoTrack bool   `json:"auto_track"`
+	Seed      string `json:"seed"`
 }
 
 // --- Dolphin Hook Logic ---
@@ -107,6 +121,8 @@ const (
 	PROCESS_QUERY_INFORMATION = 0x0400
 	ADDR_SKILLS               = 0x804496AF
 	ADDR_SHINES               = ADDR_SKILLS + 0x19 // We will use this maybe at some point to show which shine will unlock a skill
+	ADDR_SHINES_TOTAL         = 0x8043A5A4         // This address holds the total number of shines collected, which can be useful for certain unlock conditions and tracking overall progress.
+	ADDR_SEED                 = 0x80449698
 )
 
 // Possible Levelnames the Hook can find
@@ -137,34 +153,63 @@ type DolphinHookManager struct {
 	EpisodeAddress uint32
 	EpisodeNumber  int
 	LastSkills     []byte
+	ShineIDs       []uint32
+	Seed           string
 }
 
 // SyncLocation scans the game's memory to determine the current level and episode.
 func (d *DolphinHookManager) SyncLocation() {
 	blockSize := 0x400000
+	// Scan up to 0x81800000
 	for i := 0; i < 6; i++ {
 		offset := uint32(i) * uint32(blockSize)
 		data, err := d.Read(0x80000000+offset, blockSize)
 		if err != nil || data == nil {
-			fmt.Println("Failed to read memory block:", err)
 			continue
 		}
+
 		for _, name := range levels {
-			idx := bytes.Index(data, []byte(name))
-			if idx != -1 {
-				absAddr := 0x80000000 + offset + uint32(idx)
-				if absAddr >= 0x8096A200 && absAddr <= 0x8096A300 {
+			// We look for all occurrences in the block, not just the first one
+			idx := 0
+			for {
+				foundIdx := bytes.Index(data[idx:], []byte(name))
+				if foundIdx == -1 {
+					break
+				}
+
+				actualIdx := idx + foundIdx
+				absAddr := 0x80000000 + offset + uint32(actualIdx)
+
+				if absAddr >= 0x80960000 && absAddr <= 0x80970000 {
+					idx = actualIdx + 1
 					continue
 				}
+
+				if actualIdx > 0 && data[actualIdx-1] != 0x00 {
+					idx = actualIdx + 1
+					continue
+				}
+
+				// If we passed the filters, this is likely our real active level
 				d.CurrentLevel = name
 				d.LevelAddress = absAddr
-				searchArea := data[max(0, idx-1024):idx]
-				d.CurrentEpisode, d.EpisodeAddress = findMostLikelyMission(searchArea)
-				d.EpisodeNumber = 0 // Implementation pending based on specific game logic
+
+				// Grab the mission context
+				contextStart := max(0, actualIdx-1024)
+				d.CurrentEpisode, d.EpisodeAddress = findMostLikelyMission(data[contextStart:actualIdx])
+
 				return
 			}
 		}
 	}
+}
+
+func (d *DolphinHookManager) GetTotalShines() int {
+	data, err := d.Read(ADDR_SHINES_TOTAL, 4)
+	if err != nil || data == nil {
+		return 0
+	}
+	return int(binary.BigEndian.Uint32(data))
 }
 
 // --- Global State ---
@@ -350,10 +395,15 @@ func runMemoryScanner() {
 			}
 			fmt.Println("Successfully hooked to Dolphin!")
 		}
+		/*
+			oldSkills := dm.LastSkills
+			oldLocation := dm.CurrentLevel
+			oldEpisode := dm.CurrentEpisode
+
+		*/
 
 		dm.SyncLocation()
 		s, err := dm.Read(ADDR_SKILLS, 23)
-
 		if err != nil || s == nil {
 			fmt.Println("Connection lost to Dolphin, cleaning up...")
 
@@ -364,7 +414,62 @@ func runMemoryScanner() {
 			continue
 		}
 
+		// Read the shines that are linked to the skills, this can be used to show which shine will unlock a skill in the UI
+		shineData, err := dm.Read(ADDR_SHINES, 23*4)
+		if err == nil && shineData != nil {
+			dm.ShineIDs = make([]uint32, 0) // Reset the slice
+			// Convert that to a usable format (4 values per skill, total 23 skills)
+			for i := 0; i < 23; i++ {
+				shineID := binary.BigEndian.Uint32(shineData[i*4 : (i+1)*4])
+				dm.ShineIDs = append(dm.ShineIDs, shineID)
+			}
+		}
+
 		dm.LastSkills = s
+		// Commented out because its code for shineID Mapping i use for myself
+		/*
+			if oldSkills != nil {
+				if bytes.Equal(oldSkills, dm.LastSkills) == false {
+					// Log the difference (which skill we got basically) and the location we are in/where in
+					for i := 0; i < len(s); i++ {
+						if i < len(oldSkills) && oldSkills[i] != s[i] {
+							fmt.Printf("Skill %s changed from %d to %d\n", skillNames[i], oldSkills[i], s[i])
+							var foundShine bool
+							for j, zone := range currentWorld.Zones {
+								for _, shine := range zone.ShinesAvailable {
+									if shine.NumID == int(dm.ShineIDs[i]) {
+										fmt.Println("This is shineID", dm.ShineIDs[i], "which is linked to this skill, and total shines collected:", dm.GetTotalShines())
+										fmt.Printf("This shine is located in zone %s (%s) and is called %s\n", j, zone.Name, shine.Name)
+										foundShine = true
+										break
+									}
+								}
+							}
+							if !foundShine && string(s[i]) != "" {
+								msg := fmt.Sprintf("ID: %d | Level: %s | Ep: %s - ", dm.ShineIDs[i], dm.CurrentLevel, dm.CurrentEpisode)
+								msg += fmt.Sprintf("Old Location: %s | Old Episode: %s", oldLocation, oldEpisode)
+								fmt.Println("\n[!!!] MISSING MAPPING [!!!]")
+								fmt.Println("This is shineID", dm.ShineIDs[i], "which is linked to skill "+skillNames[i]+", and total shines collected:", dm.GetTotalShines())
+								fmt.Println(msg)
+
+								// Play sound (ASCII Bell)
+								fmt.Print("\a")
+
+								// Show Windows Popup
+								go ShowPopup("Missing Shine Mapping", "Found unmapped ID! Check console for details.")
+							}
+						}
+					}
+				}
+			}
+
+		*/
+
+		dm.Seed, err = dm.ReadSeed()
+		if err != nil {
+			fmt.Println("Failed to read seed:", err)
+		}
+
 		// Wait before next scan
 		time.Sleep(500 * time.Millisecond)
 	}
@@ -412,12 +517,73 @@ func main() {
 			Unlocks:        unlockMap,
 			Interval:       globalCfg.TrackerIntervalSeconds,
 			AutoTrack:      globalCfg.AutoTrackDefault,
+			Seed:           dm.Seed,
 		}
 		err = json.NewEncoder(w).Encode(state)
 		if err != nil {
 			http.Error(w, "Failed to encode memory state", http.StatusInternalServerError)
 		}
 	})
+
+	// This endpoint is currently used for testing. in the future it should be used for a spoiler UI that tells you which shine will give you a ability
+	/*
+		// New Endpoint: Skill and Shine Mapping
+		http.HandleFunc("/api/spoiler", func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Content-Type", "application/json")
+
+			if dm.LastSkills == nil || dm.ShineIDs == nil {
+				http.Error(w, "Memory data not yet available", http.StatusServiceUnavailable)
+				return
+			}
+
+			mappings := make([]SkillMapping, 0)
+
+			for i, skill := range skillNames {
+				if i >= len(dm.LastSkills) || i >= len(dm.ShineIDs) {
+					break
+				}
+
+				baseMapping := SkillMapping{
+					SkillName:     skill,
+					HasSkill:      dm.LastSkills[i] != 0,
+					ShineID:       dm.ShineIDs[i],
+					IsMapped:      false,
+					OriginalIndex: i, // Store the index from skillNames
+				}
+
+				foundAtLeastOne := false
+				for _, zone := range currentWorld.Zones {
+					for _, shine := range zone.ShinesAvailable {
+						if shine.NumID == int(baseMapping.ShineID) {
+							m := baseMapping
+							m.ShineName = shine.Name
+							m.ZoneName = zone.Name
+							m.IsMapped = true
+							mappings = append(mappings, m)
+							foundAtLeastOne = true
+						}
+					}
+				}
+
+				if !foundAtLeastOne {
+					mappings = append(mappings, baseMapping)
+				}
+			}
+
+			// Sort: Primary by OriginalIndex, Secondary by ZoneName
+			sort.Slice(mappings, func(i, j int) bool {
+				if mappings[i].OriginalIndex != mappings[j].OriginalIndex {
+					return mappings[i].OriginalIndex < mappings[j].OriginalIndex
+				}
+				return mappings[i].ZoneName < mappings[j].ZoneName
+			})
+
+			if err := json.NewEncoder(w).Encode(mappings); err != nil {
+				http.Error(w, "Failed to encode skill mapping", http.StatusInternalServerError)
+			}
+		})
+
+	*/
 
 	addr := fmt.Sprintf("localhost:%d", globalCfg.Port)
 	addrStr := []string{"localhost"}
@@ -461,4 +627,26 @@ func getLocalIPs() []string {
 		}
 	}
 	return ips
+}
+func ShowPopup(title, text string) {
+	var mod = syscall.NewLazyDLL("user32.dll")
+	var proc = mod.NewProc("MessageBoxW")
+
+	// Convert strings to UTF-16 for Windows
+	t, _ := syscall.UTF16PtrFromString(title)
+	m, _ := syscall.UTF16PtrFromString(text)
+
+	// 0x00000030 = Icon Warning | 0x00000000 = OK button
+	proc.Call(0, uintptr(unsafe.Pointer(m)), uintptr(unsafe.Pointer(t)), 0x30)
+}
+
+func (d *DolphinHookManager) ReadSeed() (string, error) {
+	if !d.IsHooked {
+		return "", fmt.Errorf("not hooked")
+	}
+	data, err := d.Read(ADDR_SEED, 4)
+	if err != nil || data == nil {
+		return "", err
+	}
+	return fmt.Sprintf("%X", data), nil
 }

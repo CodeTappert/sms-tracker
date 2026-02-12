@@ -16,7 +16,8 @@
       "shines_available": [
         {
           "id": "airport1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 86
         }
       ],
       "blue_coin_ids": [],
@@ -27,7 +28,8 @@
       "shines_available": [
         {
           "id": "bia_ex1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 87
         }
       ],
       "blue_coin_ids": [],
@@ -38,7 +40,8 @@
       "shines_available": [
         {
           "id": "bianco0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 0
         }
       ],
       "blue_coin_ids": [
@@ -125,7 +128,8 @@
       "shines_available": [
         {
           "id": "bianco3_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 3
         }
       ],
       "blue_coin_ids": [
@@ -162,7 +166,8 @@
       "shines_available": [
         {
           "id": "bianco4_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 4
         }
       ],
       "blue_coin_ids": [
@@ -201,7 +206,8 @@
       "shines_available": [
         {
           "id": "bianco5_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 7
         }
       ],
       "blue_coin_ids": [
@@ -252,7 +258,8 @@
       "shines_available": [
         {
           "id": "bianco6_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 6
         }
       ],
       "blue_coin_ids": [
@@ -344,7 +351,8 @@
       "shines_available": [
         {
           "id": "biancoBoss_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 1
         }
       ],
       "blue_coin_ids": [],
@@ -384,11 +392,13 @@
       "shines_available": [
         {
           "id": "coro_ex0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 5
         },
         {
           "id": "coro_ex0_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 9
         }
       ],
       "blue_coin_ids": [],
@@ -399,11 +409,13 @@
       "shines_available": [
         {
           "id": "coro_ex1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 2
         },
         {
           "id": "coro_ex1_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 8
         }
       ],
       "blue_coin_ids": [],
@@ -414,11 +426,13 @@
       "shines_available": [
         {
           "id": "coro_ex2_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 13
         },
         {
           "id": "coro_ex2_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 18
         }
       ],
       "blue_coin_ids": [],
@@ -429,11 +443,13 @@
       "shines_available": [
         {
           "id": "coro_ex4_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 31
         },
         {
           "id": "coro_ex4_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [],
@@ -444,11 +460,13 @@
       "shines_available": [
         {
           "id": "coro_ex5_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 41
         },
         {
           "id": "coro_ex5_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [],
@@ -458,7 +476,16 @@
       "name": "Corona Mountain",
       "shines_available": [],
       "blue_coin_ids": [
-        "540b4","541b5","542b6","543b7", "544b0","545b1","546b2","547b3","548b4","549b5"
+        "540b4",
+        "541b5",
+        "542b6",
+        "543b7",
+        "544b0",
+        "545b1",
+        "546b2",
+        "547b3",
+        "548b4",
+        "549b5"
       ],
       "exits": [
         {
@@ -472,7 +499,8 @@
       "shines_available": [
         {
           "id": "coronaBoss_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [],
@@ -481,7 +509,9 @@
     "delfino0": {
       "name": "Sirena Beach: Hotel Delfino Episode 2: The Hotel Lobby's Secret",
       "shines_available": [],
-      "blue_coin_ids": ["392b0"],
+      "blue_coin_ids": [
+        "392b0"
+      ],
       "exits": [
         {
           "id": "delfino0_secret",
@@ -494,11 +524,19 @@
       "shines_available": [
         {
           "id": "delfino1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 42
         }
       ],
       "blue_coin_ids": [
-        "392b0", "376b0", "378b2", "379b3", "380b4", "381b5", "382b6", "383b7"
+        "392b0",
+        "376b0",
+        "378b2",
+        "379b3",
+        "380b4",
+        "381b5",
+        "382b6",
+        "383b7"
       ],
       "exits": []
     },
@@ -506,7 +544,16 @@
       "name": "Sirena Beach: Hotel Delfino Episode 4: The Secret of Casino Delfino",
       "shines_available": [],
       "blue_coin_ids": [
-        "376b0", "377b1", "378b2", "379b3", "380b4", "381b5", "382b6", "383b7", "385b1", "386b2"
+        "376b0",
+        "377b1",
+        "378b2",
+        "379b3",
+        "380b4",
+        "381b5",
+        "382b6",
+        "383b7",
+        "385b1",
+        "386b2"
       ],
       "exits": [
         {
@@ -519,7 +566,16 @@
       "name": "Sirena Beach: Hotel Delfino Episode 5: King Boo Down Below",
       "shines_available": [],
       "blue_coin_ids": [
-        "376b0", "377b1", "378b2", "379b3", "380b4", "381b5", "382b6", "383b7", "385b1", "392b0"
+        "376b0",
+        "377b1",
+        "378b2",
+        "379b3",
+        "380b4",
+        "381b5",
+        "382b6",
+        "383b7",
+        "385b1",
+        "392b0"
       ],
       "exits": [
         {
@@ -533,11 +589,27 @@
       "shines_available": [
         {
           "id": "delfino3_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 46
         }
       ],
       "blue_coin_ids": [
-        "376b0", "377b1", "378b2", "379b3", "380b4", "381b5", "382b6", "383b7", "385b1", "392b0", "389b5", "393b1", "394b2", "395b3", "396b4", "397b5"
+        "376b0",
+        "377b1",
+        "378b2",
+        "379b3",
+        "380b4",
+        "381b5",
+        "382b6",
+        "383b7",
+        "385b1",
+        "392b0",
+        "389b5",
+        "393b1",
+        "394b2",
+        "395b3",
+        "396b4",
+        "397b5"
       ],
       "exits": []
     },
@@ -546,11 +618,27 @@
       "shines_available": [
         {
           "id": "delfino4_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 47
         }
       ],
       "blue_coin_ids": [
-        "376b0", "377b1", "378b2", "379b3", "380b4", "381b5", "382b6", "383b7", "385b1", "389b5", "392b0", "393b1", "394b2", "395b3", "396b4", "397b5"
+        "376b0",
+        "377b1",
+        "378b2",
+        "379b3",
+        "380b4",
+        "381b5",
+        "382b6",
+        "383b7",
+        "385b1",
+        "389b5",
+        "392b0",
+        "393b1",
+        "394b2",
+        "395b3",
+        "396b4",
+        "397b5"
       ],
       "exits": []
     },
@@ -559,7 +647,8 @@
       "shines_available": [
         {
           "id": "delfinoBoss_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 44
         }
       ],
       "blue_coin_ids": [],
@@ -570,7 +659,8 @@
       "shines_available": [
         {
           "id": "dolpic_ex0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [
@@ -581,18 +671,79 @@
     "dolpic_base": {
       "name": "Delfino Plaza",
       "shines_available": [
-        { "id": "beach_treasure", "name": "Beach Treasure" },
-        { "id": "crate_1", "name": "Break the Crate (1)" },
-        { "id": "crate_2", "name": "Break the Crate (2)" },
-        { "id": "chuckster_toss", "name": "Chuckster Toss to Shine" },
-        { "id": "western_bell", "name": "Clear Western Bell" },
-        { "id": "eastern_bell", "name": "Clear Eastern Bell" },
-        { "id": "gold_bird", "name": "Gold Bird" },
-        { "id": "turbo_nozzle_break", "name": "Turbo Nozzle Western Tower" },
-        { "id": "lighthouse_shine", "name": "Lighthouse Shine" },
-        { "id": "shinegate_clear", "name": "Shine Gate Clear" }
+        {
+          "id": "beach_treasure",
+          "name": "Beach Treasure",
+          "num_id": 117
+        },
+        {
+          "id": "crate_1",
+          "name": "Break the Crate (1)",
+          "num_id": 9999
+        },
+        {
+          "id": "crate_2",
+          "name": "Break the Crate (2)",
+          "num_id": 95
+        },
+        {
+          "id": "chuckster_toss",
+          "name": "Chuckster Toss to Shine",
+          "num_id": 98
+        },
+        {
+          "id": "western_bell",
+          "name": "Clear Western Bell",
+          "num_id": 9999
+        },
+        {
+          "id": "eastern_bell",
+          "name": "Clear Eastern Bell",
+          "num_id": 97
+        },
+        {
+          "id": "gold_bird",
+          "name": "Gold Bird",
+          "num_id": 118
+        },
+        {
+          "id": "turbo_nozzle_break",
+          "name": "Turbo Nozzle Western Tower",
+          "num_id": 9999
+        },
+        {
+          "id": "lighthouse_shine",
+          "name": "Lighthouse Shine",
+          "num_id": 93
+        },
+        {
+          "id": "shinegate_clear",
+          "name": "Shine Gate Clear",
+          "num_id": 99
+        }
       ],
-      "blue_coin_ids": ["120b0","121b1","122b2","123b3","124b4","125b5","126b6","127b7","128b0","129b1","130b2","131b3","132b4","133b5","134b6","135b7","136b0","137b1","138b2","139b3"],
+      "blue_coin_ids": [
+        "120b0",
+        "121b1",
+        "122b2",
+        "123b3",
+        "124b4",
+        "125b5",
+        "126b6",
+        "127b7",
+        "128b0",
+        "129b1",
+        "130b2",
+        "131b3",
+        "132b4",
+        "133b5",
+        "134b6",
+        "135b7",
+        "136b0",
+        "137b1",
+        "138b2",
+        "139b3"
+      ],
       "exits": [
         {
           "id": "dolpic_base_1",
@@ -625,7 +776,8 @@
       "shines_available": [
         {
           "id": "dolpic_ex1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 90
         }
       ],
       "blue_coin_ids": [],
@@ -636,7 +788,8 @@
       "shines_available": [
         {
           "id": "dolpic_ex2_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 89
         }
       ],
       "blue_coin_ids": [],
@@ -647,7 +800,8 @@
       "shines_available": [
         {
           "id": "dolpic_ex3_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [],
@@ -658,7 +812,8 @@
       "shines_available": [
         {
           "id": "dolpic_ex4_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 91
         }
       ],
       "blue_coin_ids": [],
@@ -674,11 +829,13 @@
       "shines_available": [
         {
           "id": "mam_ex0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 20
         },
         {
           "id": "mam_ex0_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 28
         }
       ],
       "blue_coin_ids": [],
@@ -689,11 +846,15 @@
       "shines_available": [
         {
           "id": "mam_ex1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 23
         }
       ],
       "blue_coin_ids": [
-        "296b0","297b1","298b2","299b3"
+        "296b0",
+        "297b1",
+        "298b2",
+        "299b3"
       ],
       "exits": []
     },
@@ -702,11 +863,33 @@
       "shines_available": [
         {
           "id": "mamma_secret",
-          "name": "Dune Bud Secret"
+          "name": "Dune Bud Secret",
+          "num_id": 29
         }
       ],
       "blue_coin_ids": [
-        "270b6","271b7","272b0","274b2","275b3","276b4","277b5","278b6","280b0","281b1","282b2","283b3","284b4","285b5","286b6","287b7","288b0","289b1","290b2","291b3","293b5","294b6"
+        "270b6",
+        "271b7",
+        "272b0",
+        "274b2",
+        "275b3",
+        "276b4",
+        "277b5",
+        "278b6",
+        "280b0",
+        "281b1",
+        "282b2",
+        "283b3",
+        "284b4",
+        "285b5",
+        "286b6",
+        "287b7",
+        "288b0",
+        "289b1",
+        "290b2",
+        "291b3",
+        "293b5",
+        "294b6"
       ],
       "exits": [
         {
@@ -720,15 +903,39 @@
       "shines_available": [
         {
           "id": "mamma1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 21
         },
         {
           "id": "mamma_secret",
-          "name": "Dune Bud Secret"
+          "name": "Dune Bud Secret",
+          "num_id": 29
         }
       ],
       "blue_coin_ids": [
-        "270b6","271b7","272b0","274b2","275b3","276b4","277b5","278b6","280b0","281b1","282b2","283b3","284b4","285b5","286b6","287b7","288b0","289b1","290b2","291b3","292b4","293b5","294b6"
+        "270b6",
+        "271b7",
+        "272b0",
+        "274b2",
+        "275b3",
+        "276b4",
+        "277b5",
+        "278b6",
+        "280b0",
+        "281b1",
+        "282b2",
+        "283b3",
+        "284b4",
+        "285b5",
+        "286b6",
+        "287b7",
+        "288b0",
+        "289b1",
+        "290b2",
+        "291b3",
+        "292b4",
+        "293b5",
+        "294b6"
       ],
       "exits": []
     },
@@ -737,15 +944,30 @@
       "shines_available": [
         {
           "id": "mamma2_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 22
         },
         {
           "id": "mamma_secret",
-          "name": "Dune Bud Secret"
+          "name": "Dune Bud Secret",
+          "num_id": 29
         }
       ],
       "blue_coin_ids": [
-        "275b3","276b4","277b5","278b6","280b0","281b1","282b2","283b3","288b0","289b1","290b2","291b3","293b5","294b6"
+        "275b3",
+        "276b4",
+        "277b5",
+        "278b6",
+        "280b0",
+        "281b1",
+        "282b2",
+        "283b3",
+        "288b0",
+        "289b1",
+        "290b2",
+        "291b3",
+        "293b5",
+        "294b6"
       ],
       "exits": []
     },
@@ -754,11 +976,34 @@
       "shines_available": [
         {
           "id": "mamma_secret",
-          "name": "Dune Bud Secret"
+          "name": "Dune Bud Secret",
+          "num_id": 29
         }
       ],
       "blue_coin_ids": [
-        "270b6","271b7","272b0","274b2","275b3","276b4","277b5","278b6","280b0","281b1","282b2","283b3","284b4","285b5","286b6","287b7","288b0","289b1","290b2","291b3","292b4","293b5","294b6"
+        "270b6",
+        "271b7",
+        "272b0",
+        "274b2",
+        "275b3",
+        "276b4",
+        "277b5",
+        "278b6",
+        "280b0",
+        "281b1",
+        "282b2",
+        "283b3",
+        "284b4",
+        "285b5",
+        "286b6",
+        "287b7",
+        "288b0",
+        "289b1",
+        "290b2",
+        "291b3",
+        "292b4",
+        "293b5",
+        "294b6"
       ],
       "exits": [
         {
@@ -772,15 +1017,39 @@
       "shines_available": [
         {
           "id": "mamma4_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 24
         },
         {
           "id": "mamma_secret",
-          "name": "Dune Bud Secret"
+          "name": "Dune Bud Secret",
+          "num_id": 29
         }
       ],
       "blue_coin_ids": [
-        "271b7","272b0","273b1","274b2","275b3","276b4","277b5","278b6","280b0","281b1","282b2","283b3","284b4","285b5","286b6","287b7","288b0","289b1","290b2","291b3","292b4","293b5","294b6"
+        "271b7",
+        "272b0",
+        "273b1",
+        "274b2",
+        "275b3",
+        "276b4",
+        "277b5",
+        "278b6",
+        "280b0",
+        "281b1",
+        "282b2",
+        "283b3",
+        "284b4",
+        "285b5",
+        "286b6",
+        "287b7",
+        "288b0",
+        "289b1",
+        "290b2",
+        "291b3",
+        "292b4",
+        "293b5",
+        "294b6"
       ],
       "exits": []
     },
@@ -789,15 +1058,41 @@
       "shines_available": [
         {
           "id": "mamma5_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 25
         },
         {
           "id": "mamma_secret",
-          "name": "Dune Bud Secret"
+          "name": "Dune Bud Secret",
+          "num_id": 29
         }
       ],
       "blue_coin_ids": [
-        "271b7","272b0","273b1","274b2","275b3","276b4","277b5","278b6","279b7","280b0","281b1","282b2","283b3","284b4","285b5","286b6","287b7","288b0","289b1","290b2","291b3","292b4","293b5","294b6","295b7"
+        "271b7",
+        "272b0",
+        "273b1",
+        "274b2",
+        "275b3",
+        "276b4",
+        "277b5",
+        "278b6",
+        "279b7",
+        "280b0",
+        "281b1",
+        "282b2",
+        "283b3",
+        "284b4",
+        "285b5",
+        "286b6",
+        "287b7",
+        "288b0",
+        "289b1",
+        "290b2",
+        "291b3",
+        "292b4",
+        "293b5",
+        "294b6",
+        "295b7"
       ],
       "exits": []
     },
@@ -806,15 +1101,39 @@
       "shines_available": [
         {
           "id": "mamma6_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 26
         },
         {
           "id": "mamma_secret",
-          "name": "Dune Bud Secret"
+          "name": "Dune Bud Secret",
+          "num_id": 29
         }
       ],
       "blue_coin_ids": [
-        "271b7","272b0","273b1","274b2","275b3","276b4","277b5","278b6","280b0","281b1","282b2","283b3","284b4","285b5","286b6","287b7","288b0","289b1","290b2","291b3","292b4","293b5","294b6"
+        "271b7",
+        "272b0",
+        "273b1",
+        "274b2",
+        "275b3",
+        "276b4",
+        "277b5",
+        "278b6",
+        "280b0",
+        "281b1",
+        "282b2",
+        "283b3",
+        "284b4",
+        "285b5",
+        "286b6",
+        "287b7",
+        "288b0",
+        "289b1",
+        "290b2",
+        "291b3",
+        "292b4",
+        "293b5",
+        "294b6"
       ],
       "exits": []
     },
@@ -823,15 +1142,39 @@
       "shines_available": [
         {
           "id": "mamma7_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 27
         },
         {
           "id": "mamma_secret",
-          "name": "Dune Bud Secret"
+          "name": "Dune Bud Secret",
+          "num_id": 29
         }
       ],
       "blue_coin_ids": [
-        "271b7","272b0","273b1","274b2","275b3","276b4","277b5","278b6","280b0","281b1","282b2","283b3","284b4","285b5","286b6","287b7","288b0","289b1","290b2","291b3","292b4","293b5","294b6"
+        "271b7",
+        "272b0",
+        "273b1",
+        "274b2",
+        "275b3",
+        "276b4",
+        "277b5",
+        "278b6",
+        "280b0",
+        "281b1",
+        "282b2",
+        "283b3",
+        "284b4",
+        "285b5",
+        "286b6",
+        "287b7",
+        "288b0",
+        "289b1",
+        "290b2",
+        "291b3",
+        "292b4",
+        "293b5",
+        "294b6"
       ],
       "exits": []
     },
@@ -840,15 +1183,36 @@
       "shines_available": [
         {
           "id": "mare0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 50
         },
         {
           "id": "mare_secret",
-          "name": "Golden Bird Secret"
+          "name": "Golden Bird Secret",
+          "num_id": 59
         }
       ],
       "blue_coin_ids": [
-        "470b6","473b1","474b2","475b3","476b4","477b5","478b6","479b7","480b0","481b1","482b2","483b3","484b4","485b5","486b6","487b7","490b2","491b3","492b4","493b5"
+        "470b6",
+        "473b1",
+        "474b2",
+        "475b3",
+        "476b4",
+        "477b5",
+        "478b6",
+        "479b7",
+        "480b0",
+        "481b1",
+        "482b2",
+        "483b3",
+        "484b4",
+        "485b5",
+        "486b6",
+        "487b7",
+        "490b2",
+        "491b3",
+        "492b4",
+        "493b5"
       ],
       "exits": []
     },
@@ -857,15 +1221,40 @@
       "shines_available": [
         {
           "id": "mare1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 51
         },
         {
           "id": "mare_secret",
-          "name": "Golden Bird Secret"
+          "name": "Golden Bird Secret",
+          "num_id": 59
         }
       ],
       "blue_coin_ids": [
-        "470b6","471b7","472b0","473b1","474b2","475b3","476b4","477b5","478b6","479b7","480b0","481b1","482b2","483b3","484b4","485b5","486b6","487b7","488b0","489b1","490b2","491b3","492b4","493b5"
+        "470b6",
+        "471b7",
+        "472b0",
+        "473b1",
+        "474b2",
+        "475b3",
+        "476b4",
+        "477b5",
+        "478b6",
+        "479b7",
+        "480b0",
+        "481b1",
+        "482b2",
+        "483b3",
+        "484b4",
+        "485b5",
+        "486b6",
+        "487b7",
+        "488b0",
+        "489b1",
+        "490b2",
+        "491b3",
+        "492b4",
+        "493b5"
       ],
       "exits": []
     },
@@ -886,11 +1275,35 @@
       "shines_available": [
         {
           "id": "mare_secret",
-          "name": "Golden Bird Secret"
+          "name": "Golden Bird Secret",
+          "num_id": 59
         }
       ],
       "blue_coin_ids": [
-        "470b6","471b7","472b0","473b1","474b2","475b3","476b4","477b5","478b6","479b7","480b0","481b1","482b2","483b3","484b4","485b5","486b6","487b7","488b0","489b1","490b2","491b3","492b4","493b5"
+        "470b6",
+        "471b7",
+        "472b0",
+        "473b1",
+        "474b2",
+        "475b3",
+        "476b4",
+        "477b5",
+        "478b6",
+        "479b7",
+        "480b0",
+        "481b1",
+        "482b2",
+        "483b3",
+        "484b4",
+        "485b5",
+        "486b6",
+        "487b7",
+        "488b0",
+        "489b1",
+        "490b2",
+        "491b3",
+        "492b4",
+        "493b5"
       ],
       "exits": [
         {
@@ -904,15 +1317,40 @@
       "shines_available": [
         {
           "id": "mare4_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 54
         },
         {
           "id": "mare_secret",
-          "name": "Golden Bird Secret"
+          "name": "Golden Bird Secret",
+          "num_id": 59
         }
       ],
       "blue_coin_ids": [
-        "470b6","471b7","472b0","473b1","474b2","475b3","476b4","477b5","478b6","479b7","480b0","481b1","482b2","483b3","484b4","485b5","486b6","487b7","488b0","489b1","490b2","491b3","492b4","493b5"
+        "470b6",
+        "471b7",
+        "472b0",
+        "473b1",
+        "474b2",
+        "475b3",
+        "476b4",
+        "477b5",
+        "478b6",
+        "479b7",
+        "480b0",
+        "481b1",
+        "482b2",
+        "483b3",
+        "484b4",
+        "485b5",
+        "486b6",
+        "487b7",
+        "488b0",
+        "489b1",
+        "490b2",
+        "491b3",
+        "492b4",
+        "493b5"
       ],
       "exits": []
     },
@@ -921,11 +1359,37 @@
       "shines_available": [
         {
           "id": "mare_secret",
-          "name": "Golden Bird Secret"
+          "name": "Golden Bird Secret",
+          "num_id": 59
         }
       ],
       "blue_coin_ids": [
-        "470b6","471b7","472b0","473b1","474b2","475b3","476b4","477b5","478b6","479b7","480b0","481b1","482b2","483b3","484b4","485b5","486b6","487b7","488b0","489b1","490b2","491b3","492b4","493b5","494b6","498b2"
+        "470b6",
+        "471b7",
+        "472b0",
+        "473b1",
+        "474b2",
+        "475b3",
+        "476b4",
+        "477b5",
+        "478b6",
+        "479b7",
+        "480b0",
+        "481b1",
+        "482b2",
+        "483b3",
+        "484b4",
+        "485b5",
+        "486b6",
+        "487b7",
+        "488b0",
+        "489b1",
+        "490b2",
+        "491b3",
+        "492b4",
+        "493b5",
+        "494b6",
+        "498b2"
       ],
       "exits": [
         {
@@ -939,15 +1403,42 @@
       "shines_available": [
         {
           "id": "mare6_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 56
         },
         {
           "id": "mare_secret",
-          "name": "Golden Bird Secret"
+          "name": "Golden Bird Secret",
+          "num_id": 59
         }
       ],
       "blue_coin_ids": [
-        "470b6","471b7","472b0","473b1","474b2","475b3","476b4","477b5","478b6","479b7","480b0","481b1","482b2","483b3","484b4","485b5","486b6","487b7","488b0","489b1","490b2","491b3","492b4","493b5","494b6","498b2"
+        "470b6",
+        "471b7",
+        "472b0",
+        "473b1",
+        "474b2",
+        "475b3",
+        "476b4",
+        "477b5",
+        "478b6",
+        "479b7",
+        "480b0",
+        "481b1",
+        "482b2",
+        "483b3",
+        "484b4",
+        "485b5",
+        "486b6",
+        "487b7",
+        "488b0",
+        "489b1",
+        "490b2",
+        "491b3",
+        "492b4",
+        "493b5",
+        "494b6",
+        "498b2"
       ],
       "exits": []
     },
@@ -956,11 +1447,37 @@
       "shines_available": [
         {
           "id": "mare_secret",
-          "name": "Golden Bird Secret"
+          "name": "Golden Bird Secret",
+          "num_id": 59
         }
       ],
       "blue_coin_ids": [
-        "470b6","471b7","472b0","473b1","474b2","475b3","476b4","477b5","478b6","479b7","480b0","481b1","482b2","483b3","484b4","485b5","486b6","487b7","488b0","489b1","490b2","491b3","492b4","493b5","494b6","498b2"
+        "470b6",
+        "471b7",
+        "472b0",
+        "473b1",
+        "474b2",
+        "475b3",
+        "476b4",
+        "477b5",
+        "478b6",
+        "479b7",
+        "480b0",
+        "481b1",
+        "482b2",
+        "483b3",
+        "484b4",
+        "485b5",
+        "486b6",
+        "487b7",
+        "488b0",
+        "489b1",
+        "490b2",
+        "491b3",
+        "492b4",
+        "493b5",
+        "494b6",
+        "498b2"
       ],
       "exits": [
         {
@@ -974,7 +1491,8 @@
       "shines_available": [
         {
           "id": "mareBoss_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 53
         }
       ],
       "blue_coin_ids": [
@@ -990,7 +1508,8 @@
       "shines_available": [
         {
           "id": "mareUndersea_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 57
         }
       ],
       "blue_coin_ids": [
@@ -1006,7 +1525,8 @@
       "shines_available": [
         {
           "id": "mare_ex0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 52
         }
       ],
       "blue_coin_ids": [],
@@ -1017,11 +1537,25 @@
       "shines_available": [
         {
           "id": "monte0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [
-        "420b4","429b5","432b0","433b1","434b2","435b3","438b6","439b7","443b3","444b4","445b5","446b6","447b7","448b0"
+        "420b4",
+        "429b5",
+        "432b0",
+        "433b1",
+        "434b2",
+        "435b3",
+        "438b6",
+        "439b7",
+        "443b3",
+        "444b4",
+        "445b5",
+        "446b6",
+        "447b7",
+        "448b0"
       ],
       "exits": []
     },
@@ -1030,11 +1564,24 @@
       "shines_available": [
         {
           "id": "monte1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 61
         }
       ],
       "blue_coin_ids": [
-        "431b7","432b0","433b1","434b2","435b3","438b6","439b7","443b3","444b4","445b5","446b6","447b7","448b0"
+        "431b7",
+        "432b0",
+        "433b1",
+        "434b2",
+        "435b3",
+        "438b6",
+        "439b7",
+        "443b3",
+        "444b4",
+        "445b5",
+        "446b6",
+        "447b7",
+        "448b0"
       ],
       "exits": []
     },
@@ -1043,11 +1590,28 @@
       "shines_available": [
         {
           "id": "monte2_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [
-        "420b4","429b5","430b6","432b0","433b1","434b2","435b3","438b6","439b7","442b2","443b3","444b4","445b5","446b6","447b7","448b0","449b1"
+        "420b4",
+        "429b5",
+        "430b6",
+        "432b0",
+        "433b1",
+        "434b2",
+        "435b3",
+        "438b6",
+        "439b7",
+        "442b2",
+        "443b3",
+        "444b4",
+        "445b5",
+        "446b6",
+        "447b7",
+        "448b0",
+        "449b1"
       ],
       "exits": []
     },
@@ -1056,11 +1620,32 @@
       "shines_available": [
         {
           "id": "monte3_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [
-        "421b5","422b6","423b7","424b0","425b1","426b2","427b3","428b4","431b7","432b0","433b1","434b2","435b3","438b6","439b7","443b3","444b4","445b5","446b6","447b7","448b0"
+        "421b5",
+        "422b6",
+        "423b7",
+        "424b0",
+        "425b1",
+        "426b2",
+        "427b3",
+        "428b4",
+        "431b7",
+        "432b0",
+        "433b1",
+        "434b2",
+        "435b3",
+        "438b6",
+        "439b7",
+        "443b3",
+        "444b4",
+        "445b5",
+        "446b6",
+        "447b7",
+        "448b0"
       ],
       "exits": []
     },
@@ -1069,7 +1654,23 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "420b4","429b5","432b0","433b1","434b2","435b3","436b4","437b5","438b6","439b7","440b0","443b3","444b4","445b5","446b6","447b7","448b0"
+        "420b4",
+        "429b5",
+        "432b0",
+        "433b1",
+        "434b2",
+        "435b3",
+        "436b4",
+        "437b5",
+        "438b6",
+        "439b7",
+        "440b0",
+        "443b3",
+        "444b4",
+        "445b5",
+        "446b6",
+        "447b7",
+        "448b0"
       ],
       "exits": [
         {
@@ -1083,11 +1684,24 @@
       "shines_available": [
         {
           "id": "monte5_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [
-        "431b7","432b0","433b1","434b2","435b3","438b6","439b7","443b3","444b4","445b5","446b6","447b7","448b0"
+        "431b7",
+        "432b0",
+        "433b1",
+        "434b2",
+        "435b3",
+        "438b6",
+        "439b7",
+        "443b3",
+        "444b4",
+        "445b5",
+        "446b6",
+        "447b7",
+        "448b0"
       ],
       "exits": []
     },
@@ -1096,11 +1710,25 @@
       "shines_available": [
         {
           "id": "monte6_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [
-        "420b4","429b5","432b0","433b1","434b2","435b3","438b6","439b7","443b3","444b4","445b5","446b6","447b7","448b0"
+        "420b4",
+        "429b5",
+        "432b0",
+        "433b1",
+        "434b2",
+        "435b3",
+        "438b6",
+        "439b7",
+        "443b3",
+        "444b4",
+        "445b5",
+        "446b6",
+        "447b7",
+        "448b0"
       ],
       "exits": []
     },
@@ -1109,15 +1737,30 @@
       "shines_available": [
         {
           "id": "monte7_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 9999
         },
         {
           "id": "monte_secret",
-          "name": "Spray the Sun Secret"
+          "name": "Spray the Sun Secret",
+          "num_id": 69
         }
       ],
       "blue_coin_ids": [
-        "431b7","432b0","433b1","434b2","435b3","438b6","439b7","441b1","443b3","444b4","445b5","446b6","447b7","448b0"
+        "431b7",
+        "432b0",
+        "433b1",
+        "434b2",
+        "435b3",
+        "438b6",
+        "439b7",
+        "441b1",
+        "443b3",
+        "444b4",
+        "445b5",
+        "446b6",
+        "447b7",
+        "448b0"
       ],
       "exits": []
     },
@@ -1126,11 +1769,13 @@
       "shines_available": [
         {
           "id": "monte_ex0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 64
         },
         {
           "id": "monte_ex0_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 68
         }
       ],
       "blue_coin_ids": [],
@@ -1140,7 +1785,8 @@
       "name": "Pinna Island: Pinna Beach Episode 1: Mecha-Bowser Appears!",
       "shines_available": [],
       "blue_coin_ids": [
-        "348b4", "349b5"
+        "348b4",
+        "349b5"
       ],
       "exits": [
         {
@@ -1154,7 +1800,14 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "340b4", "341b5", "342b6", "345b1", "346b2", "347b3", "348b4", "349b5"
+        "340b4",
+        "341b5",
+        "342b6",
+        "345b1",
+        "346b2",
+        "347b3",
+        "348b4",
+        "349b5"
       ],
       "exits": [
         {
@@ -1168,11 +1821,13 @@
       "shines_available": [
         {
           "id": "pinnaBeach2_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 33
         }
       ],
       "blue_coin_ids": [
-        "348b4", "349b5"
+        "348b4",
+        "349b5"
       ],
       "exits": []
     },
@@ -1181,7 +1836,8 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "348b4", "349b5"
+        "348b4",
+        "349b5"
       ],
       "exits": [
         {
@@ -1194,7 +1850,10 @@
       "name": "Pinna Island: Pinna Beach Episode 5: The Runaway Ferris Wheel",
       "shines_available": [],
       "blue_coin_ids": [
-        "343b7", "344b0", "348b4", "349b5"
+        "343b7",
+        "344b0",
+        "348b4",
+        "349b5"
       ],
       "exits": [
         {
@@ -1207,7 +1866,10 @@
       "name": "Pinna Island: Pinna Beach Episode 6: The Yoshi-Go-Round's Secret",
       "shines_available": [],
       "blue_coin_ids": [
-        "343b7", "344b0", "348b4", "349b5"
+        "343b7",
+        "344b0",
+        "348b4",
+        "349b5"
       ],
       "exits": [
         {
@@ -1220,7 +1882,10 @@
       "name": "Pinna Island: Pinna Beach Episode 7: Shadow Mario in the Park",
       "shines_available": [],
       "blue_coin_ids": [
-        "343b7", "344b0", "348b4", "349b5"
+        "343b7",
+        "344b0",
+        "348b4",
+        "349b5"
       ],
       "exits": [
         {
@@ -1233,7 +1898,10 @@
       "name": "Pinna Island: Pinna Beach Episode 8: Roller Coaster Balloons",
       "shines_available": [],
       "blue_coin_ids": [
-        "343b7", "344b0", "348b4", "349b5"
+        "343b7",
+        "344b0",
+        "348b4",
+        "349b5"
       ],
       "exits": [
         {
@@ -1247,7 +1915,8 @@
       "shines_available": [
         {
           "id": "pinnaBoss0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 37
         }
       ],
       "blue_coin_ids": [],
@@ -1269,7 +1938,25 @@
       "name": "Pinna Island: Pinna Park Episode 1: Mecha-Bowser Appears!",
       "shines_available": [],
       "blue_coin_ids": [
-        "320b0", "321b1", "322b2", "323b3", "324b4", "325b5", "326b6", "327b7", "328b0", "329b1", "330b2", "331b3", "332b4", "333b5", "334b6", "336b0", "337b1", "338b2", "339b3"
+        "320b0",
+        "321b1",
+        "322b2",
+        "323b3",
+        "324b4",
+        "325b5",
+        "326b6",
+        "327b7",
+        "328b0",
+        "329b1",
+        "330b2",
+        "331b3",
+        "332b4",
+        "333b5",
+        "334b6",
+        "336b0",
+        "337b1",
+        "338b2",
+        "339b3"
       ],
       "exits": [
         {
@@ -1283,11 +1970,30 @@
       "shines_available": [
         {
           "id": "pinnaParco1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 32
         }
       ],
       "blue_coin_ids": [
-        "320b0", "321b1", "322b2", "323b3", "324b4", "325b5", "326b6", "327b7", "328b0", "329b1", "330b2", "331b3", "332b4", "333b5", "334b6", "336b0", "337b1", "338b2", "339b3"
+        "320b0",
+        "321b1",
+        "322b2",
+        "323b3",
+        "324b4",
+        "325b5",
+        "326b6",
+        "327b7",
+        "328b0",
+        "329b1",
+        "330b2",
+        "331b3",
+        "332b4",
+        "333b5",
+        "334b6",
+        "336b0",
+        "337b1",
+        "338b2",
+        "339b3"
       ],
       "exits": []
     },
@@ -1296,11 +2002,30 @@
       "shines_available": [
         {
           "id": "pinnaParco2_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 34
         }
       ],
       "blue_coin_ids": [
-        "320b0", "321b1", "322b2", "323b3", "324b4", "325b5", "326b6", "327b7", "328b0", "329b1", "330b2", "331b3", "332b4", "333b5", "334b6", "336b0", "337b1", "338b2", "339b3"
+        "320b0",
+        "321b1",
+        "322b2",
+        "323b3",
+        "324b4",
+        "325b5",
+        "326b6",
+        "327b7",
+        "328b0",
+        "329b1",
+        "330b2",
+        "331b3",
+        "332b4",
+        "333b5",
+        "334b6",
+        "336b0",
+        "337b1",
+        "338b2",
+        "339b3"
       ],
       "exits": []
     },
@@ -1309,7 +2034,26 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "320b0", "321b1", "322b2", "323b3", "324b4", "325b5", "326b6", "327b7", "328b0", "329b1", "330b2", "331b3", "332b4", "333b5", "334b6", "335b7", "336b0", "337b1", "338b2", "339b3"
+        "320b0",
+        "321b1",
+        "322b2",
+        "323b3",
+        "324b4",
+        "325b5",
+        "326b6",
+        "327b7",
+        "328b0",
+        "329b1",
+        "330b2",
+        "331b3",
+        "332b4",
+        "333b5",
+        "334b6",
+        "335b7",
+        "336b0",
+        "337b1",
+        "338b2",
+        "339b3"
       ],
       "exits": [
         {
@@ -1323,11 +2067,30 @@
       "shines_available": [
         {
           "id": "pinnaParco4_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 36
         }
       ],
       "blue_coin_ids": [
-        "320b0", "321b1", "322b2", "323b3", "324b4", "325b5", "326b6", "327b7", "328b0", "329b1", "330b2", "331b3", "332b4", "333b5", "334b6", "336b0", "337b1", "338b2", "339b3"
+        "320b0",
+        "321b1",
+        "322b2",
+        "323b3",
+        "324b4",
+        "325b5",
+        "326b6",
+        "327b7",
+        "328b0",
+        "329b1",
+        "330b2",
+        "331b3",
+        "332b4",
+        "333b5",
+        "334b6",
+        "336b0",
+        "337b1",
+        "338b2",
+        "339b3"
       ],
       "exits": []
     },
@@ -1336,7 +2099,25 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "320b0", "321b1", "322b2", "323b3", "324b4", "325b5", "326b6", "327b7", "328b0", "329b1", "330b2", "331b3", "332b4", "333b5", "334b6", "336b0", "337b1", "338b2", "339b3"
+        "320b0",
+        "321b1",
+        "322b2",
+        "323b3",
+        "324b4",
+        "325b5",
+        "326b6",
+        "327b7",
+        "328b0",
+        "329b1",
+        "330b2",
+        "331b3",
+        "332b4",
+        "333b5",
+        "334b6",
+        "336b0",
+        "337b1",
+        "338b2",
+        "339b3"
       ],
       "exits": [
         {
@@ -1361,11 +2142,30 @@
       "shines_available": [
         {
           "id": "pinnaParco7_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 30
         }
       ],
       "blue_coin_ids": [
-        "320b0", "321b1", "322b2", "323b3", "324b4", "325b5", "326b6", "327b7", "328b0", "329b1", "330b2", "331b3", "332b4", "333b5", "334b6", "336b0", "337b1", "338b2", "339b3"
+        "320b0",
+        "321b1",
+        "322b2",
+        "323b3",
+        "324b4",
+        "325b5",
+        "326b6",
+        "327b7",
+        "328b0",
+        "329b1",
+        "330b2",
+        "331b3",
+        "332b4",
+        "333b5",
+        "334b6",
+        "336b0",
+        "337b1",
+        "338b2",
+        "339b3"
       ],
       "exits": []
     },
@@ -1373,7 +2173,27 @@
       "name": "Ricco Harbor: Episode 1: Gooper Blooper Breaks Out: Scene 1: Before Gooper Blooper",
       "shines_available": [],
       "blue_coin_ids": [
-        "221b5","222b6","223b7","224b0","226b2","227b3","228b4","229b5","230b6","231b7","232b0","234b2","235b3","237b5","238b6","239b7","240b0","241b1","246b6","248b0","249b1"
+        "221b5",
+        "222b6",
+        "223b7",
+        "224b0",
+        "226b2",
+        "227b3",
+        "228b4",
+        "229b5",
+        "230b6",
+        "231b7",
+        "232b0",
+        "234b2",
+        "235b3",
+        "237b5",
+        "238b6",
+        "239b7",
+        "240b0",
+        "241b1",
+        "246b6",
+        "248b0",
+        "249b1"
       ],
       "exits": [
         {
@@ -1387,7 +2207,24 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "221b5","222b6","223b7","224b0","226b2","228b4","229b5","230b6","231b7","232b0","234b2","235b3","236b4","237b5","238b6","239b7","240b0","248b0"
+        "221b5",
+        "222b6",
+        "223b7",
+        "224b0",
+        "226b2",
+        "228b4",
+        "229b5",
+        "230b6",
+        "231b7",
+        "232b0",
+        "234b2",
+        "235b3",
+        "236b4",
+        "237b5",
+        "238b6",
+        "239b7",
+        "240b0",
+        "248b0"
       ],
       "exits": [
         {
@@ -1401,11 +2238,31 @@
       "shines_available": [
         {
           "id": "ricco2_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 12
         }
       ],
       "blue_coin_ids": [
-        "221b5","222b6","223b7","224b0","226b2","228b4","229b5","230b6","231b7","232b0","233b1","234b2","235b3","237b5","238b6","239b7","240b0","243b3","244b4","248b0"
+        "221b5",
+        "222b6",
+        "223b7",
+        "224b0",
+        "226b2",
+        "228b4",
+        "229b5",
+        "230b6",
+        "231b7",
+        "232b0",
+        "233b1",
+        "234b2",
+        "235b3",
+        "237b5",
+        "238b6",
+        "239b7",
+        "240b0",
+        "243b3",
+        "244b4",
+        "248b0"
       ],
       "exits": []
     },
@@ -1414,7 +2271,27 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "221b5","222b6","223b7","224b0","226b2","228b4","229b5","230b6","231b7","232b0","233b1","234b2","235b3","237b5","238b6","239b7","240b0","243b3","244b4","247b7","248b0"
+        "221b5",
+        "222b6",
+        "223b7",
+        "224b0",
+        "226b2",
+        "228b4",
+        "229b5",
+        "230b6",
+        "231b7",
+        "232b0",
+        "233b1",
+        "234b2",
+        "235b3",
+        "237b5",
+        "238b6",
+        "239b7",
+        "240b0",
+        "243b3",
+        "244b4",
+        "247b7",
+        "248b0"
       ],
       "exits": [
         {
@@ -1428,11 +2305,32 @@
       "shines_available": [
         {
           "id": "ricco4_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 14
         }
       ],
       "blue_coin_ids": [
-        "221b5","222b6","223b7","224b0","226b2","228b4","229b5","230b6","231b7","232b0","233b1","234b2","235b3","237b5","238b6","239b7","240b0","243b3","244b4","247b7","248b0"
+        "221b5",
+        "222b6",
+        "223b7",
+        "224b0",
+        "226b2",
+        "228b4",
+        "229b5",
+        "230b6",
+        "231b7",
+        "232b0",
+        "233b1",
+        "234b2",
+        "235b3",
+        "237b5",
+        "238b6",
+        "239b7",
+        "240b0",
+        "243b3",
+        "244b4",
+        "247b7",
+        "248b0"
       ],
       "exits": []
     },
@@ -1441,11 +2339,32 @@
       "shines_available": [
         {
           "id": "ricco5_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 15
         }
       ],
       "blue_coin_ids": [
-        "221b5","222b6","223b7","224b0","226b2","228b4","229b5","230b6","231b7","232b0","233b1","234b2","235b3","237b5","238b6","239b7","240b0","243b3","244b4","247b7","248b0"
+        "221b5",
+        "222b6",
+        "223b7",
+        "224b0",
+        "226b2",
+        "228b4",
+        "229b5",
+        "230b6",
+        "231b7",
+        "232b0",
+        "233b1",
+        "234b2",
+        "235b3",
+        "237b5",
+        "238b6",
+        "239b7",
+        "240b0",
+        "243b3",
+        "244b4",
+        "247b7",
+        "248b0"
       ],
       "exits": []
     },
@@ -1454,11 +2373,32 @@
       "shines_available": [
         {
           "id": "ricco6_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 16
         }
       ],
       "blue_coin_ids": [
-        "221b5","222b6","223b7","224b0","226b2","228b4","229b5","230b6","231b7","232b0","233b1","234b2","235b3","237b5","238b6","239b7","240b0","243b3","244b4","247b7","248b0"
+        "221b5",
+        "222b6",
+        "223b7",
+        "224b0",
+        "226b2",
+        "228b4",
+        "229b5",
+        "230b6",
+        "231b7",
+        "232b0",
+        "233b1",
+        "234b2",
+        "235b3",
+        "237b5",
+        "238b6",
+        "239b7",
+        "240b0",
+        "243b3",
+        "244b4",
+        "247b7",
+        "248b0"
       ],
       "exits": []
     },
@@ -1467,11 +2407,36 @@
       "shines_available": [
         {
           "id": "ricco7_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 17
         }
       ],
       "blue_coin_ids": [
-        "220b4","221b5","222b6","223b7","224b0","225b1","226b2","228b4","229b5","230b6","231b7","232b0","233b1","234b2","235b3","237b5","238b6","239b7","240b0","242b2","243b3","244b4","245b5","247b7","248b0"
+        "220b4",
+        "221b5",
+        "222b6",
+        "223b7",
+        "224b0",
+        "225b1",
+        "226b2",
+        "228b4",
+        "229b5",
+        "230b6",
+        "231b7",
+        "232b0",
+        "233b1",
+        "234b2",
+        "235b3",
+        "237b5",
+        "238b6",
+        "239b7",
+        "240b0",
+        "242b2",
+        "243b3",
+        "244b4",
+        "245b5",
+        "247b7",
+        "248b0"
       ],
       "exits": []
     },
@@ -1480,11 +2445,32 @@
       "shines_available": [
         {
           "id": "ricco8_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 10
         }
       ],
       "blue_coin_ids": [
-        "221b5","222b6","223b7","224b0","226b2","227b3","228b4","229b5","230b6","231b7","232b0","234b2","235b3","237b5","238b6","239b7","240b0","241b1","246b6","248b0","249b1"
+        "221b5",
+        "222b6",
+        "223b7",
+        "224b0",
+        "226b2",
+        "227b3",
+        "228b4",
+        "229b5",
+        "230b6",
+        "231b7",
+        "232b0",
+        "234b2",
+        "235b3",
+        "237b5",
+        "238b6",
+        "239b7",
+        "240b0",
+        "241b1",
+        "246b6",
+        "248b0",
+        "249b1"
       ],
       "exits": []
     },
@@ -1493,11 +2479,13 @@
       "shines_available": [
         {
           "id": "rico_ex0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 11
         },
         {
           "id": "rico_ex0_2",
-          "name": "Second Race Shine"
+          "name": "Second Race Shine",
+          "num_id": 19
         }
       ],
       "blue_coin_ids": [],
@@ -1508,11 +2496,13 @@
       "shines_available": [
         {
           "id": "rico_ex1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 55
         },
         {
           "id": "rico_ex1_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 58
         }
       ],
       "blue_coin_ids": [],
@@ -1523,11 +2513,14 @@
       "shines_available": [
         {
           "id": "sirena0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 40
         }
       ],
       "blue_coin_ids": [
-        "373b5", "374b6", "387b3"
+        "373b5",
+        "374b6",
+        "387b3"
       ],
       "exits": []
     },
@@ -1536,7 +2529,12 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "387b3", "371b3", "386b2", "372b4", "375b7", "370b2"
+        "387b3",
+        "371b3",
+        "386b2",
+        "372b4",
+        "375b7",
+        "370b2"
       ],
       "exits": [
         {
@@ -1550,7 +2548,12 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "387b3", "370b2", "371b3", "372b4", "375b7", "386b2"
+        "387b3",
+        "370b2",
+        "371b3",
+        "372b4",
+        "375b7",
+        "386b2"
       ],
       "exits": [
         {
@@ -1564,7 +2567,12 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "370b2", "371b3", "372b4", "375b7", "387b3", "392b0"
+        "370b2",
+        "371b3",
+        "372b4",
+        "375b7",
+        "387b3",
+        "392b0"
       ],
       "exits": [
         {
@@ -1578,7 +2586,12 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "370b2", "371b3", "372b4", "375b7", "386b2", "387b3"
+        "370b2",
+        "371b3",
+        "372b4",
+        "375b7",
+        "386b2",
+        "387b3"
       ],
       "exits": [
         {
@@ -1592,17 +2605,18 @@
       "shines_available": [
         {
           "id": "sirena5_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 45
         }
       ],
       "blue_coin_ids": [
-        "370b2" ,
+        "370b2",
         "371b3",
         "372b4",
-        "373b5" ,
+        "373b5",
         "374b6",
         "375b7",
-        "384b0" ,
+        "384b0",
         "386b2",
         "387b3",
         "390b6"
@@ -1614,7 +2628,13 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "370b2", "371b3", "372b4", "375b7", "386b2", "387b3", "388b4"
+        "370b2",
+        "371b3",
+        "372b4",
+        "375b7",
+        "386b2",
+        "387b3",
+        "388b4"
       ],
       "exits": [
         {
@@ -1628,7 +2648,13 @@
       "shines_available": [
       ],
       "blue_coin_ids": [
-        "370b2", "371b3", "372b4", "375b7", "386b2", "387b3", "388b4"
+        "370b2",
+        "371b3",
+        "372b4",
+        "375b7",
+        "386b2",
+        "387b3",
+        "388b4"
       ],
       "exits": [
         {
@@ -1642,11 +2668,13 @@
       "shines_available": [
         {
           "id": "sirena_ex0_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 43
         },
         {
           "id": "sirena_ex0_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [],
@@ -1657,11 +2685,13 @@
       "shines_available": [
         {
           "id": "sirena_ex1_1",
-          "name": "Episode Shine"
+          "name": "Episode Shine",
+          "num_id": 35
         },
         {
           "id": "sirena_ex1_2",
-          "name": "Red Coin Shine"
+          "name": "Red Coin Shine",
+          "num_id": 9999
         }
       ],
       "blue_coin_ids": [],

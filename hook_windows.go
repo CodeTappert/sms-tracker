@@ -3,6 +3,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"syscall"
 	"unsafe"
@@ -14,7 +15,7 @@ var (
 	procReadProcessMemory = modkernel32.NewProc("ReadProcessMemory")
 	procVirtualQueryEx    = modkernel32.NewProc("VirtualQueryEx")
 	procEnumProcesses     = modkernel32.NewProc("K32EnumProcesses")
-	procGetProcessImage   = modkernel32.NewProc("K32GetModuleBaseNameW")
+	procGetModuleBaseName = modkernel32.NewProc("K32GetModuleBaseNameW")
 )
 
 // Read reads memory from the Dolphin emulator at the specified GameCube address.
@@ -60,22 +61,70 @@ func getEmuRAMBase(hProcess syscall.Handle) uintptr {
 	return 0
 }
 
-// findDolphinPID searches for the Dolphin emulator process and returns its PID.
 func findDolphinPID() uint32 {
 	var pids [1024]uint32
 	var cb uint32
-	procEnumProcesses.Call(uintptr(unsafe.Pointer(&pids[0])), uintptr(len(pids)*4), uintptr(unsafe.Pointer(&cb)))
-	for i := uint32(0); i < cb/4; i++ {
-		h, _, _ := procOpenProcess.Call(PROCESS_VM_READ|PROCESS_QUERY_INFORMATION, 0, uintptr(pids[i]))
-		if h != 0 {
-			var name [256]uint16
-			procGetProcessImage.Call(h, 0, uintptr(unsafe.Pointer(&name[0])), 256)
-			syscall.CloseHandle(syscall.Handle(h))
-			if syscall.UTF16ToString(name[:]) == "Dolphin.exe" {
-				return pids[i]
+
+	// Enumerate all process IDs
+	ret, _, err := procEnumProcesses.Call(
+		uintptr(unsafe.Pointer(&pids[0])),
+		uintptr(len(pids)*4),
+		uintptr(unsafe.Pointer(&cb)),
+	)
+
+	if ret == 0 {
+		fmt.Printf("Fatal: Could not enumerate processes. Error: %v\n", err)
+		return 0
+	}
+
+	// cb is the number of bytes returned. Each PID is 4 bytes.
+	count := cb / 4
+	for i := uint32(0); i < count; i++ {
+		pid := pids[i]
+		if pid == 0 {
+			continue
+		}
+
+		// Open process handle with specific access
+		h, _, err := procOpenProcess.Call(
+			PROCESS_VM_READ|PROCESS_QUERY_INFORMATION,
+			0,
+			uintptr(pid),
+		)
+
+		if h == 0 {
+			// If we get "Access is denied" (Error 5), it's a hint we might need Admin
+			var errno syscall.Errno
+			if errors.As(err, &errno) && errno == 5 {
+				// Silently skip system processes we can't touch
+				continue
+			} else if err != nil {
+				fmt.Printf("Warning: Could not open process PID %d. Error: %v\n", pid, err)
+				continue
+			}
+			continue
+		}
+
+		var name [256]uint16
+		// Get the base name (e.g., "Dolphin.exe")
+		nRet, _, _ := procGetModuleBaseName.Call(
+			h,
+			0,
+			uintptr(unsafe.Pointer(&name[0])),
+			uintptr(len(name)),
+		)
+
+		syscall.CloseHandle(syscall.Handle(h))
+
+		if nRet != 0 {
+			processName := syscall.UTF16ToString(name[:])
+			if processName == "Dolphin.exe" {
+				return pid
 			}
 		}
 	}
+
+	fmt.Println("Dolphin.exe was not found. Ensure it is running.")
 	return 0
 }
 

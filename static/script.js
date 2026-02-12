@@ -22,6 +22,7 @@ let appState = {
     unlocks: new Set(),
     globalAssignments: {}, // Map<SourceID, TargetZoneID>
     collectedShines: new Set(),
+    excludedShines: new Set(),
     collectedBlueCoins: new Set(),
     collapsedElements: new Set(), // IDs of collapsed rows
     autoTrackEnabled: false
@@ -238,17 +239,24 @@ function buildMainEntryRow(entrance, entryID, groupClass) {
         statsCellContent = `<div class="route-stats" id="stats-${assignmentKey}"></div>`;
     } else {
         // Render a simple Shine button for static Plaza Shines
-        stats.shinesPossible.add(entrance.id);
         const isChecked = appState.collectedShines.has(entrance.id);
+        const isExcluded = appState.excludedShines.has(entrance.id);
+
+        // State-based CSS class
+        const statusClass = isChecked ? 'checked' : (isExcluded ? 'excluded' : '');
+
+            stats.shinesPossible.add(entrance.id);
+
         targetCellContent = `<span style="color: #888; font-style: italic;">Plaza Collectible</span>`;
         statsCellContent = `
-            <div class="shine-container">
-                <div class="shine-check ${isChecked ? 'checked' : ''}" 
-                     data-action="toggle-shine" 
-                     data-id="${entrance.id}">
-                    <img src="images/shine_sprite.webp" style="width:16px; margin-right:4px;" alt="Shine">Collect
-                </div>
-            </div>`;
+        <div class="shine-container">
+            <div class="shine-check ${statusClass}" 
+                 data-action="toggle-shine" 
+                 data-id="${entrance.id}">
+                <img src="images/shine_sprite.webp" style="width:16px; margin-right:4px;" alt="Shine">
+                ${isExcluded ? 'Skipped' : 'Collect'}
+            </div>
+        </div>`;
     }
 
     const mainRow = `
@@ -325,11 +333,17 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
     if (zone.shines_available?.length > 0) {
         rowHTML += `<div class="shine-container">`;
         zone.shines_available.forEach(shine => {
-            if (countStats) stats.shinesPossible.add(shine.id);
-
             const isChecked = appState.collectedShines.has(shine.id);
+            const isExcluded = appState.excludedShines.has(shine.id);
+
+            if (countStats) {
+                stats.shinesPossible.add(shine.id);
+            }
+
+            const statusClass = isChecked ? 'checked' : (isExcluded ? 'excluded' : '');
+
             rowHTML += `
-                <div class="shine-check ${isChecked ? 'checked' : ''}" 
+                <div class="shine-check ${statusClass}" 
                      ${shineAction} 
                      data-id="${shine.id}"
                      ${lockedStyle}>
@@ -402,6 +416,19 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
 
             if (target && !chainHistory.includes(target)) {
                 rowHTML += buildRecursiveZoneRows(target, [...chainHistory, target], depth + 1, groupClass, subParentID, countStats, isLocked);
+            } else if (target) {
+                const targetZone = worldData.zones[target];
+                const targetName = targetZone ? targetZone.name : "Unknown";
+                rowHTML += `
+                    <tr class="${groupClass} child-row loop-row" data-parent="${parentID}" ${displayStyle}>
+                        <td></td>
+                        <td style="padding-top: 0;">
+                            <div style="color: #e74c3c; font-size: 0.75rem; margin-top: -4px; display: flex; align-items: center; gap: 4px;">
+                                <span>⤴</span> <span>Already in chain: ${targetName}</span>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>`;
             }
         });
     }
@@ -557,37 +584,33 @@ function handleTableClick(event) {
     const shineDiv = event.target.closest('[data-action="toggle-shine"]');
     if (shineDiv) {
         const id = shineDiv.dataset.id;
-
-        // RELOCK LOGIC: Capture state before toggle
         const wasCoronaUnlocked = checkCoronaUnlock();
 
-        // Toggle State
+        // Cycle Logic
         if (appState.collectedShines.has(id)) {
+            // State 1 -> 2: Collected -> Excluded
             appState.collectedShines.delete(id);
+            appState.excludedShines.add(id);
+        } else if (appState.excludedShines.has(id)) {
+            // State 2 -> 0: Excluded -> None
+            appState.excludedShines.delete(id);
         } else {
+            // State 0 -> 1: None -> Collected
             appState.collectedShines.add(id);
         }
 
-        // RELOCK LOGIC: Check state after toggle
         const isCoronaUnlocked = checkCoronaUnlock();
-
         if (wasCoronaUnlocked !== isCoronaUnlocked) {
-            // Auto-Uncollapse if we just Unlocked it
-            if (isCoronaUnlocked) {
-                appState.collapsedElements.delete("corona-main");
-            }
+            if (isCoronaUnlocked) appState.collapsedElements.delete("corona-main");
             renderTable();
             return;
         }
 
-        // Standard UI Sync
-        const allInstances = document.querySelectorAll(`[data-action="toggle-shine"][data-id="${id}"]`);
-        allInstances.forEach(el => {
-            if (appState.collectedShines.has(id)) {
-                el.classList.add('checked');
-            } else {
-                el.classList.remove('checked');
-            }
+        // UI Sync for all instances
+        document.querySelectorAll(`[data-action="toggle-shine"][data-id="${id}"]`).forEach(el => {
+            el.classList.remove('checked', 'excluded');
+            if (appState.collectedShines.has(id)) el.classList.add('checked');
+            if (appState.excludedShines.has(id)) el.classList.add('excluded');
         });
 
         updateAllStatsUI();
@@ -815,12 +838,11 @@ function calculateBranchStats(assignmentKey, chainHistory) {
     // Shines
     if (zone.shines_available) {
         zone.shines_available.forEach(shine => {
-            // Add ID to total set
-            result.sTotal.add(shine.id);
-            // Add ID to found set if collected
-            if (appState.collectedShines.has(shine.id)) {
-                result.sFound.add(shine.id);
-            }
+                result.sTotal.add(shine.id);
+                if (appState.collectedShines.has(shine.id)) {
+                    result.sFound.add(shine.id);
+                }
+
         });
     }
 
@@ -873,6 +895,7 @@ function saveState() {
         unlocks: Array.from(appState.unlocks),
         globalAssignments: appState.globalAssignments,
         collectedShines: Array.from(appState.collectedShines),
+        excludedShines: Array.from(appState.excludedShines),
         collectedBlueCoins: Array.from(appState.collectedBlueCoins),
         collapsedElements: Array.from(appState.collapsedElements),
         timestamp: new Date().toISOString()
@@ -901,6 +924,7 @@ function loadState(inputElement) {
             // Convert Arrays back to Sets
             appState.unlocks = new Set(importedData.unlocks || []);
             appState.collectedShines = new Set(importedData.collectedShines || []);
+            appState.excludedShines = new Set(importedData.excludedShines || []);
             appState.collectedBlueCoins = new Set(importedData.collectedBlueCoins || []);
             appState.collapsedElements = new Set(importedData.collapsedElements || []);
             appState.globalAssignments = importedData.globalAssignments || {};
@@ -987,6 +1011,7 @@ function stopAutoTracking() {
     document.getElementById('dolphin-indicator').style.boxShadow = "none";
     document.getElementById('dolphin-text').innerText = "Disconnected";
     document.getElementById('dolphin-text').style.color = "#888";
+    document.getElementById('current-seed').innerText = "---";
     document.getElementById('api-countdown').innerText = "(Next: 0.0s)";
     document.querySelectorAll('.unlock-icon').forEach(img => img.classList.remove('auto-active'));
 }
@@ -1022,12 +1047,14 @@ async function fetchMemoryData() {
 
         if (!data.is_hooked) {
             document.getElementById('current-location').innerText = "SEARCHING...";
+            document.getElementById('current-seed').innerText = "Searching..."; // Updated
             document.getElementById('current-episode').innerText = "---";
             return;
         }
 
         // 3. Update UI Data
         document.getElementById('current-location').innerText = data.current_level || "---";
+        document.getElementById('current-seed').innerText = data.seed || "---"; // Updated
         document.getElementById('current-episode').innerText = data.current_episode || "---";
 
         let changed = false;
@@ -1113,9 +1140,13 @@ function calculateBranchStatsForZone(zoneID) {
     if (!zone) return res;
 
     if (zone.shines_available) {
-        zone.shines_available.forEach(s => {
-            res.sTotal.add(s.id);
-            if (appState.collectedShines.has(s.id)) res.sFound.add(s.id);
+        zone.shines_available.forEach(shine => {
+            // Only count toward total if NOT excluded
+                res.sTotal.add(shine.id);
+                if (appState.collectedShines.has(shine.id)) {
+                    res.sFound.add(shine.id);
+                }
+
         });
     }
 

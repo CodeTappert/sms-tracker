@@ -364,11 +364,10 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
         }).sort((a, b) => a.sortOrder - b.sortOrder);
 
         sortedCoins.forEach(({ bcID, info }) => {
-            const uniqueKey = `${zoneGroup}::${bcID}`;
 
-            if (countStats) stats.visibleBC.add(uniqueKey);
+            if (countStats) stats.visibleBC.add(bcID);
 
-            const isCollected = appState.collectedBlueCoins.has(uniqueKey);
+            const isCollected = appState.collectedBlueCoins.has(bcID);
             let coinNumber = "🔵";
             const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
             if (match) coinNumber = match[1];
@@ -377,7 +376,7 @@ function buildRecursiveZoneRows(zoneID, chainHistory, depth, groupClass, parentI
             <div class="bc-item-wrapper">
                 <div class="bc-box ${isCollected ? 'collected' : ''}" 
                      ${bcAction} 
-                     data-id="${uniqueKey}"
+                     data-id="${bcID}"
                      ${lockedStyle}>
                     ${coinNumber}
                     <a href="${info.mariopartylegacylink}" target="_blank" class="bc-info-link" style="pointer-events: auto;" onclick="event.stopPropagation();">?</a>
@@ -485,10 +484,9 @@ function buildCoronaRow(entrance, groupClass) {
         const lockedStyle = isUnlocked ? '' : 'style="pointer-events: none; opacity: 0.6;"';
 
         sortedCoins.forEach(({ bcID, info }) => {
-            const uniqueKey = `${zoneGroup}::${bcID}`;
-            if (isUnlocked) stats.visibleBC.add(uniqueKey);
+            if (isUnlocked) stats.visibleBC.add(bcID);
 
-            const isCollected = appState.collectedBlueCoins.has(uniqueKey);
+            const isCollected = appState.collectedBlueCoins.has(bcID);
             let coinNumber = "🔵";
             const match = info.mariopartylegacylink.match(/#coin-(\d+)$/);
             if (match) coinNumber = match[1];
@@ -497,7 +495,7 @@ function buildCoronaRow(entrance, groupClass) {
             <div class="bc-item-wrapper">
                 <div class="bc-box ${isCollected ? 'collected' : ''}" 
                      ${bcAction} 
-                     data-id="${uniqueKey}" 
+                     data-id="${bcID}" 
                      ${lockedStyle}>
                     ${coinNumber}
                     <a href="${info.mariopartylegacylink}" target="_blank" class="bc-info-link" style="pointer-events: auto;" onclick="event.stopPropagation();">?</a>

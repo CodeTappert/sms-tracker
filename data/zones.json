@@ -679,7 +679,7 @@
         {
           "id": "crate_1",
           "name": "Break the Crate (1)",
-          "num_id": 9999
+          "num_id": 94
         },
         {
           "id": "crate_2",
@@ -694,7 +694,7 @@
         {
           "id": "western_bell",
           "name": "Clear Western Bell",
-          "num_id": 9999
+          "num_id": 96
         },
         {
           "id": "eastern_bell",
